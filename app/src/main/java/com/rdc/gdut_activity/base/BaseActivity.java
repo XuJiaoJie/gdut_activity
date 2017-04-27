@@ -11,14 +11,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayoutResourceID());
-        initView();
         initData();
+        initView();
         initListener();
     }
 
     public abstract int setLayoutResourceID();
-    public abstract void initView();
     public void initData(){}
+    public void initView(){}
     public void initListener(){}
 
     public void showToast(String text){

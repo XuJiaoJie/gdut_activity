@@ -33,20 +33,17 @@ public abstract class BaseFragment extends Fragment{
 
     /**
      * 初始化数据
-     * @param bundle  接收到的从其他地方传递过来的参数
+     * @param bundle  接收到的从其他地方传递过来的数据
      */
     protected void initData(Bundle bundle){
     }
 
-    /**
-     * 初始化View
-     */
+
+    //初始化View
     protected void initView(){
     }
 
-    /**
-     * 设置监听事件
-     */
+    //设置监听事件
     protected void setListener(){
     }
 
