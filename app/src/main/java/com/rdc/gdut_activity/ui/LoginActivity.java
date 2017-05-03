@@ -1,23 +1,21 @@
 package com.rdc.gdut_activity.ui;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.rdc.gdut_activity.R;
+import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.presenter.LoginPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.ILoginView;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements ILoginView {
+public class LoginActivity extends BaseActivity implements ILoginView {
 
 
     @InjectView(R.id.et_login_username)
@@ -30,15 +28,14 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     ProgressBar mLoginProgress;
     private LoginPresenter mLoginPresenter;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.inject(this);
-        initEvent();
+    public int setLayoutResourceID() {
+        return R.layout.activity_login;
     }
 
-    private void initEvent() {
+    @Override
+    public void initData() {
         mLoginPresenter = new LoginPresenter(this);
     }
 
