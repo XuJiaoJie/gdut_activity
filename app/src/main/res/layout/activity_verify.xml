@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.rdc.gdut_activity.view.NavigationTabStrip
+        android:id="@+id/nts_verify_tab"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:nts_active_color="@color/colorAccent"
+        app:nts_color="@color/colorAccent"
+        app:nts_corners_radius="1dp"
+        app:nts_factor="0.8"
+        app:nts_gravity="bottom"
+        app:nts_inactive_color="#81104be2"
+        app:nts_titles="@array/titles"
+        app:nts_type="point"
+        app:nts_typeface="fonts/moon.otf"
+        app:nts_weight="4dp"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_verify_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
