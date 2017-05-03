@@ -6,9 +6,7 @@ import com.rdc.gdut_activity.constant.Constant;
 
 import cn.bmob.v3.Bmob;
 
-/**
- * Created by ThatNight on 2017.4.26.
- */
+
 
 public class App extends Application {
 

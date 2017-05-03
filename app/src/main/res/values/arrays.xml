@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="titles">
+        <item>未审核</item>
+        <item>已审核</item>
+    </string-array>
+
+</resources>
