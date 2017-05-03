@@ -2,7 +2,6 @@ package com.rdc.gdut_activity.ui;
 
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
@@ -24,8 +23,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     EditText etPassword;
     @InjectView(R.id.btn_login_login)
     Button btnLoginLogin;
-    @InjectView(R.id.login_progress)
-    ProgressBar mLoginProgress;
     private LoginPresenter mLoginPresenter;
 
 
@@ -51,7 +48,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void showProgress(int visibility) {
-        mLoginProgress.setVisibility(visibility);
     }
 
     @Override
