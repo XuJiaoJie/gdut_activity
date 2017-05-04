@@ -30,21 +30,16 @@ public abstract class BaseFragment extends Fragment{
     }
 
     protected abstract int setLayoutResourceId();
-
     /**
      * 初始化数据
      * @param bundle  接收到的从其他地方传递过来的数据
      */
-    protected void initData(Bundle bundle){
-    }
-
+    protected abstract void initData(Bundle bundle);
 
     //初始化View
-    protected void initView(){
-    }
+    protected abstract void initView();
 
     //设置监听事件
-    protected void setListener(){
-    }
+    protected abstract void setListener();
 
 }

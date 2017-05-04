@@ -19,10 +19,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         initListener();
     }
 
-    public abstract int setLayoutResourceID();
-    public void initData(){}
-    public void initView(){}
-    public void initListener(){}
+    protected abstract int setLayoutResourceID();
+    protected abstract void initData();
+    protected abstract void initView();
+    protected abstract void initListener();
 
     public void showToast(String text){
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();

@@ -46,4 +46,8 @@ public class VerifyActivity extends BaseActivity {
         mNtsVerifyTab.setViewPager(mVpVerifyContent,0);
     }
 
+    @Override
+    protected void initListener() {
+
+    }
 }

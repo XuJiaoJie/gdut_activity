@@ -25,6 +25,15 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     Button btnLoginLogin;
     private LoginPresenter mLoginPresenter;
 
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
 
     @Override
     public int setLayoutResourceID() {

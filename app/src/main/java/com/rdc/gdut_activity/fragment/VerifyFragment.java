@@ -35,6 +35,11 @@ public class VerifyFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        super.initView();
+
+    }
+
+    @Override
+    protected void setListener() {
+
     }
 }
