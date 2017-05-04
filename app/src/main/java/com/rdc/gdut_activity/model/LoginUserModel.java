@@ -16,7 +16,7 @@ public class LoginUserModel {
         BmobUser.loginByAccount(userPhone, userPassword, new LogInListener<User>() {
             @Override
             public void done(User user, BmobException e) {
-                if (user != null) {
+                if (e == null) {
                     onLoginListener.loginSuccess(user);
                 } else {
                     onLoginListener.loginFailed(e.toString());

@@ -6,4 +6,8 @@
     <string name="login_phonenum">输入手机号</string>
     <string name="login_password">输入密码</string>
     <string name="btn_login_login">登录</string>
+    <string name="btn_login_forget">忘记密码?</string>
+    <string name="btn_login_register">没有账号?现在去注册</string>
+    <string name="btn_register_register">注册</string>
+    <string name="register_password_again">确认密码</string>
 </resources>

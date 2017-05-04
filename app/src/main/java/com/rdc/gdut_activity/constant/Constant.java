@@ -5,6 +5,5 @@ package com.rdc.gdut_activity.constant;
  */
 
 public class Constant {
-    //bmob_id
-    public static final String APPLICATION_ID="a16f9e1ce59b535cdb4ab68044234871";
+    public static final String APPLICATION_ID="a16f9e1ce59b535cdb4ab68044234871";    //bmob_id
 }

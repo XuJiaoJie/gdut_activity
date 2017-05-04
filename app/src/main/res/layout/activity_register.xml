@@ -1,12 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/color_primary"
-              android:orientation="vertical"
-              tools:context="com.rdc.gdut_activity.ui.LoginActivity">
-
+              tools:context="com.rdc.gdut_activity.ui.RegisterActivity">
 
     <ScrollView
         android:id="@+id/sc_login_form"
@@ -20,17 +19,17 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_login_title"
+                android:id="@+id/tv_register_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="登录"
+                android:text="注册"
                 android:textColor="@color/color_white_login"
-                android:textSize="20sp"/>
+                android:textSize="@dimen/dimen_title_login"/>
 
             <EditText
-                android:id="@+id/et_login_username"
+                android:id="@+id/et_register_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_margin_login"
@@ -44,7 +43,7 @@
                 android:theme="@style/EditTextStyle"/>
 
             <EditText
-                android:id="@+id/et_login_password"
+                android:id="@+id/et_register_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_margin_login"
@@ -58,45 +57,39 @@
                 android:textSize="@dimen/dimen_et_login"
                 android:theme="@style/EditTextStyle"/>
 
-            <Button
-                android:id="@+id/btn_login_forget"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/et_register_password_again"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dimen_margin_login"
+                android:layout_marginRight="@dimen/dimen_margin_login"
                 android:layout_marginTop="5dp"
-                android:background="@null"
-                android:text="@string/btn_login_forget"
-                android:textColor="@color/color_white_login"
-                android:textSize="@dimen/dimen_text_login"/>
+                android:hint="@string/register_password_again"
+                android:imeActionId="@+id/login"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textSize="@dimen/dimen_et_login"
+                android:theme="@style/EditTextStyle"/>
 
             <Button
-                android:id="@+id/btn_login_login"
+                android:id="@+id/btn_register_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/dimen_margin_login"
                 android:layout_marginRight="@dimen/dimen_margin_login"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/selector_btn_login"
-                android:text="@string/btn_login_login"
+                android:text="@string/btn_register_register"
                 android:textColor="@color/color_primary"
                 android:textSize="@dimen/dimen_title_login"
                 />
-
-
-            <Button
-                android:id="@+id/btn_login_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@null"
-                android:text="@string/btn_login_register"
-                android:textColor="@color/color_white_login"
-                android:textSize="@dimen/dimen_text_login"/>
 
         </LinearLayout>
 
 
     </ScrollView>
+
+
 </LinearLayout>
