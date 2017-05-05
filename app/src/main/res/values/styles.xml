@@ -15,5 +15,4 @@
         <item name="android:textColorHint">@color/color_text_login</item>
     </style>
 
-
 </resources>

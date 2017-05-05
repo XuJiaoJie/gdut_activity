@@ -6,10 +6,10 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseFragment;
 
 /**
- * Created by ThatNight on 2017.4.26.
+ * Created by zjz on 2017/5/5.
  */
 
-public class MainFragment extends BaseFragment {
+public class ToolFragment extends BaseFragment {
 
     private int mTitle;
     private String mMessage;
@@ -17,26 +17,25 @@ public class MainFragment extends BaseFragment {
     /**
      用来获取fragment实例的方法，这里可以让Activity给fragment设置参数,参数可以在下面的initData方法中的bundle中取出
      */
-    public static  MainFragment newInstance(int title , String message){
-        MainFragment mainFragment = new MainFragment();
+    public static  UserFragment newInstance(int title , String message){
+        UserFragment userFragment = new UserFragment();
         Bundle bundle = new Bundle(2);
         bundle.putInt("title",title);
         bundle.putString("message",message);
-        mainFragment.setArguments(bundle);
-        return mainFragment;
+        userFragment.setArguments(bundle);
+        return userFragment;
     }
 
 
     @Override
     protected int setLayoutResourceId() {
-        return R.layout.fragment_main;
+        return R.layout.fragment_tool;
     }
 
     @Override
     protected void initData(Bundle bundle) {
         setParams(bundle);
     }
-
 
     @Override
     protected void initView() {
@@ -51,5 +50,4 @@ public class MainFragment extends BaseFragment {
         mTitle = bundle.getInt("title");
         mMessage = bundle.getString("message");
     }
-
 }
