@@ -6,8 +6,25 @@
     <string name="login_phonenum">输入手机号</string>
     <string name="login_password">输入密码</string>
     <string name="btn_login_login">登录</string>
+    <string name="activity_name">活动名称：</string>
+    <string name="set_form_data">设置报名表单（可选）</string>
+    <string name="name">姓名</string>
+    <string name="phone_number">手机号码</string>
+    <string name="check_status">审核状态：未审核</string>
+    <string name="preview">预览</string>
+    <string name="publish">√ 发布</string>
+    <string name="type">类型：</string>
+    <string name="host">主办单位：</string>
+    <string name="detail">详情：</string>
+    <string name="back">返回</string>
+    <string name="sign_up_form">报名表：</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="btn_login_forget">忘记密码?</string>
     <string name="btn_login_register">没有账号?现在去注册</string>
     <string name="btn_register_register">注册</string>
     <string name="register_password_again">确认密码</string>
+    <string name="tv_organization_name">单位信息</string>
 </resources>

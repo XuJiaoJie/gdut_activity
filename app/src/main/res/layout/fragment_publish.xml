@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rdc.gdut_activity.ui.PublisherActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:text="@string/activity_name"
+                style="@style/CustomTvTitleStyle"/>
+
+
+            <EditText
+                android:id="@+id/et_activity_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                tools:text="app 开发大赛"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/type"
+                style="@style/CustomTvTitleStyle"/>
+
+            <Spinner
+                android:id="@+id/sp_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:paddingRight="3dp"/>
+
+            <TextView
+                style="@style/CustomTvTitleStyle"
+                android:text="@string/host"/>
+
+            <EditText
+                android:id="@+id/et_activity_host"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="校团委"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                style="@style/CustomTvTitleStyle"
+                android:text="地点："/>
+
+
+            <EditText
+                android:id="@+id/et_activity_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="start|center"
+            android:text="时间：2017-05-19"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/CustomTvTitleStyle"
+                android:layout_marginTop="5dp"
+                android:text="@string/detail"/>
+
+
+            <ImageView
+                android:id="@+id/iv_import_photo"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_take_photo"/>
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/et_activity_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="10"/>
+
+        <!--<com.jaeger.ninegridimageview.NineGridImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="16dp"-->
+        <!--app:imgGap="4dp"-->
+        <!--app:showStyle="fill"-->
+        <!--app:singleImgSize="120dp"/>-->
+
+        <Button
+            android:id="@+id/btn_set_form_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/set_form_data"/>
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"/>
+
+
+        <Button
+            android:id="@+id/btn_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/ivory"
+            android:text="@string/preview"
+            android:textColor="@color/green"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_publish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/mediumseagreen"
+            android:text="@string/publish"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</ScrollView>

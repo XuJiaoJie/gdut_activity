@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="70dp"
+              android:background="?android:attr/selectableItemBackground"
+              android:orientation="horizontal"
+              android:padding="6dp">
+
+    <ImageView
+        android:id="@+id/iv_act_icon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_pick_photo"/>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_act_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="18sp"
+            tools:text="App 开发大赛"/>
+
+        <TextView
+            android:id="@+id/tv_act_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            tools:text="地点： 工学二号馆，学术报告厅"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_act_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:padding="5dp"
+        tools:text="05-15 00:00\n05-19 24:00"/>
+
+</LinearLayout>

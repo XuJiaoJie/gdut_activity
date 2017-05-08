@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     protected BaseActivity mBaseActivity;  //贴附的activity,Fragment中可能用到
     protected View mRootView;    //根view
 
@@ -22,7 +22,7 @@ public abstract class BaseFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(setLayoutResourceId(),container,false);
+        mRootView = inflater.inflate(setLayoutResourceId(), container, false);
         initData(getArguments());
         initView();
         setListener();
@@ -30,9 +30,11 @@ public abstract class BaseFragment extends Fragment{
     }
 
     protected abstract int setLayoutResourceId();
+
     /**
      * 初始化数据
-     * @param bundle  接收到的从其他地方传递过来的数据
+     *
+     * @param bundle 接收到的从其他地方传递过来的数据
      */
     protected abstract void initData(Bundle bundle);
 
