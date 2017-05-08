@@ -161,4 +161,7 @@
     <!--login-->
     <color name="color_white_login">#fdfdfe</color>
     <color name="color_text_login">#9eebcd</color>
+
+    <!--verify-->
+    <color name="dark_text_verify">#2d2c2c</color>
 </resources>
