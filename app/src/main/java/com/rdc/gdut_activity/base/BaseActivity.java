@@ -12,14 +12,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(setLayoutResourceID());
+        setContentView(setLayoutResID());
         ButterKnife.inject(this);
         initData();
         initView();
         initListener();
     }
 
-    protected abstract int setLayoutResourceID();
+    protected abstract int setLayoutResID();
     protected abstract void initData();
     protected abstract void initView();
     protected abstract void initListener();

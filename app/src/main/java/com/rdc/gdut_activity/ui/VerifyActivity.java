@@ -26,7 +26,7 @@ public class VerifyActivity extends BaseActivity {
     private VerifyViewPagerAdapter mVerifyViewPagerAdapter;
 
     @Override
-    public int setLayoutResourceID() {
+    public int setLayoutResID() {
         return R.layout.activity_verify;
     }
 

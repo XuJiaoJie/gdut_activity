@@ -1,7 +1,11 @@
 package com.rdc.gdut_activity.bean;
 
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class ActivityInfoBean implements Parcelable {
     private String mActivityName;
@@ -10,24 +14,17 @@ public class ActivityInfoBean implements Parcelable {
     private String mActivityLocation;
     private String mActivityTime;
     private String mActivityDetail;
-    private String mFormData;
     private String mCheckStatus;
+    private String mPublishTime;
+    private String mPublisherName;
+    private String mPublisherIconUrl;
+    private List<String> mImgUrlList;
+    private HashMap<String, String> mFormDataMap;
+
+    private static final String KEY_FORM_DATA_MAP = "FORM_DATA_MAP";
+
 
     public ActivityInfoBean() {
-    }
-
-    public ActivityInfoBean(String activityName, String activityType,
-                            String activityHost, String activityLocation,
-                            String activityTime, String activityDetail,
-                            String formData, String checkStatus) {
-        mActivityName = activityName;
-        mActivityType = activityType;
-        mActivityHost = activityHost;
-        mActivityLocation = activityLocation;
-        mActivityTime = activityTime;
-        mActivityDetail = activityDetail;
-        mFormData = formData;
-        mCheckStatus = checkStatus;
     }
 
     protected ActivityInfoBean(Parcel in) {
@@ -37,21 +34,14 @@ public class ActivityInfoBean implements Parcelable {
         mActivityLocation = in.readString();
         mActivityTime = in.readString();
         mActivityDetail = in.readString();
-        mFormData = in.readString();
         mCheckStatus = in.readString();
+        mPublishTime = in.readString();
+        mPublisherName = in.readString();
+        mPublisherIconUrl = in.readString();
+        mImgUrlList = in.createStringArrayList();
+        Bundle bundle = in.readBundle(getClass().getClassLoader());
+        mFormDataMap = (HashMap<String, String>) bundle.getSerializable(KEY_FORM_DATA_MAP);
     }
-
-    public static final Creator<ActivityInfoBean> CREATOR = new Creator<ActivityInfoBean>() {
-        @Override
-        public ActivityInfoBean createFromParcel(Parcel in) {
-            return new ActivityInfoBean(in);
-        }
-
-        @Override
-        public ActivityInfoBean[] newArray(int size) {
-            return new ActivityInfoBean[size];
-        }
-    };
 
     public String getActivityName() {
         return mActivityName;
@@ -101,14 +91,6 @@ public class ActivityInfoBean implements Parcelable {
         mActivityDetail = activityDetail;
     }
 
-    public String getFormData() {
-        return mFormData;
-    }
-
-    public void setFormData(String formData) {
-        mFormData = formData;
-    }
-
     public String getCheckStatus() {
         return mCheckStatus;
     }
@@ -117,12 +99,48 @@ public class ActivityInfoBean implements Parcelable {
         mCheckStatus = checkStatus;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getPublishTime() {
+        return mPublishTime;
+    }
+
+    public void setPublishTime(String publishTime) {
+        mPublishTime = publishTime;
+    }
+
+    public String getPublisherName() {
+        return mPublisherName;
+    }
+
+    public void setPublisherName(String publisherName) {
+        mPublisherName = publisherName;
+    }
+
+    public String getPublisherIconUrl() {
+        return mPublisherIconUrl;
+    }
+
+    public void setPublisherIconUrl(String publisherIconUrl) {
+        mPublisherIconUrl = publisherIconUrl;
+    }
+
+    public List<String> getImgUrlList() {
+        return mImgUrlList;
+    }
+
+    public void setImgUrlList(List<String> imgUrlList) {
+        mImgUrlList = imgUrlList;
+    }
+
+    public HashMap<String, String> getFormDataMap() {
+        return mFormDataMap;
+    }
+
+    public void setFormDataMap(HashMap<String, String> formDataMap) {
+        mFormDataMap = formDataMap;
     }
 
     @Override
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mActivityName);
         dest.writeString(mActivityType);
@@ -130,7 +148,30 @@ public class ActivityInfoBean implements Parcelable {
         dest.writeString(mActivityLocation);
         dest.writeString(mActivityTime);
         dest.writeString(mActivityDetail);
-        dest.writeString(mFormData);
         dest.writeString(mCheckStatus);
+        dest.writeString(mPublishTime);
+        dest.writeString(mPublisherName);
+        dest.writeString(mPublisherIconUrl);
+        dest.writeStringList(mImgUrlList);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_FORM_DATA_MAP, mFormDataMap);
+        dest.writeBundle(bundle);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ActivityInfoBean> CREATOR = new Creator<ActivityInfoBean>() {
+        @Override
+        public ActivityInfoBean createFromParcel(Parcel in) {
+            return new ActivityInfoBean(in);
+        }
+
+        @Override
+        public ActivityInfoBean[] newArray(int size) {
+            return new ActivityInfoBean[size];
+        }
+    };
 }

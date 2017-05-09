@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
             R.drawable.message_main_selector,R.drawable.user_main_selector};
 
     @Override
-    public int setLayoutResourceID() {
+    public int setLayoutResID() {
         return R.layout.activity_main;
     }
 

@@ -29,7 +29,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
     private RegisterPresenter mPresenter;
 
     @Override
-    public int setLayoutResourceID() {
+    public int setLayoutResID() {
         return R.layout.activity_register;
     }
 
