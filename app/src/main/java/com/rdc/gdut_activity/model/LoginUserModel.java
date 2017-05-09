@@ -17,7 +17,7 @@ public class LoginUserModel {
             @Override
             public void done(User user, BmobException e) {
                 if (e == null) {
-                    onLoginListener.loginSuccess(user);
+                    onLoginListener.loginSuccess();
                 } else {
                     onLoginListener.loginFailed(e.toString());
                 }
@@ -26,7 +26,7 @@ public class LoginUserModel {
     }
 
     public interface OnLoginListener {
-        void loginSuccess(User user);
+        void loginSuccess();
 
         void loginFailed(String error);
     }

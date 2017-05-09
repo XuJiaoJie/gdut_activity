@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rdc.gdut_activity.ui.DetailsPhotoActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_details_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/tv_details_photo_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1/6"
+        android:textSize="18sp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+
+</FrameLayout>

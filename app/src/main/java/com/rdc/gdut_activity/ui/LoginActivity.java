@@ -1,15 +1,16 @@
 package com.rdc.gdut_activity.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.rdc.gdut_activity.MainActivity;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
-import com.rdc.gdut_activity.bean.User;
+import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.presenter.LoginPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.ILoginView;
 
@@ -37,8 +38,18 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     protected void initView() {
-
+        mEtPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    mBtnLoginLogin.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
+
 
     @Override
     protected void initListener() {
@@ -57,18 +68,23 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     }
 
     @Override
-    public void loginSuccess(User user) {
-        Intent intent = new Intent(this, MainActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("user_info", user);
-        intent.putExtras(bundle);
+    public void loginSuccess(int permission) {
+        Intent intent = new Intent();
+        if (Constant.USER_STUDENT == permission) {
+            intent.setClass(this, DetailsActivity.class);
+        } else if (Constant.USER_PUBLISHER == permission) {
+            intent.setClass(this, PublisherMainActivity.class);
+        } else if (Constant.USER_ADMIN == permission) {
+            intent.setClass(this, VerifyActivity.class);
+        }
         startActivity(intent);
         finish();
     }
 
     @Override
-    public void loginFailed() {
-
+    public void loginFailed(String error) {
+        //showToast("用户名或密码错误!");
+        showToast(error);
     }
 
     @Override
@@ -77,7 +93,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public String getUserPhone() {
-        return mEtUsername.getText().toString();
+        return mEtUsername.getText().toString().trim();
     }
 
     @Override
@@ -92,7 +108,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
                 if (checkUserInfo()) {
                     mLoginPresenter.login();
                 } else {
-                    showToast("请检查用户名和密码!");
+                    showToast("请输入正确的用户名和密码!");
                 }
                 break;
             case R.id.btn_login_forget:

@@ -1,8 +1,5 @@
 package com.rdc.gdut_activity.presenter;
 
-import android.util.Log;
-
-import com.rdc.gdut_activity.bean.User;
 import com.rdc.gdut_activity.model.RegisterUserModel;
 import com.rdc.gdut_activity.ui.viewinterface.IRegisterView;
 
@@ -22,13 +19,12 @@ public class RegisterPresenter {
     public void register() {
         mUserModel.registerUser(mRegisterView.getUserPhone(), mRegisterView.getUserPassword(), new RegisterUserModel.OnRegisterListener() {
             @Override
-            public void registerSuccess(User user) {
-                mRegisterView.registerSuccess(user);
+            public void registerSuccess() {
+                mRegisterView.registerSuccess();
             }
 
             @Override
             public void registerFailed(String error) {
-                Log.d("login", "loginfailed: " + error);
                 mRegisterView.registerFailed(error);
             }
         });

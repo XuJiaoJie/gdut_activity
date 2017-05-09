@@ -36,9 +36,10 @@
                 android:layout_marginRight="@dimen/dimen_margin_login"
                 android:layout_marginTop="60dp"
                 android:hint="@string/login_phonenum"
-                android:imeOptions="actionUnspecified"
-                android:inputType="phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone|number"
                 android:maxLines="1"
+                android:textColor="@color/color_white_login"
                 android:textSize="@dimen/dimen_et_login"
                 android:theme="@style/EditTextStyle"/>
 
@@ -51,9 +52,10 @@
                 android:layout_marginTop="5dp"
                 android:hint="@string/login_password"
                 android:imeActionId="@+id/login"
-                android:imeOptions="actionUnspecified"
+                android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:textColor="@color/color_white_login"
                 android:textSize="@dimen/dimen_et_login"
                 android:theme="@style/EditTextStyle"/>
 
@@ -66,9 +68,10 @@
                 android:layout_marginTop="5dp"
                 android:hint="@string/register_password_again"
                 android:imeActionId="@+id/login"
-                android:imeOptions="actionUnspecified"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:textColor="@color/color_white_login"
                 android:textSize="@dimen/dimen_et_login"
                 android:theme="@style/EditTextStyle"/>
 

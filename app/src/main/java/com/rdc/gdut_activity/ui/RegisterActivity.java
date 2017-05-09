@@ -1,14 +1,15 @@
 package com.rdc.gdut_activity.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.rdc.gdut_activity.MainActivity;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
-import com.rdc.gdut_activity.bean.User;
 import com.rdc.gdut_activity.presenter.RegisterPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.IRegisterView;
 
@@ -35,7 +36,16 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @Override
     protected void initView() {
-
+        mEtPasswordAgain.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    mBtnRegister.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -74,7 +84,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @Override
     public String getUserPhone() {
-        return mEtUsername.getText().toString();
+        return mEtUsername.getText().toString().trim();
     }
 
     @Override
@@ -83,11 +93,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
     }
 
     @Override
-    public void registerSuccess(User user) {
+    public void registerSuccess() {
         Intent intent = new Intent(this, MainActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("user_info", user);
-        intent.putExtras(bundle);
         startActivity(intent);
         LoginActivity.mInstance.finish();
         finish();
@@ -95,6 +102,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @Override
     public void registerFailed(String error) {
-
+        showToast(error);
     }
 }
