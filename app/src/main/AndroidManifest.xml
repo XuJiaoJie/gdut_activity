@@ -52,8 +52,6 @@
         <activity android:name=".ui.PublisherActivity"/>
         <activity android:name=".ui.ReleasedActivity">
         </activity>
-        <activity android:name=".ui.DetailsPhotoActivity">
-        </activity>
     </application>
 
 </manifest>

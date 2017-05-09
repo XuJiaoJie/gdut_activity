@@ -62,7 +62,7 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
     private float mScreenHeight;
 
     @Override
-    protected int setLayoutResourceID() {
+    protected int setLayoutResID() {
         return R.layout.activity_details_2;
     }
 

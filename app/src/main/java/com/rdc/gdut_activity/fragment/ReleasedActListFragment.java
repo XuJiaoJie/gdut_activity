@@ -22,7 +22,7 @@ public class ReleasedActListFragment extends BaseFragment {
         mActInfoList = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             ActivityInfoBean activityInfoBean =
-                    new ActivityInfoBean("name: " + i, "", "", "地点：" + i, "时间：" + i, "", "", "");
+                    new ActivityInfoBean();
             mActInfoList.add(activityInfoBean);
         }
     }

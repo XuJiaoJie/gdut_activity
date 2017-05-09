@@ -23,7 +23,7 @@ public class DetailsPhotoActivity extends BaseActivity {
     private int mSize = 0;
 
     @Override
-    protected int setLayoutResourceID() {
+    protected int setLayoutResID() {
         return R.layout.activity_details_photo;
     }
 

@@ -22,7 +22,7 @@ public class ReleasedActivity extends AppCompatActivity {
     private void initTestData() {
         mActivityInfoBeen = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            ActivityInfoBean activityInfoBean = new ActivityInfoBean("" + i, "" + 1, "" + i, "" + i, "" + 1, "" + i, "" + i, "" + 1);
+            ActivityInfoBean activityInfoBean = new ActivityInfoBean();
             mActivityInfoBeen.add(activityInfoBean);
         }
     }
