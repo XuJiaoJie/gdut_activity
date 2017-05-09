@@ -27,7 +27,7 @@ public class PublisherMainActivity extends BaseActivity {
     }
 
     @Override
-    protected int setLayoutResourceID() {
+    protected int setLayoutResID() {
         return R.layout.activity_publisher_main;
     }
 

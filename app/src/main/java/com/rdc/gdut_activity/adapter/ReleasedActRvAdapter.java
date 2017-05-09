@@ -28,7 +28,7 @@ public class ReleasedActRvAdapter extends RecyclerView.Adapter<ReleasedItemViewH
     @Override
     public ReleasedItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.item_released_activity_rv, parent, false);
+        View v = inflater.inflate(R.layout.item_list_fragment, parent, false);
         return new ReleasedItemViewHolder(v, mContext);
     }
 

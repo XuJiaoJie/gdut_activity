@@ -57,7 +57,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     }
 
     @Override
-    public int setLayoutResourceID() {
+    public int setLayoutResID() {
         return R.layout.activity_login;
     }
 
