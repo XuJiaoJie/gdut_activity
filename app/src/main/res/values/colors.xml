@@ -59,7 +59,7 @@
     <color name="lightcyan">#E0FFFF</color><!--亮青色 -->
     <color name="burlywood">#DEB887</color><!--实木色 -->
     <color name="plum">#DDA0DD</color><!--洋李色 -->
-    <color name="gainsboro">#DCDCDC</color><!--淡灰色 -->
+    <color name="gainsboro">#e6e6e6</color><!--淡灰色 -->
     <color name="crimson">#DC143C</color><!--暗深红色 -->
     <color name="palevioletred">#DB7093</color><!--苍紫罗兰色 -->
     <color name="goldenrod">#DAA520</color><!--金麒麟色 -->
@@ -164,4 +164,6 @@
 
     <!--verify-->
     <color name="dark_text_verify">#2d2c2c</color>
+    <color name="list_item_pressed">#8cd9d9d9</color>
+    <color name="list_item_unpressed">#ffff</color>
 </resources>
