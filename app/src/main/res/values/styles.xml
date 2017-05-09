@@ -9,11 +9,17 @@
         <item name="colorControlNormal">@color/color_text_login</item>
     </style>
 
-    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="android:background">@color/white</item>
+    <style name="EditTextStyle" parent="Base.Widget.AppCompat.EditText">
         <item name="android:textCursorDrawable">@drawable/bg_et_cursor_login</item>
         <item name="android:textColorHint">@color/color_text_login</item>
     </style>
+
+    <style name="LoginAndRegisterTheme" parent="AppTheme">
+        <item name="colorAccent">@color/color_text_login</item>
+        <item name="colorControlNormal">@color/color_text_login</item>
+        <item name="colorControlActivated">@color/color_text_login</item>
+    </style>
+
 
     <style name="CustomTvTitleStyle">
         <item name="android:layout_width">wrap_content</item>

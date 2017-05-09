@@ -1,6 +1,7 @@
 package com.rdc.gdut_activity.model;
 
 import com.rdc.gdut_activity.bean.User;
+import com.rdc.gdut_activity.constant.Constant;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -15,11 +16,12 @@ public class RegisterUserModel {
         User user = new User();
         user.setUsername(userPhone);
         user.setPassword(userPassword);
+        user.setPermission(Constant.USER_STUDENT);
         user.signUp(new SaveListener<User>() {
             @Override
             public void done(User user, BmobException e) {
-                if (e== null) {
-                    onRegisterListener.registerSuccess(user);
+                if (e == null) {
+                    onRegisterListener.registerSuccess();
                 } else {
                     onRegisterListener.registerFailed(e.toString());
                 }
@@ -28,7 +30,7 @@ public class RegisterUserModel {
     }
 
     public interface OnRegisterListener {
-        void registerSuccess(User user);
+        void registerSuccess();
 
         void registerFailed(String error);
     }

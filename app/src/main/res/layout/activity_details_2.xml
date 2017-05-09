@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitesmoke"
+    tools:context="com.rdc.gdut_activity.ui.DetailsActivity">
+
+    <com.rdc.gdut_activity.view.NestedScrollView
+        android:id="@+id/sc_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_details_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    >
+                </android.support.v4.view.ViewPager>
+
+                <LinearLayout
+                    android:id="@+id/ll_details_top_dot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="5dp">
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_details_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="震惊!广工居然有这样的活动..."
+                        android:textSize="@dimen/dimen_title_login"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="2017年5月9日"
+                        android:textSize="12sp"
+                        />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_launcher"/>
+
+                        <TextView
+                            android:id="@+id/tv_details_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="2017年05月12日"
+                            />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/gray"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_launcher"/>
+
+                        <TextView
+                            android:id="@+id/tv_details_position"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="大学城教四-302"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/gray"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/ic_launcher"/>
+
+                        <TextView
+                            android:id="@+id/tv_details_to"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="全校学生"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_details_text"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_details_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="详细内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容详细内容"
+                        android:textSize="16sp"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.rdc.gdut_activity.view.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_details_join"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@drawable/selector_btn_details_join"
+        android:text="报名"
+        android:textColor="@color/color_white_login"
+        android:textSize="18sp"
+        android:layout_margin="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

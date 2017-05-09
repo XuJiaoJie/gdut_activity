@@ -37,11 +37,13 @@
                 android:layout_marginRight="@dimen/dimen_margin_login"
                 android:layout_marginTop="60dp"
                 android:hint="@string/login_phonenum"
-                android:imeOptions="actionUnspecified"
+                android:imeOptions="actionNext"
                 android:inputType="phone"
                 android:maxLines="1"
+                android:maxLength="11"
                 android:textSize="@dimen/dimen_et_login"
-                android:theme="@style/EditTextStyle"/>
+                android:theme="@style/EditTextStyle"
+                android:textColor="@color/color_white_login"/>
 
             <EditText
                 android:id="@+id/et_login_password"
@@ -52,11 +54,12 @@
                 android:layout_marginTop="5dp"
                 android:hint="@string/login_password"
                 android:imeActionId="@+id/login"
-                android:imeOptions="actionUnspecified"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:textSize="@dimen/dimen_et_login"
-                android:theme="@style/EditTextStyle"/>
+                android:theme="@style/EditTextStyle"
+                android:textColor="@color/color_white_login"/>
 
             <Button
                 android:id="@+id/btn_login_forget"
