@@ -6,7 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.rdc.gdut_activity.R;
+import com.rdc.gdut_activity.adapter.LoadMoreAdapterWrapper;
 import com.rdc.gdut_activity.adapter.VerifyRecyclerAdapter;
+import com.rdc.gdut_activity.adapter.adapterInterface.OnLoadMoreDataRv;
 import com.rdc.gdut_activity.base.BaseFragment;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 
@@ -16,7 +18,7 @@ import java.util.List;
 import butterknife.InjectView;
 
 
-public class VerifyFragment extends BaseFragment {
+public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv{
     private static final String TAG = "VerifyFragment";
     @InjectView(R.id.rv_verify_fragment_list)
     RecyclerView mRvVerifyFragmentList;
@@ -25,6 +27,7 @@ public class VerifyFragment extends BaseFragment {
     private String mType; //Fragment类型标志，如审核和未审核
     private List<ActivityInfoBean> mBeanList;
     private VerifyRecyclerAdapter mAdapter;
+    private LoadMoreAdapterWrapper mLoadMoreAdapter;
 
     /**
      * 创建Fragment，并传入参数
@@ -74,7 +77,19 @@ public class VerifyFragment extends BaseFragment {
             mBeanList.add(bean);
         }
         mAdapter.updataData(mBeanList);
-        mRvVerifyFragmentList.setAdapter(mAdapter);
+        if (null == mLoadMoreAdapter){
+            mLoadMoreAdapter = new LoadMoreAdapterWrapper(mAdapter,this);
+            mRvVerifyFragmentList.setAdapter(mLoadMoreAdapter);
+        }else {
+            mLoadMoreAdapter.notifyDataSetChanged();
+        }
     }
 
+    /**
+     * 加载更多触发事件
+     */
+    @Override
+    public void loadMoreData() {
+
+    }
 }
