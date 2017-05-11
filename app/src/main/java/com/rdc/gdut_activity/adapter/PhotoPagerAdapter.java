@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.rdc.gdut_activity.R;
+import com.rdc.gdut_activity.base.BaseActivity;
 
 import java.util.List;
 
@@ -43,6 +44,12 @@ public class PhotoPagerAdapter extends PagerAdapter {
         PhotoView photoView = (PhotoView) view.findViewById(R.id.pv_details_photo);
         Glide.with(mContext).load(mList.get(position))
                 .into(photoView);
+        photoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((BaseActivity)mContext).finish();
+            }
+        });
         container.addView(view);
         return view;
     }

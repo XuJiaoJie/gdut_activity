@@ -113,8 +113,7 @@
     <color name="slategrey">#708090</color><!--灰石色 -->
     <color name="olivedrab">#6B8E23</color><!--深绿褐色 -->
     <color name="slateblue">#6A5ACD</color><!--石蓝色 -->
-    <color name="dimgray">#696969</color><!--暗灰色 -->
-    <color name="dimgrey">#696969</color><!--暗灰色 -->
+    <color name="dimgray">#393939</color><!--暗灰色 -->
     <color name="mediumaquamarine">#66CDAA</color><!--中绿色 -->
     <color name="cornflowerblue">#6495ED</color><!--菊兰色 -->
     <color name="cadetblue">#5F9EA0</color><!--军兰色 -->
@@ -150,6 +149,7 @@
     <color name="darkblue">#00008B</color><!--暗蓝色 -->
     <color name="navy">#000080</color><!--海军色 -->
     <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
 
     <color name="black_overlay">#66000000</color><!--黑色 -->
 
@@ -166,4 +166,5 @@
     <color name="dark_text_verify">#2d2c2c</color>
     <color name="list_item_pressed">#8cd9d9d9</color>
     <color name="list_item_unpressed">#ffff</color>
+    <color name="ib_back_pressed">#4ae4e3e3</color>
 </resources>
