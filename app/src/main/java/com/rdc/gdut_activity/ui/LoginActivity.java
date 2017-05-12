@@ -105,6 +105,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
+                hideInputSoft();
                 if (checkUserInfo()) {
                     mLoginPresenter.login();
                 } else {

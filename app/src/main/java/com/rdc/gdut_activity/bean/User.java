@@ -9,13 +9,17 @@ import cn.bmob.v3.datatype.BmobFile;
 
 public class User extends BmobUser {
 
-    private String schoolNumber; //学号
-    private boolean sex;        //性别
-    private String grade;       //年级
-    private String college;     //学院
-    private int permission;     //用户权限
-    private String icon;        //头像地址
-    private BmobFile iconFile;  //头像文件
+    protected Integer permission;     //用户权限
+    protected String icon;        //头像地址
+    protected BmobFile iconFile;  //头像文件
+
+    public Integer getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Integer permission) {
+        this.permission = permission;
+    }
 
     public String getIcon() {
         return icon;
@@ -25,35 +29,11 @@ public class User extends BmobUser {
         this.icon = icon;
     }
 
-    public int getPermission() {
-        return permission;
+    public BmobFile getIconFile() {
+        return iconFile;
     }
 
-    public void setPermission(int permission) {
-        this.permission = permission;
-    }
-
-    public boolean isSex() {
-        return sex;
-    }
-
-    public void setSex(boolean sex) {
-        this.sex = sex;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getCollege() {
-        return college;
-    }
-
-    public void setCollege(String college) {
-        this.college = college;
+    public void setIconFile(BmobFile iconFile) {
+        this.iconFile = iconFile;
     }
 }

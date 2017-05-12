@@ -33,6 +33,9 @@ public class LoginPresenter {
 
             @Override
             public void loginFailed(String error) {
+                if (error.contains("101")) {
+                    error = "登录失败,账号或者密码输入错误！";
+                }
                 mLoginView.loginFailed(error);
             }
         });

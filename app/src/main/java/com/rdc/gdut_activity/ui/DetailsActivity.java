@@ -54,12 +54,16 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
     NestedScrollView mScDetails;
     @InjectView(R.id.btn_details_join)
     Button mBtnDetailsJoin;
+    @InjectView(R.id.view_details_top_dot_red)
+    View mViewDetailsTopDotRed;
 
     private List<String> mPhotoList;
     private DetailsPhotoPageAdapter mPageAdapter;
+    private DetailsPhotoPagerListener mPagerListener;
     private float mBtnY;
     private float mBtnX;
     private float mScreenHeight;
+    private float mViewDistance;
 
     @Override
     protected int setLayoutResID() {
@@ -73,7 +77,6 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
             @Override
             public void run() {
                 mBtnY = mBtnDetailsJoin.getY();
-                mBtnX = mBtnDetailsJoin.getX();
                 mScreenHeight += mBtnY;
             }
         });
@@ -87,13 +90,14 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
         mPhotoList.add(Constant.photo);
         mPhotoList.add(Constant.photo);
         mPhotoList.add(Constant.photo);
+        mPagerListener = new DetailsPhotoPagerListener(this, mLlDetailsTopDot, mViewDetailsTopDotRed, mPhotoList.size());
 
         mPageAdapter = new DetailsPhotoPageAdapter(this, mPhotoList, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailsActivity.this, DetailsPhotoActivity.class);
                 intent.putStringArrayListExtra("photo_list", (ArrayList<String>) mPhotoList);
-                intent.putExtra("photo_index", mVpDetailsTop.getCurrentItem() & mPhotoList.size());
+                intent.putExtra("photo_index", mVpDetailsTop.getCurrentItem() % mPhotoList.size());
                 startActivity(intent);
             }
         });
@@ -101,9 +105,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
 
     @Override
     protected void initView() {
-
         mVpDetailsTop.setAdapter(mPageAdapter);
-        mVpDetailsTop.addOnPageChangeListener(new DetailsPhotoPagerListener(this, mLlDetailsTopDot, mPhotoList.size()));
+        mVpDetailsTop.addOnPageChangeListener(mPagerListener);
         int startPage = Integer.MAX_VALUE / 2;  //无限循环
         mVpDetailsTop.setCurrentItem(startPage);
 
@@ -131,9 +134,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
 
     @OnClick(R.id.btn_details_join)
     public void onViewClicked() {
-
         Intent intent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
     }
 
@@ -161,7 +163,6 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
 
     private void updateUser(String fileUrl) {
         User user = BmobUser.getCurrentUser(User.class);
-        user.setIcon(fileUrl);
         user.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
@@ -181,4 +182,6 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
         String imagePath = cursor.getString(columnIndex);
         return imagePath;
     }
+
+
 }

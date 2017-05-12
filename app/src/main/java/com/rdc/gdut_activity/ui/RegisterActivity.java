@@ -60,6 +60,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @OnClick(R.id.btn_register_register)
     public void onViewClicked() {
+        hideInputSoft();
         if (checkUserInfo()) {
             mPresenter.register();
         } else {

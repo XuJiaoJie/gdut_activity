@@ -25,6 +25,9 @@ public class RegisterPresenter {
 
             @Override
             public void registerFailed(String error) {
+                if (error.contains("202")) {
+                    error = "该手机号已被注册!";
+                }
                 mRegisterView.registerFailed(error);
             }
         });
