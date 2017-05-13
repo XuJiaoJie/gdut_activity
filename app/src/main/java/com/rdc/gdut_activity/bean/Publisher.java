@@ -5,7 +5,5 @@ package com.rdc.gdut_activity.bean;
  */
 
 public class Publisher extends User {
-    private ActivityInfoBean mInfoBean; //活动信息
-
 
 }

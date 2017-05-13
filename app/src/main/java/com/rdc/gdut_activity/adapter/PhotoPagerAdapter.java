@@ -17,12 +17,12 @@ import java.util.List;
  * Created by ThatNight on 2017.5.8.
  */
 
-public class PhotoPagerAdapter extends PagerAdapter {
-    private List<String> mList;
+public class PhotoPagerAdapter<T> extends PagerAdapter {
+    private List<T> mList;
     private LayoutInflater mInflater;
     private Context mContext;
 
-    public PhotoPagerAdapter(Context context, List<String> list) {
+    public PhotoPagerAdapter(Context context, List<T> list) {
         mList = list;
         mInflater = LayoutInflater.from(context);
         mContext = context;

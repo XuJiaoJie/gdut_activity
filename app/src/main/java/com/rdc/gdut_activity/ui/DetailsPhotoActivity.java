@@ -1,5 +1,8 @@
 package com.rdc.gdut_activity.ui;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
@@ -7,34 +10,50 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.PhotoPagerAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
 
-public class DetailsPhotoActivity extends BaseActivity {
+public class DetailsPhotoActivity<T> extends BaseActivity {
 
     @InjectView(R.id.vp_details_photo)
     ViewPager mVpDetailsPhoto;
     @InjectView(R.id.tv_details_photo_count)
     TextView mTvDetailsPhotoCount;
     private PhotoPagerAdapter mPagerAdapter;
-    private List<String> mPhotoList;
+    private List<T> mPhotoList;
     private int mIndex = 0;
     private int mSize = 0;
+
+
+    private static final String PHOTO_LIST = "photo_list";
+    private static final String PHOTO_INDEX = "photo_index";
+
 
     @Override
     protected int setLayoutResID() {
         return R.layout.activity_details_photo;
     }
 
+
+    public static <T> Intent newIntent(Context context, int index, ArrayList<T> list) {
+        Intent intent = new Intent(context, DetailsPhotoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(PHOTO_LIST, list);
+        intent.putExtras(bundle);
+        intent.putExtra(PHOTO_INDEX, index);
+        return intent;
+    }
+
+    @SuppressWarnings("unchecked")
     @Override
     protected void initData() {
-        mIndex = getIntent().getIntExtra("photo_index", 0);
-        mPhotoList = getIntent().getStringArrayListExtra("photo_list");
+        mIndex = getIntent().getIntExtra(PHOTO_INDEX, 0);
+        mPhotoList = (List<T>) getIntent().getExtras().getSerializable(PHOTO_LIST);
         mSize = mPhotoList.size();
         mPagerAdapter = new PhotoPagerAdapter(this, mPhotoList);
         mVpDetailsPhoto.setAdapter(mPagerAdapter);
-
     }
 
     @Override

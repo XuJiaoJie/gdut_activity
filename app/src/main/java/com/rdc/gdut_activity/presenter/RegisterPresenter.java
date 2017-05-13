@@ -6,7 +6,6 @@ import com.rdc.gdut_activity.ui.viewinterface.IRegisterView;
 /**
  * Created by ThatNight on 2017.5.3.
  */
-
 public class RegisterPresenter {
     private IRegisterView mRegisterView;
     private RegisterUserModel mUserModel;

@@ -14,7 +14,7 @@ import com.rdc.gdut_activity.fragment.ReleasedActListFragment;
 
 public class PublisherDataModel {
     // TODO: 2017/5/6 0006 static 会不会有内存泄漏问题？
-    private static int[] mTabRes = new int[]{R.drawable.ic_pick_photo, R.drawable.ic_pick_photo, R.drawable.ic_pick_photo};
+    private static int[] mTabRes = new int[]{R.drawable.ic_released_actiivty, R.drawable.ic_publish_activity, R.drawable.ic_publisher_personal_center };
     private static String[] mTabTitle = new String[]{"已发布的活动", "发布", "我的"};
 
     public static Fragment[] getFragment(String from) {
@@ -22,7 +22,6 @@ public class PublisherDataModel {
         fragments[0] = ReleasedActListFragment.newInstance();
         fragments[1] = PublishFragment.newInstance();
         fragments[2] = MineFragment.newInstance();
-//        fragments[4] = ReleasedFragment.newInstance();
 
         return fragments;
     }

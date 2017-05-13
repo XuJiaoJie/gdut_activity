@@ -37,4 +37,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'cc.trity.floatingactionbutton:library:1.0.0'
+    compile 'com.contrarywind:Android-PickerView:3.2.4'
+    compile 'com.zhihu.android:matisse:0.4.3'
 }

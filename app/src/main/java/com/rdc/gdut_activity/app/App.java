@@ -17,6 +17,8 @@ public class App extends Application {
 
     private void initBmob() {
         Bmob.initialize(this, Constant.APPLICATION_ID);
+
+
     }
 
 

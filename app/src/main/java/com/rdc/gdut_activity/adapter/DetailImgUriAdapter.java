@@ -2,6 +2,7 @@ package com.rdc.gdut_activity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter;
@@ -17,10 +18,10 @@ import java.util.List;
  * Created by PC on 2017/5/10.
  */
 
-public class DetailImgAdapter extends NineGridImageViewAdapter<String> {
+public class DetailImgUriAdapter extends NineGridImageViewAdapter<Uri> {
 
     @Override
-    protected void onDisplayImage(Context context, ImageView imageView, String s) {
+    protected void onDisplayImage(Context context, ImageView imageView, Uri s) {
         Picasso.with(context)
                 .load(s)
                 .placeholder(R.drawable.photo_empty_photo)
@@ -33,11 +34,11 @@ public class DetailImgAdapter extends NineGridImageViewAdapter<String> {
     }
 
     @Override
-    protected void onItemImageClick(Context context, int index, List<String> list) {
+    protected void onItemImageClick(Context context, int index, List<Uri> list) {
 //        Intent intent = new Intent(context, DetailsPhotoActivity.class);
 //        intent.putExtra("photo_index", index);
 //        intent.putStringArrayListExtra("photo_list",(ArrayList<String>) list);
-        Intent intent1 = DetailsPhotoActivity.newIntent(context, index, (ArrayList<String>) list);
+        Intent intent1 = DetailsPhotoActivity.newIntent(context, index, (ArrayList<Uri>) list);
         context.startActivity(intent1);
     }
 
