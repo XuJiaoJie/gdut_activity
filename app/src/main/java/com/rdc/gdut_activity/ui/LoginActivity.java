@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.rdc.gdut_activity.MainActivity;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.constant.Constant;
@@ -71,7 +72,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void loginSuccess(int permission) {
         Intent intent = new Intent();
         if (Constant.USER_STUDENT == permission) {
-            intent.setClass(this, DetailsActivity.class);
+            intent.setClass(this, MainActivity.class);
         } else if (Constant.USER_PUBLISHER == permission) {
             intent.setClass(this, PublisherMainActivity.class);
         } else if (Constant.USER_ADMIN == permission) {
@@ -105,7 +106,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
-                hideInputSoft();
+                hideInputSoft(mEtPassword);
                 if (checkUserInfo()) {
                     mLoginPresenter.login();
                 } else {

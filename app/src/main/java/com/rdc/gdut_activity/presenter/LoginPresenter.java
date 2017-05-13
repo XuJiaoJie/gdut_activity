@@ -34,7 +34,11 @@ public class LoginPresenter {
             @Override
             public void loginFailed(String error) {
                 if (error.contains("101")) {
-                    error = "登录失败,账号或者密码输入错误！";
+                    error = "登录失败,账号或者密码输入错误!";
+                }else if(error.contains("9016")){
+                    error="无网络连接，请检查您的手机网络.";
+                }else if(error.contains("9019")){
+                    error="登录失败,格式不正确!";
                 }
                 mLoginView.loginFailed(error);
             }

@@ -28,17 +28,17 @@ public class OkHttpUtil {
     private OkHttpClient mOkHttpClient;
     private Handler mHandler;
 
-    private OkHttpUtil(){
+    private OkHttpUtil() {
         mOkHttpClientBuilder = new OkHttpClient.Builder();
         mOkHttpClientBuilder.cookieJar(new OkHttpCookieJar());
         mOkHttpClient = mOkHttpClientBuilder.build();
         mHandler = new Handler(Looper.getMainLooper());
     }
 
-    public static OkHttpUtil getInstance(){
-        if (sOkHttpUtil == null){
-            synchronized (OkHttpUtil.class){
-                if (sOkHttpUtil == null){
+    public static OkHttpUtil getInstance() {
+        if (sOkHttpUtil == null) {
+            synchronized (OkHttpUtil.class) {
+                if (sOkHttpUtil == null) {
                     sOkHttpUtil = new OkHttpUtil();
                 }
             }
@@ -49,34 +49,39 @@ public class OkHttpUtil {
     /**
      * 异步的Get请求
      */
-    public void getAsync(String url, OkHttpResultCallback okHttpResultCallback){
+    public void getAsync(String url, OkHttpResultCallback okHttpResultCallback) {
         Request request = new Request.Builder().url(url).build();
-        deliveryResult(okHttpResultCallback,request);
+        deliveryResult(okHttpResultCallback, request);
     }
 
     /**
      * 异步的post请求
      */
-    public void postAsync(String url, OkHttpResultCallback okHttpResultCallback, Map<String,String> params, Map<String,String> headers){
-        Request request = buildPostRequest(url,params,headers);
-        deliveryResult(okHttpResultCallback,request);
+    public void postAsync(String url, OkHttpResultCallback okHttpResultCallback, Map<String, String> params, Map<String, String> headers) {
+        Request request = buildPostRequest(url, params, headers);
+        deliveryResult(okHttpResultCallback, request);
     }
 
     /**
      * 构建post请求参数
      */
-    private Request buildPostRequest(String url,Map<String,String> params,Map<String,String> headers){
+    private Request buildPostRequest(String url, Map<String, String> params, Map<String, String> headers) {
         Headers.Builder headersBuilder = new Headers.Builder();
-        Set<Map.Entry<String,String>> headersEntries = headers.entrySet();
-        for (Map.Entry<String,String> entry : headersEntries){
-            headersBuilder.add(entry.getKey(),entry.getValue());
+        if (headers != null) {
+            Set<Map.Entry<String, String>> headersEntries = headers.entrySet();
+            for (Map.Entry<String, String> entry : headersEntries) {
+                headersBuilder.add(entry.getKey(), entry.getValue());
+            }
         }
         Headers requestHeaders = headersBuilder.build();
 
         FormBody.Builder formBodyBuilder = new FormBody.Builder();
-        Set<Map.Entry<String,String>> paramsEntries = params.entrySet();
-        for (Map.Entry<String,String> entry : paramsEntries){
-            formBodyBuilder.add(entry.getKey(),entry.getValue());
+
+        if (params != null) {
+            Set<Map.Entry<String, String>> paramsEntries = params.entrySet();
+            for (Map.Entry<String, String> entry : paramsEntries) {
+                formBodyBuilder.add(entry.getKey(), entry.getValue());
+            }
         }
         RequestBody requestBody = formBodyBuilder.build();
 
@@ -91,31 +96,31 @@ public class OkHttpUtil {
     /**
      * 调用call.enqueue，将call加入调度队列，执行完成后在callback中得到结果
      */
-    private void deliveryResult(final OkHttpResultCallback okHttpResultCallback, final Request request){
+    private void deliveryResult(final OkHttpResultCallback okHttpResultCallback, final Request request) {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                sendFailedCallback(call,e, okHttpResultCallback);
+                sendFailedCallback(call, e, okHttpResultCallback);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    switch (response.code()){
+                    switch (response.code()) {
                         case 200:
-                            Log.e(TAG, "onResponse: "+200 );
+                            Log.e(TAG, "onResponse: " + 200);
                             sendSuccessCallback(response.body().bytes(), okHttpResultCallback);
                             break;
                         case 302:
-                            Log.e(TAG, "onResponse: "+302);
+                            Log.e(TAG, "onResponse: " + 302);
                             sendSuccessCallback(response.body().bytes(), okHttpResultCallback);
                             break;
                         default:
                             sendSuccessCallback(response.body().bytes(), okHttpResultCallback);
                             throw new IOException();
                     }
-                }catch (IOException e){
-                    sendFailedCallback(call,e, okHttpResultCallback);
+                } catch (IOException e) {
+                    sendFailedCallback(call, e, okHttpResultCallback);
                 }
             }
         });
@@ -125,24 +130,25 @@ public class OkHttpUtil {
     /**
      * 调用请求失败对应的回调方法，利用handler.post使得回调方法在UI线程中执行
      */
-    private void sendFailedCallback(final Call call, final Exception e, final OkHttpResultCallback callback){
+    private void sendFailedCallback(final Call call, final Exception e, final OkHttpResultCallback callback) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (callback != null){
-                    callback.onError(call,e);
+                if (callback != null) {
+                    callback.onError(call, e);
                 }
             }
         });
     }
+
     /**
      * 调用请求成功对应的回调方法，利用handler.post使得回调方法在UI线程中执行
      */
-    private void sendSuccessCallback(final byte[] bytes, final OkHttpResultCallback okHttpResultCallback){
+    private void sendSuccessCallback(final byte[] bytes, final OkHttpResultCallback okHttpResultCallback) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (okHttpResultCallback != null){
+                if (okHttpResultCallback != null) {
                     okHttpResultCallback.onResponse(bytes);
                 }
             }

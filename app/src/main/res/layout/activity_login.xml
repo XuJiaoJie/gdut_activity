@@ -43,6 +43,7 @@
                 android:maxLength="11"
                 android:textSize="@dimen/dimen_et_login"
                 android:theme="@style/EditTextStyle"
+                android:drawableLeft="@drawable/iv_login_user"
                 android:textColor="@color/color_white_login"/>
 
             <EditText
@@ -59,6 +60,7 @@
                 android:maxLines="1"
                 android:textSize="@dimen/dimen_et_login"
                 android:theme="@style/EditTextStyle"
+                android:drawableLeft="@drawable/iv_login_password"
                 android:textColor="@color/color_white_login"/>
 
             <Button

@@ -133,6 +133,6 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv,OnC
      */
     @Override
     public void loadMoreData() {
-
+        
     }
 }

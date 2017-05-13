@@ -46,7 +46,6 @@
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".ui.DetailsActivity">
-
         </activity>
         <activity android:name=".ui.PreviewActivity"/>
         <activity android:name=".ui.PublisherActivity"/>
@@ -54,6 +53,9 @@
         </activity>
         <activity android:name=".ui.DetailsVerifyActivity"/>
         <activity android:name=".ui.DetailsPhotoActivity"/>
+        <activity android:name=".ui.SelectClassActivity">
+
+        </activity>
     </application>
 
 </manifest>

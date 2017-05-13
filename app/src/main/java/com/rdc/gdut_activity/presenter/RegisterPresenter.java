@@ -27,6 +27,8 @@ public class RegisterPresenter {
             public void registerFailed(String error) {
                 if (error.contains("202")) {
                     error = "该手机号已被注册!";
+                } else if (error.contains("9016")) {
+                    error = "无网络连接，请检查您的手机网络.";
                 }
                 mRegisterView.registerFailed(error);
             }
