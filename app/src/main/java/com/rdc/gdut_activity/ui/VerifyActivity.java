@@ -16,6 +16,7 @@ import butterknife.InjectView;
 
 
 public class VerifyActivity extends BaseActivity {
+    private static final String TAG = "VerifyActivity";
     @InjectView(R.id.nts_verify_tab)
     NavigationTabStrip mNtsVerifyTab;
     @InjectView(R.id.vp_verify_content)

@@ -294,5 +294,44 @@
         app:maxSize="9"
         app:showStyle="grid"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:text="审核操作："
+        android:textColor="@color/dimgray"
+        android:textSize="18sp"/>
+
+    <cc.trity.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/right_labels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_expandDirection="right"
+        app:fab_addButtonSize="mini"
+        >
+
+        <cc.trity.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_diary_fab_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:fab_colorNormal="#24d63c"
+            app:fab_size="normal"
+            app:fab_icon = "@drawable/fab_verify_pass"
+            />
+
+        <cc.trity.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_diary_fab_add"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:fab_size="normal"
+            app:fab_title="FAB 2"
+            app:fab_colorNormal="#e41c1c"
+            app:fab_icon = "@drawable/fab_verify_failure"
+            />
+
+    </cc.trity.floatingactionbutton.FloatingActionsMenu>
+
 
 </LinearLayout>
