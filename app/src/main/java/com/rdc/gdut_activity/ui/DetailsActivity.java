@@ -35,7 +35,6 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 public class DetailsActivity extends BaseActivity implements IDetailsView {
 
-
     @InjectView(R.id.vp_details_top)
     ViewPager mVpDetailsTop;
     @InjectView(R.id.ll_details_top_dot)
@@ -95,10 +94,11 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
         mPageAdapter = new DetailsPhotoPageAdapter(this, mPhotoList, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailsActivity.this, DetailsPhotoActivity.class);
-                intent.putStringArrayListExtra("photo_list", (ArrayList<String>) mPhotoList);
-                intent.putExtra("photo_index", mVpDetailsTop.getCurrentItem() % mPhotoList.size());
-                startActivity(intent);
+                Intent intent1 = DetailsPhotoActivity.newIntent(DetailsActivity.this, mVpDetailsTop.getCurrentItem() % mPhotoList.size(), (ArrayList<String>) mPhotoList);
+//                Intent intent = new Intent(DetailsActivity.this, DetailsPhotoActivity.class);
+//                intent.putStringArrayListExtra("photo_list", (ArrayList<String>) mPhotoList);
+//                intent.putExtra("photo_index", mVpDetailsTop.getCurrentItem() % mPhotoList.size());
+                startActivity(intent1);
             }
         });
     }
@@ -169,7 +169,6 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
                 if (e == null) {
                     showToast("更新成功");
                 } else {
-
                 }
             }
         });
@@ -182,6 +181,5 @@ public class DetailsActivity extends BaseActivity implements IDetailsView {
         String imagePath = cursor.getString(columnIndex);
         return imagePath;
     }
-
 
 }

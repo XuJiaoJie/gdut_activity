@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="8dp"
+              android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/LinearFormDataStyle">
+
+        <CheckBox
+            android:id="@+id/cb_name"
+            style="@style/CheckBoxFormDataStyle"
+            />
+
+        <TextView
+            style="@style/TextViewFormDataStyle"
+            android:text="姓名"/>
+
+        <CheckBox
+            android:id="@+id/cb_college"
+            style="@style/CheckBoxFormDataStyle"/>
+
+        <TextView
+            style="@style/TextViewFormDataStyle"
+            android:text="学院"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearFormDataStyle">
+
+        <CheckBox
+            android:id="@+id/cb_phone"
+            style="@style/CheckBoxFormDataStyle"
+            />
+
+        <TextView
+            style="@style/TextViewFormDataStyle"
+            android:text="手机"/>
+
+        <CheckBox
+            android:id="@+id/cb_profession"
+            style="@style/CheckBoxFormDataStyle"/>
+
+        <TextView
+            style="@style/TextViewFormDataStyle"
+            android:text="专业"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearFormDataStyle">
+
+        <CheckBox
+            android:id="@+id/cb_email"
+            style="@style/CheckBoxFormDataStyle"
+            />
+
+        <TextView
+            style="@style/TextViewFormDataStyle"
+            android:text="邮箱"/>
+
+        <CheckBox
+            android:id="@+id/cb_class"
+            android:text="我也可以有文字"
+            android:background="@color/color_primary"
+            style="@style/CheckBoxFormDataStyle"/>
+
+        <TextView
+            style="@style/TextViewFormDataStyle"
+            android:text="班级"/>
+    </LinearLayout>
+
+
+    <!--<LinearLayout-->
+    <!--style="@style/LinearFormDataStyle"-->
+    <!---->
+    <!--&gt;-->
+
+    <!--<CheckBox-->
+    <!--android:id="@+id/cb_dormitory"-->
+    <!--style="@style/CheckBoxFormDataStyle"-->
+    <!--/>-->
+
+    <!--<TextView-->
+    <!--style="@style/TextViewFormDataStyle"-->
+    <!--android:text="宿舍"/>-->
+    <!--</LinearLayout>-->
+
+
+</LinearLayout>

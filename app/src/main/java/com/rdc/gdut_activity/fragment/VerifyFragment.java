@@ -2,6 +2,7 @@ package com.rdc.gdut_activity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +22,7 @@ import java.util.List;
 import butterknife.InjectView;
 
 
-public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv,OnClickRecyclerViewListener{
+public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, OnClickRecyclerViewListener {
     private static final String TAG = "VerifyFragment";
     @InjectView(R.id.rv_verify_fragment_list)
     RecyclerView mRvVerifyFragmentList;
@@ -59,8 +60,12 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv,OnC
     @Override
     protected void initView() {
         mRvVerifyFragmentList.setHasFixedSize(true);
-        mRvVerifyFragmentList.setLayoutManager(new LinearLayoutManager(mBaseActivity,LinearLayoutManager.VERTICAL,false));
+        mRvVerifyFragmentList.setLayoutManager(new LinearLayoutManager(mBaseActivity, LinearLayoutManager.VERTICAL, false));
         Data();
+        mRvVerifyFragmentList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
+
+        });
+
     }
 
     @Override
@@ -70,12 +75,12 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv,OnC
 
 
     //虚拟数据
-    private void Data(){
-        for (int i=0;i<10;i++){
+    private void Data() {
+        for (int i = 0; i < 10; i++) {
             ActivityInfoBean bean = new ActivityInfoBean();
             bean.setActivityName("研发中心招新宣讲会开始啦啦啦  " + i);
             bean.setActivityTime("2017-5-8 19:00");
-            bean.setActivityLocation("广东工业大学工一学术报告厅   " +i);
+            bean.setActivityLocation("广东工业大学工一学术报告厅   " + i);
             bean.setPublishTime("2017-5-7 12:00");
             bean.setPublisherName("广东工业大学团委");
             bean.setActivityType("讲座");
@@ -105,21 +110,21 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv,OnC
             mBeanList.add(bean);
         }
         mAdapter.updataData(mBeanList);
-        if (null == mLoadMoreAdapter){
-            mLoadMoreAdapter = new LoadMoreAdapterWrapper(mAdapter,this);
+        if (null == mLoadMoreAdapter) {
+            mLoadMoreAdapter = new LoadMoreAdapterWrapper(mAdapter, this);
             mRvVerifyFragmentList.setAdapter(mLoadMoreAdapter);
-        }else {
+        } else {
             mLoadMoreAdapter.notifyDataSetChanged();
         }
     }
 
     /**
-     *RecyclerView的点击和长按事件
+     * RecyclerView的点击和长按事件
      */
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(mBaseActivity, DetailsVerifyActivity.class);
-        intent.putExtra("DetailsVerifyActivity",mBeanList.get(position));
+        intent.putExtra("DetailsVerifyActivity", (Parcelable) mBeanList.get(position));
         startActivity(intent);
     }
 

@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"/>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.PublisherMainActivity"
             android:theme="@style/LoginAndRegisterTheme"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
@@ -46,11 +46,6 @@
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".ui.DetailsActivity">
-
-        </activity>
-        <activity android:name=".ui.PreviewActivity"/>
-        <activity android:name=".ui.PublisherActivity"/>
-        <activity android:name=".ui.ReleasedActivity">
         </activity>
         <activity android:name=".ui.DetailsVerifyActivity"/>
         <activity android:name=".ui.DetailsPhotoActivity"/>

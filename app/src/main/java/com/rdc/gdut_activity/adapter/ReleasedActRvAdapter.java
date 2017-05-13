@@ -16,7 +16,10 @@ import com.rdc.gdut_activity.fragment.ReleasedFragment;
 
 import java.util.List;
 
-public class ReleasedActRvAdapter extends RecyclerView.Adapter<ReleasedItemViewHolder> {
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
+public class ReleasedActRvAdapter extends RecyclerView.Adapter<ReleasedActRvAdapter.ReleasedItemViewHolder> {
     private List<ActivityInfoBean> mReleasedActList;
     private Context mContext;
 
@@ -35,51 +38,57 @@ public class ReleasedActRvAdapter extends RecyclerView.Adapter<ReleasedItemViewH
     @Override
     public void onBindViewHolder(ReleasedItemViewHolder holder, int position) {
         holder.bindView(mReleasedActList.get(position));
-
     }
 
     @Override
     public int getItemCount() {
         return mReleasedActList.size();
     }
-}
 
-class ReleasedItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ReleasedItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private ImageView mIv;
-    private TextView mTvActName;
-    private TextView mTvTime;
-    private TextView mTvLocation;
-    private ActivityInfoBean mActivityInfoBean;
+        @InjectView(R.id.iv_verify_item_pic)
+        ImageView mIvVerifyItemPic;
+        @InjectView(R.id.tv_verify_title)
+        TextView mTvVerifyTitle;
+        @InjectView(R.id.tv_verify_time)
+        TextView mTvVerifyTime;
+        @InjectView(R.id.tv_verify_place)
+        TextView mTvVerifyPlace;
+        @InjectView(R.id.tv_publish_default_text)
+        TextView mTvPublishDefaultText;
+        @InjectView(R.id.tv_verify_publish)
+        TextView mTvVerifyPublish;
 
-    private Context mContext;
 
-    public ReleasedItemViewHolder(View itemView, Context context) {
-        super(itemView);
-        itemView.setOnClickListener(this);
-        mIv = (ImageView) itemView.findViewById(R.id.iv_act_icon);
-        mTvActName = (TextView) itemView.findViewById(R.id.tv_act_name);
-        mTvTime = (TextView) itemView.findViewById(R.id.tv_act_time);
-        mTvLocation = (TextView) itemView.findViewById(R.id.tv_act_location);
-        mContext = context;
+        private ActivityInfoBean mActivityInfoBean;
+
+        private Context mContext;
+
+        ReleasedItemViewHolder(View itemView, Context context) {
+            super(itemView);
+            ButterKnife.inject(this, itemView);
+            itemView.setOnClickListener(this);
+            mContext = context;
+        }
+
+        public void bindView(ActivityInfoBean bean) {
+            mActivityInfoBean = bean;
+            mIvVerifyItemPic.setImageResource(R.drawable.ic_pick_photo);
+            mTvVerifyTitle.setText(bean.getActivityName());
+            mTvVerifyTime.setText(bean.getActivityTime());
+            mTvVerifyPlace.setText(bean.getActivityLocation());
+        }
+
+        @Override
+        public void onClick(View v) {
+            Fragment fragment = ReleasedFragment.newInstance();
+
+            ((BaseActivity) mContext).getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        }
     }
 
-    public void bindView(ActivityInfoBean bean) {
-        mActivityInfoBean = bean;
-        mIv.setImageResource(R.drawable.ic_pick_photo);
-        mTvActName.setText(bean.getActivityName());
-        mTvTime.setText(bean.getActivityTime());
-        mTvLocation.setText(bean.getActivityLocation());
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        Fragment fragment = ReleasedFragment.newInstance();
-
-        ((BaseActivity) mContext).getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
-    }
 }

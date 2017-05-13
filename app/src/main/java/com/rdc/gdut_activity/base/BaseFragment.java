@@ -8,12 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment {
     protected BaseActivity mBaseActivity;  //贴附的activity,Fragment中可能用到
-    protected View mRootView;    //根view
+    protected View mRootView;           //根view
 
     @Override
     public void onAttach(Context context) {
@@ -53,4 +54,7 @@ public abstract class BaseFragment extends Fragment {
     //设置监听事件
     protected abstract void setListener();
 
+    protected void showToast(String msg) {
+        Toast.makeText(mBaseActivity, msg, Toast.LENGTH_SHORT).show();
+    }
 }

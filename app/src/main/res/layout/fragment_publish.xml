@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rdc.gdut_activity.ui.PublisherActivity">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,8 +19,8 @@
             android:gravity="center">
 
             <TextView
-                android:text="@string/activity_name"
-                style="@style/CustomTvTitleStyle"/>
+                style="@style/CustomTvTitleStyle"
+                android:text="@string/activity_name"/>
 
 
             <EditText
@@ -36,14 +37,13 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="@string/type"
-                style="@style/CustomTvTitleStyle"/>
+                style="@style/CustomTvTitleStyle"
+                android:text="@string/type"/>
 
             <Spinner
                 android:id="@+id/sp_type"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="bottom"
                 android:paddingRight="3dp"/>
 
@@ -53,7 +53,7 @@
 
             <EditText
                 android:id="@+id/et_activity_host"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="text"
@@ -79,13 +79,39 @@
                 android:maxLines="1"/>
         </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/tv_time"
+        <LinearLayout
+            android:id="@+id/ll_set_time"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="start|center"
-            android:text="时间：2017-05-19"/>
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_time_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:src="@drawable/ic_set_time"/>
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="start|center"
+                android:text="设置时间"/>
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="start|center"
+                tools:text="至 2017-5-19"
+                />
+        </LinearLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -108,40 +134,35 @@
                 android:src="@drawable/ic_take_photo"/>
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
 
-        <EditText
-            android:id="@+id/et_activity_detail"
+            <EditText
+                android:id="@+id/et_activity_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="10"/>
+        </LinearLayout>
+
+        <com.jaeger.ninegridimageview.NineGridImageView
+            android:id="@+id/nine_grid_img_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="10"/>
-
-        <!--<com.jaeger.ninegridimageview.NineGridImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="16dp"-->
-        <!--app:imgGap="4dp"-->
-        <!--app:showStyle="fill"-->
-        <!--app:singleImgSize="120dp"/>-->
+            android:layout_margin="16dp"
+            app:imgGap="4dp"
+            app:showStyle="fill"
+            app:singleImgSize="120dp"/>
 
         <Button
             android:id="@+id/btn_set_form_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="left"
             android:text="@string/set_form_data"/>
 
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/name"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phone_number"/>
+        <include layout="@layout/fragment_custom_form_data"/>
 
 
         <Button

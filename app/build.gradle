@@ -24,9 +24,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:support-v4:25.3.0'
-    compile 'com.android.support:design:25.3.0'
+
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
@@ -38,4 +39,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'cc.trity.floatingactionbutton:library:1.0.0'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.contrarywind:Android-PickerView:3.2.4'
+    compile 'com.zhihu.android:matisse:0.4.3'
 }

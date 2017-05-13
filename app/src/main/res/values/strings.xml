@@ -27,4 +27,11 @@
     <string name="btn_register_register">注册</string>
     <string name="register_password_again">确认密码</string>
     <string name="tv_organization_name">单位信息</string>
+
+    <string-array name="activity_type_array">
+        <item>讲座</item>
+        <item>比赛</item>
+        <item>社团</item>
+        <item>其他</item>
+    </string-array>
 </resources>

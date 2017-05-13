@@ -2,12 +2,11 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:id="@+id/ll_item_list_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/ll_item_list_activity"
-    android:background="@drawable/item_activity_click">
-
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="30dp">
@@ -16,79 +15,80 @@
             android:id="@+id/civ_item_user_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/ueser_icon"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_centerVertical="true"/>
+            android:src="@drawable/ueser_icon"/>
+
         <TextView
             android:id="@+id/tv_item_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_toRightOf="@+id/civ_item_user_icon"
             android:layout_toEndOf="@+id/civ_item_user_icon"
-            tools:text="广工计院团委"
+            android:layout_toRightOf="@+id/civ_item_user_icon"
             android:textSize="13sp"
-            android:layout_centerVertical="true"/>
+            tools:text="广工计院团委"/>
 
         <ImageView
             android:layout_width="14dp"
             android:layout_height="14dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
             android:layout_toLeftOf="@+id/tv_item_activity_default_text"
             android:layout_toStartOf="@+id/tv_item_activity_default_text"
-            android:layout_centerVertical="true"
-            android:src="@drawable/verify_icon_publish"
             android:scaleType="centerCrop"
-            android:layout_marginRight="2dp"
-            android:layout_marginEnd="2dp"/>
+            android:src="@drawable/verify_icon_publish"/>
 
         <TextView
             android:id="@+id/tv_item_activity_default_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发表于"
-            android:textSize="12sp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="3dp"
             android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
             android:layout_toLeftOf="@+id/tv_item_activity_publish_time"
-            android:layout_toStartOf="@+id/tv_item_activity_publish_time"/>
+            android:layout_toStartOf="@+id/tv_item_activity_publish_time"
+            android:text="发表于"
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/tv_item_activity_publish_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            tools:text="2017-5-6"
-            android:textSize="12sp"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginEnd="8dp"/>
+            android:textSize="12sp"
+            tools:text="2017-5-6"/>
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/iv_item_activity_pic"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/verify_item_pic"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"/>
+        android:paddingRight="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/verify_item_pic"/>
 
     <TextView
         android:id="@+id/tv_item_activity_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        tools:text="研发中心招新宣讲会开始啦啦啦"
-        android:textSize="16sp"
-        android:textColor="@color/dark_text_verify"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
         android:maxLines="1"
-        android:ellipsize="end"/>
+        android:textColor="@color/dark_text_verify"
+        android:textSize="16sp"
+        tools:text="研发中心招新宣讲会开始啦啦啦"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -99,22 +99,23 @@
             android:id="@+id/iv_item_activity_default_time"
             android:layout_width="13dp"
             android:layout_height="13dp"
-            android:src="@drawable/verify_iv_time"
-            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_centerVertical="true"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/verify_iv_time"/>
+
         <TextView
             android:id="@+id/tv_verify_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_toRightOf="@+id/iv_item_activity_default_time"
             android:layout_toEndOf="@+id/iv_item_activity_default_time"
-            tools:text="2017-5-8 19:00"
+            android:layout_toRightOf="@+id/iv_item_activity_default_time"
             android:textSize="12sp"
-            android:layout_centerVertical="true"/>
+            tools:text="2017-5-8 19:00"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -126,22 +127,23 @@
             android:id="@+id/iv_item_activity_default_place"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:src="@drawable/verify_iv_place"
-            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_centerVertical="true"/>
+            android:scaleType="fitCenter"
+            android:src="@drawable/verify_iv_place"/>
+
         <TextView
             android:id="@+id/tv_verify_place"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/iv_item_activity_default_place"
-            android:layout_toEndOf="@+id/iv_item_activity_default_place"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            tools:text="广东工业大学工一学术报告厅"
+            android:layout_toEndOf="@+id/iv_item_activity_default_place"
+            android:layout_toRightOf="@+id/iv_item_activity_default_place"
             android:textSize="12sp"
-            android:layout_centerVertical="true"/>
+            tools:text="广东工业大学工一学术报告厅"/>
     </RelativeLayout>
 
     <View
