@@ -13,4 +13,11 @@
             <solid android:color="@color/color_white_login"></solid>
         </shape>
     </item>
+
+    <item android:state_enabled="false">
+        <shape>
+            <corners android:radius="5dp" />
+            <solid android:color="@color/gray"></solid>
+        </shape>
+    </item>
 </selector>

@@ -17,7 +17,7 @@ public interface ISelectClassView {
 
     void getFailed();
 
-    void selectSuccess();
+    void selectSuccess(String response);
 
     void selectFailed();
 

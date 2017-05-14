@@ -1,7 +1,13 @@
 package com.rdc.gdut_activity.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +34,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
     @InjectView(R.id.btn_register_register)
     Button mBtnRegister;
     private RegisterPresenter mPresenter;
+    private Dialog mDialog;
 
     @Override
     public int setLayoutResID() {
@@ -90,7 +97,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @Override
     public String getUserPassword() {
-        return mEtUsername.getText().toString();
+        return mEtPasswordAgain.getText().toString();
     }
 
     @Override
@@ -104,5 +111,27 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
     @Override
     public void registerFailed(String error) {
         showToast(error);
+    }
+
+    @Override
+    public void showProgress(boolean isVisiable) {
+        if (mDialog == null) {
+            mDialog = new Dialog(this, R.style.ActionProgressStyle);
+            View view = LayoutInflater.from(this).inflate(R.layout.dialog_progress, null);
+            Window dialogWindow = mDialog.getWindow();
+            dialogWindow.setGravity(Gravity.BOTTOM);
+            WindowManager.LayoutParams wl = dialogWindow.getAttributes();
+            wl.y = 20;
+            dialogWindow.setAttributes(wl);
+            mDialog.setContentView(view, wl);
+            mDialog.setCanceledOnTouchOutside(false);
+        }
+        if (isVisiable) {
+            mBtnRegister.setEnabled(false);
+            mDialog.show();
+        } else {
+            mBtnRegister.setEnabled(true);
+            mDialog.dismiss();
+        }
     }
 }

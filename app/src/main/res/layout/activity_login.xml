@@ -7,6 +7,12 @@
               android:orientation="vertical"
               tools:context="com.rdc.gdut_activity.ui.LoginActivity">
 
+    <com.rdc.gdut_activity.view.TopBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_topbar_height"
+        app:title="@string/title_activity_login"
+        app:titleTextColor="@color/white">
+    </com.rdc.gdut_activity.view.TopBar>
 
     <ScrollView
         android:id="@+id/sc_login_form"
@@ -19,16 +25,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_login_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="登录"
-                android:textColor="@color/color_white_login"
-                android:textSize="20sp"/>
-
             <EditText
                 android:id="@+id/et_login_username"
                 android:layout_width="match_parent"
@@ -36,15 +32,15 @@
                 android:layout_marginLeft="@dimen/dimen_margin_login"
                 android:layout_marginRight="@dimen/dimen_margin_login"
                 android:layout_marginTop="60dp"
+                android:drawableLeft="@drawable/iv_login_user"
                 android:hint="@string/login_phonenum"
                 android:imeOptions="actionNext"
                 android:inputType="phone"
-                android:maxLines="1"
                 android:maxLength="11"
+                android:maxLines="1"
+                android:textColor="@color/color_white_login"
                 android:textSize="@dimen/dimen_et_login"
-                android:theme="@style/EditTextStyle"
-                android:drawableLeft="@drawable/iv_login_user"
-                android:textColor="@color/color_white_login"/>
+                android:theme="@style/EditTextStyle"/>
 
             <EditText
                 android:id="@+id/et_login_password"
@@ -53,26 +49,27 @@
                 android:layout_marginLeft="@dimen/dimen_margin_login"
                 android:layout_marginRight="@dimen/dimen_margin_login"
                 android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/iv_login_password"
                 android:hint="@string/login_password"
                 android:imeActionId="@+id/login"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:textColor="@color/color_white_login"
                 android:textSize="@dimen/dimen_et_login"
-                android:theme="@style/EditTextStyle"
-                android:drawableLeft="@drawable/iv_login_password"
-                android:textColor="@color/color_white_login"/>
+                android:theme="@style/EditTextStyle"/>
 
             <Button
                 android:id="@+id/btn_login_forget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:background="@null"
                 android:text="@string/btn_login_forget"
                 android:textColor="@color/color_white_login"
-                android:textSize="@dimen/dimen_text_login"/>
+                android:textSize="@dimen/dimen_text_login"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btn_login_login"

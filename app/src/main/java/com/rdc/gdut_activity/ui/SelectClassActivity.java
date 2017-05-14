@@ -1,6 +1,8 @@
 package com.rdc.gdut_activity.ui;
 
+import android.content.DialogInterface;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,9 +36,6 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
     Button mBtnSelectclassQuery;
     @InjectView(R.id.btn_selectclass_selected)
     Button mBtnSelectclassSelected;
-    @InjectView(R.id.btn_selectclass_select)
-    Button mBtnSelectclassGet;
-
     private List<ClassBean> mClassBean;
     private SelectClassAdapter mClassAdapter;
     private LoadMoreAdapterWrapper mLoadMoreAdapterWrapper;
@@ -44,7 +43,7 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
     private boolean isLogin = false;
     private boolean isFirstGet = true;
     private SelectClassPresenter mClassPresenter;
-
+    private int mPage = 1;
 
     @Override
     protected int setLayoutResID() {
@@ -57,7 +56,7 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
         mClassPresenter = new SelectClassPresenter(this);
         mClassAdapter = new SelectClassAdapter();
         mClassAdapter.setOnRecyclerViewListener(this);
-        mClassPresenter.login();
+        mClassPresenter.getClasses("1");
     }
 
     @Override
@@ -80,24 +79,36 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
 
     }
 
-    @OnClick({R.id.btn_selectclass_query, R.id.btn_selectclass_selected, R.id.btn_selectclass_select})
+    @OnClick({R.id.btn_selectclass_query, R.id.btn_selectclass_selected})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_selectclass_query:
-
+                //mClassPresenter.queryClass("");
                 break;
             case R.id.btn_selectclass_selected:
-
-                break;
-            case R.id.btn_selectclass_select:
-
+                mClassPresenter.getOwnClass();
                 break;
         }
     }
 
+    /**
+     * recyclerview点击事件
+     *
+     * @param position
+     */
     @Override
     public void onItemClick(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("是否抢该门课程: " + mClassBean.get(position).getClassName());
+        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
+            }
+        });
+        builder.setNegativeButton("否", null);
+        builder.show();
     }
 
     @Override
@@ -119,15 +130,21 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
      */
     @Override
     public void loadMoreData() {
-        mClassPresenter.getClasses("2");
+        mClassPresenter.getClasses(String.valueOf(mPage + 1));
     }
 
     /**
      * presenter回调方法
+     *
+     * @param response
      */
     @Override
-    public void selectSuccess() {
-
+    public void selectSuccess(String response) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("选课结果");
+        builder.setMessage(response);
+        builder.setNegativeButton("确定", null);
+        builder.show();
     }
 
     @Override
@@ -146,12 +163,13 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
     @Override
     public void loginSuccess() {
         showToast("登录成功,正在获取数据!");
-        mClassPresenter.getClasses("1");
+        mClassPresenter.getClasses(String.valueOf(mPage));
     }
 
     @Override
     public void loginFailed() {
-
+        showToast("登录失败,请检查账号和密码!");
+        // TODO: 2017.5.14 跳转到个人中心_我的广工
     }
 
     /**
@@ -159,7 +177,7 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
      */
     @Override
     public void getSuccess(List<ClassBean> classBean) {
-        mClassBean=classBean;
+        mClassBean = classBean;
         if (isFirstGet) {
             isFirstGet = false;
             mClassAdapter.updataData(mClassBean);
@@ -183,7 +201,7 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
 
     @Override
     public void getFailed() {
-
+        mClassPresenter.login();
     }
 
 }

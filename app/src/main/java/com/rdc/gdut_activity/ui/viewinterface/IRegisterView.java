@@ -12,4 +12,6 @@ public interface IRegisterView {
     void registerSuccess();
 
     void registerFailed(String error);
+    void showProgress(boolean isVisiable);
+
 }

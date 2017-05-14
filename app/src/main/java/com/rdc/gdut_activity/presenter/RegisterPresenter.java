@@ -16,14 +16,17 @@ public class RegisterPresenter {
     }
 
     public void register() {
+        mRegisterView.showProgress(true);
         mUserModel.registerUser(mRegisterView.getUserPhone(), mRegisterView.getUserPassword(), new RegisterUserModel.OnRegisterListener() {
             @Override
             public void registerSuccess() {
+                mRegisterView.showProgress(false);
                 mRegisterView.registerSuccess();
             }
 
             @Override
             public void registerFailed(String error) {
+                mRegisterView.showProgress(false);
                 if (error.contains("202")) {
                     error = "该手机号已被注册!";
                 } else if (error.contains("9016")) {

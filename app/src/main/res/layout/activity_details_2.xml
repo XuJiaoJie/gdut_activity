@@ -36,6 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:layout_marginBottom="5dp">
+
                     <LinearLayout
                         android:id="@+id/ll_details_top_dot"
                         android:layout_width="wrap_content"
@@ -111,7 +112,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher"/>
+                            android:src="@drawable/iv_details_time"/>
 
                         <TextView
                             android:id="@+id/tv_details_time"
@@ -144,7 +145,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher"/>
+                            android:src="@drawable/iv_details_location"/>
 
                         <TextView
                             android:id="@+id/tv_details_position"
@@ -175,7 +176,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher"/>
+                            android:src="@drawable/iv_details_group"/>
 
                         <TextView
                             android:id="@+id/tv_details_to"

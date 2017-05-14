@@ -42,14 +42,6 @@
             android:layout_height="wrap_content"
             android:text="已选课程"/>
 
-        <Button
-            android:id="@+id/btn_selectclass_select"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="抢课"
-            />
-
     </LinearLayout>
 
 

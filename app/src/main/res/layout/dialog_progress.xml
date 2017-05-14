@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bg_details_text"
+              android:orientation="vertical"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/pb_dialog"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/dimen_tv_dialog"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="正在验证中..."
+            android:textSize="14sp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

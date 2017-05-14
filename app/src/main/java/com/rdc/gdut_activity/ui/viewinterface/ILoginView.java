@@ -9,7 +9,7 @@ public interface ILoginView {
 
     void loginFailed(String error);
 
-    void showProgress(int visibility);
+    void showProgress(boolean isVisiable);
 
     String getUserPhone();
 

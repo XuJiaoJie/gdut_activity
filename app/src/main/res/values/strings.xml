@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GDUT_Activity</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">登录</string>
 
     <!-- Strings related to login -->
     <string name="login_phonenum">输入手机号</string>
@@ -27,6 +27,7 @@
     <string name="btn_register_register">注册</string>
     <string name="register_password_again">确认密码</string>
     <string name="tv_organization_name">单位信息</string>
+    <string name="string_activity_register">注册</string>
 
     <string-array name="activity_type_array">
         <item>讲座</item>
