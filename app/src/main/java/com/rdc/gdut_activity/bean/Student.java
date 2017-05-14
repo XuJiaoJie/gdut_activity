@@ -10,6 +10,10 @@ public class Student extends User {
     private String grade;       //年级
     private String college;     //学院
 
+    private String age;
+    private String area;
+    private String gdutPassword;
+
     public String getSchoolNumber() {
         return schoolNumber;
     }
@@ -40,5 +44,30 @@ public class Student extends User {
 
     public void setCollege(String college) {
         this.college = college;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getGdutPassword() {
+        return gdutPassword;
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.gdutPassword = password;
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.rdc.gdut_activity.ui.UserActivitiesActivity">
+
+    <com.rdc.gdut_activity.view.TopBar
+        android:id="@+id/tb_user_activities"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/color_primary"
+        app:title="我的活动"
+        app:titleTextColor="@color/white"/>
+
+    <ListView
+        android:id="@+id/lv_user_activities"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:scrollbars="none">
+
+    </ListView>
+
+</LinearLayout>
