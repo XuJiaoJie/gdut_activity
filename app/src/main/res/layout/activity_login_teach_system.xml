@@ -3,7 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/color_primary"
+              android:background="@color/colorPrimary"
               android:orientation="vertical"
               tools:context="com.rdc.gdut_activity.ui.LoginActivity">
 
@@ -71,7 +71,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/selector_btn_login"
                 android:text="@string/btn_login_login"
-                android:textColor="@color/color_primary"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/dimen_title_login"
                 />
 

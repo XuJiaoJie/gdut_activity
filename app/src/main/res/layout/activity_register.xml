@@ -4,7 +4,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/color_primary"
+              android:background="@color/colorPrimary"
               android:orientation="vertical"
               tools:context="com.rdc.gdut_activity.ui.RegisterActivity">
 
@@ -33,7 +33,7 @@
                 android:layout_marginLeft="@dimen/dimen_margin_login"
                 android:layout_marginRight="@dimen/dimen_margin_login"
                 android:layout_marginTop="60dp"
-                android:drawableLeft="@drawable/iv_login_user"
+                android:drawableLeft="@drawable/iv_user"
                 android:hint="@string/login_phonenum"
                 android:imeOptions="actionNext"
                 android:inputType="phone|number"
@@ -86,7 +86,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/selector_btn_login"
                 android:text="@string/btn_register_register"
-                android:textColor="@color/color_primary"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/dimen_title_login"
                 />
 

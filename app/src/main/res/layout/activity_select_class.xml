@@ -8,6 +8,16 @@
     android:orientation="vertical"
     tools:context="com.rdc.gdut_activity.ui.SelectClassActivity">
 
+    <com.rdc.gdut_activity.view.TopBar
+        android:id="@+id/tb_selectclass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_topbar_height"
+        android:background="@color/colorPrimary"
+        app:title="@string/string_activity_selectclass"
+        app:titleTextColor="@color/white"
+        >
+    </com.rdc.gdut_activity.view.TopBar>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_selectclass"
         android:layout_width="match_parent"
@@ -21,28 +31,5 @@
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal"
-        >
-
-        <Button
-            android:id="@+id/btn_selectclass_query"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查询"
-            />
-
-        <Button
-            android:id="@+id/btn_selectclass_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="已选课程"/>
-
-    </LinearLayout>
-
 
 </LinearLayout>

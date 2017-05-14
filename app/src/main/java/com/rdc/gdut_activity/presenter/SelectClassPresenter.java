@@ -5,6 +5,7 @@ import android.util.Log;
 import com.rdc.gdut_activity.bean.ClassBean;
 import com.rdc.gdut_activity.bean.ClassHome;
 import com.rdc.gdut_activity.bean.RowsBean;
+import com.rdc.gdut_activity.bean.Student;
 import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.model.SelectClassModel;
 import com.rdc.gdut_activity.ui.viewinterface.ISelectClassView;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.bmob.v3.BmobUser;
 import okhttp3.Call;
 
 /**
@@ -114,6 +116,9 @@ public class SelectClassPresenter {
         }, mParamsMap, null);
     }
 
+    /**
+     * 获取已选的课
+     */
     public void getOwnClass() {
         mParamsMap.clear();
         mParamsMap.put("sort", "kcrwdm");
@@ -126,7 +131,7 @@ public class SelectClassPresenter {
 
             @Override
             public void onResponse(byte[] bytes) {
-                returnClasses(bytes);
+
             }
         }, mParamsMap, null);
     }
@@ -136,8 +141,7 @@ public class SelectClassPresenter {
      */
     public void login() {
         mParamsMap.clear();
-        mParamsMap.put("account", "3115005180");
-        mParamsMap.put("pwd", "ab6669680");
+        Student student= BmobUser.getCurrentUser(Student.class);
         mParamsMap.put("verifycode", "");
         mClassModel.login(Constant.URL_SELECTCLASS_LOGIN, new OkHttpResultCallback() {
             @Override

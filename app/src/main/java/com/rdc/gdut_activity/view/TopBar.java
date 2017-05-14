@@ -31,7 +31,17 @@ public class TopBar extends RelativeLayout {
     private String mTitle;
     private float mTitleSize;
 
-    private ImageView mLeftButton, mRightButton;
+    private ImageView mLeftButton;
+
+    public ImageView getRightButton() {
+        return mRightButton;
+    }
+
+    public void setRightButton(ImageView rightButton) {
+        mRightButton = rightButton;
+    }
+
+    private ImageView mRightButton;
     private TextView mTitleView;
 
     private Resources resources;
