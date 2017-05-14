@@ -2,6 +2,7 @@ package com.rdc.gdut_activity.fragment;
 
 import android.os.Bundle;
 import android.os.Message;
+import android.widget.Toast;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseFragment;
@@ -51,6 +52,14 @@ public class MessageFragment extends BaseFragment {
     private void setParams(Bundle bundle) {
         mTitle = bundle.getInt("title");
         mMessage = bundle.getString("message");
+    }
+
+    public void topbarLeftButtonClick(){
+        Toast.makeText(getActivity(),"消息左按钮",Toast.LENGTH_SHORT).show();
+    }
+
+    public void topbarRightButtonClick(){
+        Toast.makeText(getActivity(),"消息右按钮",Toast.LENGTH_SHORT).show();
     }
 
 }

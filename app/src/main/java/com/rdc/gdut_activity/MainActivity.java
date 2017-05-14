@@ -1,10 +1,12 @@
 package com.rdc.gdut_activity;
 
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rdc.gdut_activity.adapter.FragmentAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
@@ -12,6 +14,7 @@ import com.rdc.gdut_activity.fragment.MainFragment;
 import com.rdc.gdut_activity.fragment.MessageFragment;
 import com.rdc.gdut_activity.fragment.ToolFragment;
 import com.rdc.gdut_activity.fragment.UserFragment;
+import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ public class MainActivity extends BaseActivity {
     ViewPager mVpMainVp;
     @InjectView(R.id.tabLayout_main_tab)
     TabLayout mTabLayoutMainTab;
+    @InjectView(R.id.topbar_activity_main)
+    TopBar mTopBar;
 
     private String[] titles = new String[]{"主页", "工具", "消息", "我的"};
 
@@ -67,7 +72,6 @@ public class MainActivity extends BaseActivity {
                 TextView title  = (TextView)itemTab.getCustomView().findViewById(R.id.tv_main_tab);
                 title.setText(mTitles.get(i));
                 ImageView image = (ImageView)itemTab.getCustomView().findViewById(R.id.iv_main_tab);
-                //// TODO: 2017/5/4 设置tab图标
                 image.setImageResource(mImgs[i]);
             }
         }
@@ -77,12 +81,84 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        mTopBar.setButtonBackground(0,R.drawable.home_main_selected);
 
+        mVpMainVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //设置topbar标题及按钮的图片
+                if(position == 0){
+                    mTopBar.setTitle("主页");
+                    mTopBar.setButtonBackground(0,R.drawable.home_main_selected);
+                }
+                else if(position == 1){
+                    mTopBar.setTitle("工具");
+                    mTopBar.setButtonBackground(R.drawable.message_main_selected,R.drawable.home_main_selected);
+                }
+                else if(position == 2){
+                    mTopBar.setTitle("消息");
+                    mTopBar.setButtonBackground(R.drawable.message_main_selected,0);
+                }else {
+                    mTopBar.setTitle("个人中心");
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
     public void initListener() {
 
+        mTopBar.setOnTopbarClickListener(new TopBar.topbarClickListner() {
+            @Override
+            public void leftClick() {
+                int position = mVpMainVp.getCurrentItem();
+                switch (position){
+                    case 0: MainFragment mainFragment = (MainFragment)mFragments.get(position);
+                        mainFragment.topbarLeftButtonClick();
+                        break;
+                    case 1: ToolFragment toolFragment = (ToolFragment)mFragments.get(position);
+                        toolFragment.topbarLeftButtonClick();
+                        break;
+                    case 2:
+                        MessageFragment messageFragment = (MessageFragment)mFragments.get(position);
+                        messageFragment.topbarLeftButtonClick();
+                        break;
+                    case 3:break;
+                    default:break;
+                }
+
+            }
+
+            @Override
+            public void rightClick() {
+                int position = mVpMainVp.getCurrentItem();
+                switch (position){
+                    case 0: MainFragment mainFragment = (MainFragment)mFragments.get(position);
+                        mainFragment.topbarRightButtonClick();
+                        break;
+                    case 1: ToolFragment toolFragment = (ToolFragment)mFragments.get(position);
+                        toolFragment.topbarRightButtonClick();
+                        break;
+                    case 2:
+                        MessageFragment messageFragment = (MessageFragment)mFragments.get(position);
+                        messageFragment.topbarRightButtonClick();
+                        break;
+                    case 3:break;
+                    default:break;
+                }
+            }
+        });
     }
 
 

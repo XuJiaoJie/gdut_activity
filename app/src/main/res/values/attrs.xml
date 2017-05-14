@@ -25,4 +25,8 @@
         <attr name="nts_active_color" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="TopBar">
+        <attr name="title" format="string"/>
+        <attr name="titleTextColor" format="color"/>
+    </declare-styleable>
 </resources>

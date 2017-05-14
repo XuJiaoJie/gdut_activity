@@ -25,8 +25,8 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(setLayoutResourceId(), container, false);
-        ButterKnife.inject(this, mRootView);
+        mRootView = inflater.inflate(setLayoutResourceId(),container,false);
+        ButterKnife.inject(this,mRootView);
         initData(getArguments());
         initView();
         setListener();
