@@ -295,6 +295,7 @@
         app:showStyle="grid"/>
 
     <TextView
+        android:id="@+id/tv_verify_verify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -305,7 +306,7 @@
         android:textSize="18sp"/>
 
     <cc.trity.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/right_labels"
+        android:id="@+id/fam_verify_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fab_expandDirection="right"
@@ -313,7 +314,7 @@
         >
 
         <cc.trity.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_diary_fab_back"
+            android:id="@+id/fab_verify_pass"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:fab_colorNormal="#24d63c"
@@ -322,7 +323,7 @@
             />
 
         <cc.trity.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_diary_fab_add"
+            android:id="@+id/fab_verify_failure"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:fab_size="normal"
