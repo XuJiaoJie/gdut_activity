@@ -27,6 +27,7 @@
 
     <declare-styleable name="TopBar">
         <attr name="title" format="string"/>
+        <attr name="titleTextSize" format="dimension"/>
         <attr name="titleTextColor" format="color"/>
     </declare-styleable>
 </resources>

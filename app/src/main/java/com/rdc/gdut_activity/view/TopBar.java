@@ -29,6 +29,7 @@ public class TopBar extends RelativeLayout {
 
     private int mTitleTextColor;
     private String mTitle;
+    private float mTitleSize;
 
     private ImageView mLeftButton, mRightButton;
     private TextView mTitleView;
@@ -38,7 +39,7 @@ public class TopBar extends RelativeLayout {
 
     private topbarClickListner mTopbarClickListner;
     //  private HashMap mTopbarClickListnerMap ;//用来储存每一个Fragment的监听器
-    private final float TITLE_SIZE = 7;
+   // private final float TITLE_SIZE = 7;
 
 
     public TopBar(Context context) {
@@ -48,6 +49,7 @@ public class TopBar extends RelativeLayout {
     public TopBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TopBar);
+        mTitleSize  = ta.getDimension(R.styleable.TopBar_titleTextSize,0);
         mTitleTextColor = ta.getColor(R.styleable.TopBar_titleTextColor, 0);
         mTitle = ta.getString(R.styleable.TopBar_title);
 
@@ -63,7 +65,7 @@ public class TopBar extends RelativeLayout {
         mTitleView = new TextView(context);
         //为组件元素赋值
         mTitleView.setText(mTitle);
-        mTitleView.setTextSize(DensityUtils.dip2px(context, TITLE_SIZE));
+        mTitleView.setTextSize(DensityUtils.px2dip(context,mTitleSize));
         mTitleView.setTextColor(mTitleTextColor);
         mTitleView.setGravity(Gravity.CENTER);
 

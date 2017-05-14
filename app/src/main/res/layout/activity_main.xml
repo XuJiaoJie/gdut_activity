@@ -10,6 +10,7 @@
         android:id="@+id/topbar_activity_main"
         android:background="#ffffff"
         app:title="主页"
+        app:titleTextSize="18sp"
         app:titleTextColor="@color/color_primary"
         >
     </com.rdc.gdut_activity.view.TopBar>
