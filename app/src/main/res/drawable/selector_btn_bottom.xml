@@ -3,22 +3,22 @@
     <item android:state_pressed="true">
         <shape>
             <corners android:radius="5dp" />
-            <solid android:color="@color/color_btn_login"></solid>
+            <solid android:color="@color/colorPrimaryDark"></solid>
         </shape>
 
     </item>
+
     <item android:state_enabled="false">
         <shape>
             <corners android:radius="5dp" />
             <solid android:color="@color/gainsboro"></solid>
         </shape>
     </item>
+
     <item>
         <shape>
             <corners android:radius="5dp" />
-            <solid android:color="@color/color_white_login"></solid>
+            <solid android:color="@color/colorPrimary"></solid>
         </shape>
     </item>
-
-
 </selector>

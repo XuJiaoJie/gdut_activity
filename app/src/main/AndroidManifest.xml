@@ -45,13 +45,16 @@
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".ui.DetailsActivity">
-
         </activity>
-
         <activity android:name=".ui.DetailsVerifyActivity"/>
         <activity android:name=".ui.DetailsPhotoActivity"/>
         <activity android:name=".ui.SelectClassActivity"/>
+        <activity
+            android:name=".ui.SignUpActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize">
 
+        </activity>
     </application>
 
 </manifest>
