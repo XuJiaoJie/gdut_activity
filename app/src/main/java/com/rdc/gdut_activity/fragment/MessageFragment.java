@@ -61,7 +61,6 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
     @Override
     protected void initData(Bundle bundle) {
         setParams(bundle);
-        registerPushCast();
         mMessageBean = new ArrayList<>();
         mMapList = new HashMap<>();
         SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
@@ -73,18 +72,10 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
             messageBean.setObjectid("123213");
             Date date = new Date(System.currentTimeMillis());
             messageBean.setTime(format.format(date));
-            if (mMessageBean.contains(messageBean)) {
-                mMessageBean.remove(messageBean);
-            }
-            mMessageBean.add(messageBean);
+            setMessgeList(messageBean);
             setMapList(messageBean);
         }
         mMessageAdapter = new MessageAdapter();
-    }
-
-
-    private void registerPushCast() {
-
     }
 
     @Override
@@ -130,6 +121,7 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
     }
 
     public void onUpdatePush(MessageBean messageBean) {
+        setMessgeList(messageBean);
         setMapList(messageBean);
         mMessageAdapter.updataData(mMessageBean);
     }
@@ -146,4 +138,12 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
             mMapList.put(messageBean.getObjectid(), msg);
         }
     }
+
+    private void setMessgeList(MessageBean messageBean) {
+        if (mMessageBean.contains(messageBean)) {
+            mMessageBean.remove(messageBean);
+        }
+        mMessageBean.add(0,messageBean);
+    }
+
 }
