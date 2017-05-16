@@ -33,6 +33,7 @@ public class OkHttpUtil {
         mOkHttpClientBuilder.cookieJar(new OkHttpCookieJar());
         mOkHttpClient = mOkHttpClientBuilder.build();
         mHandler = new Handler(Looper.getMainLooper());
+
     }
 
     public static OkHttpUtil getInstance() {

@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.VerifyActivity"
             android:theme="@style/LoginAndRegisterTheme"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>

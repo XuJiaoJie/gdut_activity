@@ -305,6 +305,61 @@
         android:textColor="@color/dimgray"
         android:textSize="18sp"/>
 
+    <ImageView
+        android:id="@+id/iv_verify_pass"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/iv_verify_pass"
+        android:scaleType="centerCrop"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/iv_verify_nopass"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/iv_verify_nopass"
+        android:scaleType="centerCrop"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_verify_nopass_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_verify_default_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:text="审核不通过原因："
+            android:textColor="@color/dimgray"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tv_verify_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/tv_verify_default_reason"
+            android:layout_toEndOf="@id/tv_verify_default_reason"
+            tools:text="审核不通过原因：fergergegegegegegegegegegegegeg"
+            android:textColor="@color/dimgray"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
     <cc.trity.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fam_verify_menu"
         android:layout_width="wrap_content"

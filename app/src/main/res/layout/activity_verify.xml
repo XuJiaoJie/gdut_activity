@@ -6,10 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.rdc.gdut_activity.view.TopBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_topbar_height"
+        android:id="@+id/topbar_activity_main"
+        android:background="@color/color_primary_dark"
+        app:title="审核"
+        app:titleTextColor="@color/white">
+    </com.rdc.gdut_activity.view.TopBar>
+
     <com.rdc.gdut_activity.view.NavigationTabStrip
         android:id="@+id/nts_verify_tab"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:background="@color/gainsboro"
         app:nts_active_color="@color/colorAccent"
         app:nts_color="@color/colorAccent"
         app:nts_corners_radius="1dp"
