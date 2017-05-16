@@ -1,5 +1,7 @@
 package com.rdc.gdut_activity.constant;
 
+import com.rdc.gdut_activity.R;
+
 /**
  * Created by ThatNight on 2017.4.26.
  */
@@ -17,8 +19,14 @@ public class Constant {
     public static final int RETURN_INDEX_CODE = 90;     //返回当前显示的页面
 
     /*SelectClass*/
-    public static String URL_SELECTCLASS_LOGIN="http://222.200.98.147/login!doLogin.action";
-    public static String URL_SELECTCLASS_GETCLASS_LIST="http://222.200.98.147/xsxklist!getDataList.action";
-    public static String URL_SELECTCLASS_SELECTCLASS="http://222.200.98.147/xsxklist!getAdd.action";
-    public static String URL_SELECTCLASS_GETOWN_CLASS="http://222.200.98.147/xsxklist!getXzkcList.action";
+    public static final String URL_SELECTCLASS_LOGIN = "http://222.200.98.147/login!doLogin.action";
+    public static final String URL_SELECTCLASS_GETCLASS_LIST = "http://222.200.98.147/xsxklist!getDataList.action";
+    public static final String URL_SELECTCLASS_SELECTCLASS = "http://222.200.98.147/xsxklist!getAdd.action";
+    public static final String URL_SELECTCLASS_GETOWN_CLASS = "http://222.200.98.147/xsxklist!getXzkcList.action";
+    public static final int MODE_NORMAL = 2017; //获取可选课程
+    public static final int MODE_OWN = 1997;    //获取已选
+
+    /*loadingDialog*/
+    public static final int LOADING_STYLE = R.style.ActionProgressStyle;
+    ;
 }

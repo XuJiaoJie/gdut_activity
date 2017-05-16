@@ -1,6 +1,7 @@
 package com.rdc.gdut_activity.ui;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,7 +9,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.LoadMoreAdapterWrapper;
@@ -19,23 +20,23 @@ import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ClassBean;
 import com.rdc.gdut_activity.presenter.SelectClassPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.ISelectClassView;
+import com.rdc.gdut_activity.view.SelectClassPopWindow;
+import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 
-public class SelectClassActivity extends BaseActivity implements OnClickRecyclerViewListener, SwipeRefreshLayout.OnRefreshListener, ISelectClassView, OnLoadMoreDataRv {
+public class SelectClassActivity extends BaseActivity implements OnClickRecyclerViewListener, SwipeRefreshLayout.OnRefreshListener, ISelectClassView, OnLoadMoreDataRv, TopBar.topbarClickListner, View.OnClickListener {
 
     @InjectView(R.id.rv_selectclass)
     RecyclerView mRvSelectclass;
     @InjectView(R.id.srl_selectclass)
     SwipeRefreshLayout mSrlSelectclass;
-    @InjectView(R.id.btn_selectclass_query)
-    Button mBtnSelectclassQuery;
-    @InjectView(R.id.btn_selectclass_selected)
-    Button mBtnSelectclassSelected;
+    @InjectView(R.id.tb_selectclass)
+    TopBar mTbSelectclass;
     private List<ClassBean> mClassBean;
     private SelectClassAdapter mClassAdapter;
     private LoadMoreAdapterWrapper mLoadMoreAdapterWrapper;
@@ -44,6 +45,10 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
     private boolean isFirstGet = true;
     private SelectClassPresenter mClassPresenter;
     private int mPage = 1;
+    private AlertDialog.Builder mSelectDiaglog;
+    private AlertDialog.Builder mSearchDiaglog;
+    private AlertDialog.Builder mResponseDiaglog;
+    private SelectClassPopWindow mClassPopWindow;
 
     @Override
     protected int setLayoutResID() {
@@ -56,15 +61,17 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
         mClassPresenter = new SelectClassPresenter(this);
         mClassAdapter = new SelectClassAdapter();
         mClassAdapter.setOnRecyclerViewListener(this);
-        mClassPresenter.getClasses("1");
+        mClassPresenter.login();
+        //mClassPresenter.getClasses("1");
     }
 
     @Override
     protected void initView() {
+        mTbSelectclass.setButtonBackground(R.drawable.iv_back, R.drawable.iv_more);
         mRvSelectclass.setLayoutManager(new LinearLayoutManager(this));
         mRvSelectclass.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mRvSelectclass.setItemAnimator(new DefaultItemAnimator());
-        mSrlSelectclass.setColorSchemeResources(R.color.color_primary);
+        mSrlSelectclass.setColorSchemeResources(R.color.colorPrimary);
         mSrlSelectclass.post(new Runnable() {
             @Override
             public void run() {
@@ -76,19 +83,7 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
 
     @Override
     protected void initListener() {
-
-    }
-
-    @OnClick({R.id.btn_selectclass_query, R.id.btn_selectclass_selected})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_selectclass_query:
-                //mClassPresenter.queryClass("");
-                break;
-            case R.id.btn_selectclass_selected:
-                mClassPresenter.getOwnClass();
-                break;
-        }
+        mTbSelectclass.setOnTopbarClickListener(this);
     }
 
     /**
@@ -97,18 +92,20 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
      * @param position
      */
     @Override
-    public void onItemClick(int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("提示");
-        builder.setMessage("是否抢该门课程: " + mClassBean.get(position).getClassName());
-        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.setNegativeButton("否", null);
-        builder.show();
+    public void onItemClick(final int position) {
+        if (mSelectDiaglog == null) {
+            mSelectDiaglog = new AlertDialog.Builder(this);
+            mSelectDiaglog.setTitle("提示");
+            mSelectDiaglog.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    mClassPresenter.selectClass(mClassBean.get(position).getClassNum(), mClassBean.get(position).getClassName());
+                }
+            });
+            mSelectDiaglog.setNegativeButton("否", null);
+        }
+        mSelectDiaglog.setMessage("是否抢该门课程: " + mClassBean.get(position).getClassName());
+        mSelectDiaglog.show();
     }
 
     @Override
@@ -140,11 +137,13 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
      */
     @Override
     public void selectSuccess(String response) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("选课结果");
-        builder.setMessage(response);
-        builder.setNegativeButton("确定", null);
-        builder.show();
+        if (mResponseDiaglog == null) {
+            mResponseDiaglog = new AlertDialog.Builder(this);
+            mResponseDiaglog.setTitle("选课结果");
+            mResponseDiaglog.setNegativeButton("确定", null);
+        }
+        mResponseDiaglog.setMessage(response);
+        mResponseDiaglog.show();
     }
 
     @Override
@@ -152,9 +151,14 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
 
     }
 
+    /**
+     * 设置下拉刷新状态
+     *
+     * @param isRefreshing
+     */
     @Override
-    public void refreshing(boolean isRefreshing) {
-
+    public void showProgress(boolean isRefreshing) {
+        mSrlSelectclass.setRefreshing(true);
     }
 
     /**
@@ -204,4 +208,56 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
         mClassPresenter.login();
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.inject(this);
+    }
+
+    /**
+     * topbar点击事件
+     */
+    @Override
+    public void leftClick() {
+        finish();
+    }
+
+    @Override
+    public void rightClick() {
+        if (mClassPopWindow == null) {
+            mClassPopWindow = new SelectClassPopWindow(this, this, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+        mClassPopWindow.showPopupWindow(mTbSelectclass.getRightButton());
+    }
+
+    /**
+     * 右上角菜单点击事件
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_dialog_selectclass_search:
+                if (mSearchDiaglog == null) {
+                    mSearchDiaglog = new AlertDialog.Builder(this);
+                    mSearchDiaglog.setView(R.layout.dialog_selectclass_search);
+                    mSearchDiaglog.setTitle("搜索");
+                    mSearchDiaglog.setNegativeButton("确认", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                }
+                mSearchDiaglog.show();
+                break;
+            case R.id.ll_dialog_selectclass_myclass:
+                mClassPresenter.getOwnClass();
+                break;
+            default:
+                break;
+        }
+    }
 }

@@ -29,5 +29,7 @@
         <attr name="title" format="string"/>
         <attr name="titleTextSize" format="dimension"/>
         <attr name="titleTextColor" format="color"/>
+        <attr name="leftButtonSize" format="dimension"/>
+        <attr name="rightButtonSize" format="dimension"/>
     </declare-styleable>
 </resources>

@@ -21,6 +21,6 @@ public interface ISelectClassView {
 
     void selectFailed();
 
-    void refreshing(boolean isRefreshing);
+    void showProgress(boolean isRefreshing);
 
 }

@@ -2,12 +2,7 @@ package com.rdc.gdut_activity.ui;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +11,10 @@ import android.widget.TextView;
 import com.rdc.gdut_activity.MainActivity;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
+import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.presenter.RegisterPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.IRegisterView;
+import com.rdc.gdut_activity.view.LoadingDialog;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -116,15 +113,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
     @Override
     public void showProgress(boolean isVisiable) {
         if (mDialog == null) {
-            mDialog = new Dialog(this, R.style.ActionProgressStyle);
-            View view = LayoutInflater.from(this).inflate(R.layout.dialog_progress, null);
-            Window dialogWindow = mDialog.getWindow();
-            dialogWindow.setGravity(Gravity.BOTTOM);
-            WindowManager.LayoutParams wl = dialogWindow.getAttributes();
-            wl.y = 20;
-            dialogWindow.setAttributes(wl);
-            mDialog.setContentView(view, wl);
-            mDialog.setCanceledOnTouchOutside(false);
+            mDialog = new LoadingDialog(this, Constant.LOADING_STYLE);
         }
         if (isVisiable) {
             mBtnRegister.setEnabled(false);

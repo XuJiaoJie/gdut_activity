@@ -6,30 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.rdc.gdut_activity.ui.SelectClassActivity">
+    tools:context="com.rdc.gdut_activity.ui.SignUpActivity">
 
     <com.rdc.gdut_activity.view.TopBar
-        android:id="@+id/tb_selectclass"
+        android:id="@+id/tb_sign_up"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
         android:background="@color/colorPrimary"
-        app:title="@string/string_activity_selectclass"
+        app:title="报名"
         app:titleTextColor="@color/white"
+        app:titleTextSize="@dimen/dimen_top_title_size"
         >
     </com.rdc.gdut_activity.view.TopBar>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl_selectclass"
+    <ScrollView
+        android:id="@+id/sc_sign_up"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_selectclass"
+        <com.rdc.gdut_activity.view.ScrollForListView
+            android:id="@+id/lv_sign_up"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:descendantFocusability="afterDescendants"
+            android:divider="@null"
+            >
+        </com.rdc.gdut_activity.view.ScrollForListView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+
+    </ScrollView>
 
 </LinearLayout>

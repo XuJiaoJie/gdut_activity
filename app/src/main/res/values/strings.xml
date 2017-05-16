@@ -28,6 +28,8 @@
     <string name="register_password_again">确认密码</string>
     <string name="tv_organization_name">单位信息</string>
     <string name="string_activity_register">注册</string>
+    <string name="string_activity_selectclass">选课</string>
+    <string name="string_activity_sign_up">马上报名</string>
 
     <string-array name="activity_type_array">
         <item>讲座</item>

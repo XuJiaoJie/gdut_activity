@@ -62,7 +62,7 @@
         <CheckBox
             android:id="@+id/cb_class"
             android:text="我也可以有文字"
-            android:background="@color/color_primary"
+            android:background="@color/colorPrimary"
             style="@style/CheckBoxFormDataStyle"/>
 
         <TextView
