@@ -20,6 +20,8 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.UserActivitiesListAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
+import com.rdc.gdut_activity.bean.SignUpBean;
+import com.rdc.gdut_activity.bean.Student;
 import com.rdc.gdut_activity.view.TopBar;
 
 import java.io.File;
@@ -32,6 +34,8 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
@@ -54,31 +58,80 @@ public class UserActivitiesActivity extends BaseActivity implements TopBar.topba
     protected void initData() {
         mActivityInfoList = new ArrayList<>();
         // TODO: 2017/5/13 云端获取数据
-
-        BmobQuery<ActivityInfoBean> activityInfoBeanBmobQuery = new BmobQuery<>();
-        activityInfoBeanBmobQuery.addWhereEqualTo("mCheckStatus", "审核通过");
-        activityInfoBeanBmobQuery.setLimit(10);
-        activityInfoBeanBmobQuery.findObjects(new FindListener<ActivityInfoBean>() {
+        final BmobQuery<SignUpBean> signUpBeanBmobQuery = new BmobQuery<>();
+        Student student = new Student();
+        student.setObjectId(BmobUser.getCurrentUser().getObjectId());
+        signUpBeanBmobQuery.addWhereEqualTo("mStudent", new BmobPointer(student));
+        signUpBeanBmobQuery.include("mActivityBean.mPublisher");
+        signUpBeanBmobQuery.findObjects(new FindListener<SignUpBean>() {
             @Override
-            public void done(List<ActivityInfoBean> list, BmobException e) {
+            public void done(List<SignUpBean> list, BmobException e) {
                 if (e == null) {
-                    for (ActivityInfoBean activityInfoBean : list) {
-                        activityInfoBean.setPublisherIconUrl(activityInfoBean.getPublisherIconUrl());
-                        activityInfoBean.setPublisherName(activityInfoBean.getPublisherName());
-                        activityInfoBean.setPublishTime(activityInfoBean.getPublishTime());
-                        activityInfoBean.setImgUrlList(activityInfoBean.getImgUrlList());
-                        activityInfoBean.setActivityName(activityInfoBean.getActivityName());
-                        activityInfoBean.setActivityTime(activityInfoBean.getPublishTime());
-                        activityInfoBean.setActivityLocation(activityInfoBean.getActivityLocation());
-                        mActivityInfoList.add(activityInfoBean);
+                    if (list != null) {
+                        for (SignUpBean signUpBean : list) {
+                            mActivityInfoList.add(signUpBean.getActivityBean());
+                            Log.e("error", signUpBean.getActivityBean().getActivityDetail());
+                        }
+                        mUserActivitiesListAdapter.notifyDataSetChanged();
+                        Log.e("error", "query signUpBean success");
                     }
-                    mUserActivitiesListAdapter.notifyDataSetChanged();
-                    Log.e("error", "findObjects success" + list.size());
                 } else {
-                    Log.e("error", "findObjects failed");
+                    Log.e("error", "query signUpBean failed");
                 }
             }
         });
+
+//        BmobQuery<ActivityInfoBean> activityInfoBeanBmobQuery = new BmobQuery<>();
+//        Student student = new Student();
+//        student.setObjectId(BmobUser.getCurrentUser().getObjectId());
+//        activityInfoBeanBmobQuery.addWhereRelatedTo("mStudent", new BmobPointer(student));
+//        activityInfoBeanBmobQuery.findObjects(new FindListener<ActivityInfoBean>() {
+//            @Override
+//            public void done(List<ActivityInfoBean> list, BmobException e) {
+//                if (e == null) {
+//                    for (ActivityInfoBean activityInfoBean : list) {
+//                        activityInfoBean.setPublisherIconUrl(activityInfoBean.getPublisherIconUrl());
+//                        activityInfoBean.setPublisherName(activityInfoBean.getPublisherName());
+//                        activityInfoBean.setPublishTime(activityInfoBean.getPublishTime());
+//                        activityInfoBean.setImgUrlList(activityInfoBean.getImgUrlList());
+//                        activityInfoBean.setActivityName(activityInfoBean.getActivityName());
+//                        activityInfoBean.setActivityTime(activityInfoBean.getPublishTime());
+//                        activityInfoBean.setActivityLocation(activityInfoBean.getActivityLocation());
+//                        mActivityInfoList.add(activityInfoBean);
+//                    }
+//                    mUserActivitiesListAdapter.notifyDataSetChanged();
+//                    Log.e("error", "findObjects success" + list.size());
+//                } else {
+//                    Log.e("error", "findObjects failed");
+//                }
+//            }
+//        });
+
+
+//        BmobQuery<ActivityInfoBean> activityInfoBeanBmobQuery = new BmobQuery<>();
+//        activityInfoBeanBmobQuery.addWhereEqualTo("mCheckStatus", "审核通过");
+//        activityInfoBeanBmobQuery.setLimit(10);
+//        activityInfoBeanBmobQuery.findObjects(new FindListener<ActivityInfoBean>() {
+//            @Override
+//            public void done(List<ActivityInfoBean> list, BmobException e) {
+//                if (e == null) {
+//                    for (ActivityInfoBean activityInfoBean : list) {
+//                        activityInfoBean.setPublisherIconUrl(activityInfoBean.getPublisherIconUrl());
+//                        activityInfoBean.setPublisherName(activityInfoBean.getPublisherName());
+//                        activityInfoBean.setPublishTime(activityInfoBean.getPublishTime());
+//                        activityInfoBean.setImgUrlList(activityInfoBean.getImgUrlList());
+//                        activityInfoBean.setActivityName(activityInfoBean.getActivityName());
+//                        activityInfoBean.setActivityTime(activityInfoBean.getPublishTime());
+//                        activityInfoBean.setActivityLocation(activityInfoBean.getActivityLocation());
+//                        mActivityInfoList.add(activityInfoBean);
+//                    }
+//                    mUserActivitiesListAdapter.notifyDataSetChanged();
+//                    Log.e("error", "findObjects success" + list.size());
+//                } else {
+//                    Log.e("error", "findObjects failed");
+//                }
+//            }
+//        });
 
         mUserActivitiesListAdapter = new UserActivitiesListAdapter(this, mActivityInfoList);
         lvUserActivities.setAdapter(mUserActivitiesListAdapter);

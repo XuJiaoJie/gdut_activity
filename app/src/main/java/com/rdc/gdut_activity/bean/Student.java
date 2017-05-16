@@ -9,6 +9,7 @@ public class Student extends User {
     private boolean sex;        //性别
     private String grade;       //年级
     private String college;     //学院
+    private String major;
 
     private String age;
     private String area;
@@ -44,6 +45,14 @@ public class Student extends User {
 
     public void setCollege(String college) {
         this.college = college;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String getAge() {

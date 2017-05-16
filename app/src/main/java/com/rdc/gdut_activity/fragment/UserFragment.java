@@ -7,6 +7,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,13 +20,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseFragment;
 import com.rdc.gdut_activity.bean.Student;
+import com.rdc.gdut_activity.bean.User;
 import com.rdc.gdut_activity.ui.AboutActivity;
 import com.rdc.gdut_activity.ui.UserActivitiesActivity;
 import com.rdc.gdut_activity.ui.UserDetailActivity;
 import com.rdc.gdut_activity.ui.UserGDUTActivity;
+import com.rdc.gdut_activity.utils.PictureDownloadUtil;
 import com.rdc.gdut_activity.view.CircleImageView;
 
 import java.util.List;
@@ -64,6 +70,22 @@ public class UserFragment extends BaseFragment {
     private Boolean mIsMale;
     private String mPassword;
     private Student mStudent;
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    Bitmap bitmap = BitmapFactory.decodeFile(mPath + "head.jpg");
+                    if (bitmap != null) {
+                        Drawable drawable = new BitmapDrawable(bitmap);
+                        civUserIcon.setImageDrawable(drawable);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     /**
      * 用来获取fragment实例的方法，这里可以让Activity给fragment设置参数,参数可以在下面的initData方法中的bundle中取出
@@ -102,6 +124,31 @@ public class UserFragment extends BaseFragment {
             Drawable drawable = new BitmapDrawable(bitmap);
             civUserIcon.setImageDrawable(drawable);
         } else {
+//            BmobQuery<User> userBmobQuery = new BmobQuery<>();
+//            userBmobQuery.addWhereEqualTo("objectId", BmobUser.getCurrentUser().getObjectId());
+//            userBmobQuery.findObjects(new FindListener<User>() {
+//                @Override
+//                public void done(final List<User> list, BmobException e) {
+//                    if (e == null) {
+//                        if (list != null) {
+//                            //Glide.with(getContext()).load(list.get(0).getIcon()).into(civUserIcon);
+//                            new Thread() {
+//                                @Override
+//                                public void run() {
+//                                    while (true) {
+//                                       if (PictureDownloadUtil.loadImageSaveToLocal(list.get(0).getIcon(), mPath + "head.jpg")) {
+//                                           break;
+//                                       }
+//                                    }
+//                                    mHandler.sendEmptyMessage(1);
+//                                }
+//                            };
+//                        }
+//                    } else {
+//                        Log.e("error", "download failed");
+//                    }
+//                }
+//            });
             // TODO: 2017/5/12 从云端下载
         }
         BmobQuery<Student> studentBmobQuery = new BmobQuery<>();

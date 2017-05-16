@@ -55,7 +55,8 @@ public class UserActivitiesListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        Glide.with(mContext).load(mActivityInfoList.get(position).getPublisherIconUrl()).into(viewHolder.civItemUserIcon);
+        //Glide.with(mContext).load(mActivityInfoList.get(position).getPublisherIconUrl()).into(viewHolder.civItemUserIcon);
+        Glide.with(mContext).load(mActivityInfoList.get(position).getPublisher().getIcon()).into(viewHolder.civItemUserIcon);
         viewHolder.tvItemUserName.setText(mActivityInfoList.get(position).getPublisherName());
         viewHolder.tvItemActivityPublishTime.setText(mActivityInfoList.get(position).getPublishTime());
         Glide.with(mContext).load(mActivityInfoList.get(position).getImgUrlList().get(0)).into(viewHolder.ivItemActivityPic);

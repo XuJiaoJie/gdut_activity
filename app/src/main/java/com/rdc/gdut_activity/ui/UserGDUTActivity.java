@@ -3,6 +3,7 @@ package com.rdc.gdut_activity.ui;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -11,18 +12,24 @@ import android.widget.Toast;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
+import com.rdc.gdut_activity.bean.Student;
 import com.rdc.gdut_activity.view.TopBar;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClickListner {
 
     @InjectView(R.id.tb_user_gdut)
     TopBar tbUserGdut;
-    private AlertDialog.Builder mBuilder;
-
     @InjectView(R.id.tv_school_academic)
     TextView tvSchoolAcademic;
     @InjectView(R.id.ll_academic)
@@ -44,6 +51,11 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
     @InjectView(R.id.ll_school_password)
     LinearLayout llSchoolPassword;
 
+    private AlertDialog.Builder mBuilder;
+    private String mGrade;
+    private String mMajor;
+    private String mCollege;
+
     @Override
     protected int setLayoutResID() {
         return R.layout.activity_user_gdut;
@@ -51,7 +63,20 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 
     @Override
     protected void initData() {
-
+        BmobQuery<Student> studentBmobQuery = new BmobQuery<>();
+        studentBmobQuery.addWhereEqualTo("objectId", BmobUser.getCurrentUser().getObjectId());
+        studentBmobQuery.findObjects(new FindListener<Student>() {
+            @Override
+            public void done(List<Student> list, BmobException e) {
+                if (e == null) {
+                    if (list != null) {
+                        mCollege = list.get(0).getCollege();
+                        mMajor = list.get(0).getMajor();
+                        mGrade = list.get(0).getGrade();
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -59,6 +84,9 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
         tbUserGdut.setButtonBackground(R.drawable.icon_back, 0);
         tbUserGdut.setOnTopbarClickListener(this);
         mBuilder = new AlertDialog.Builder(this);
+        tvSchoolAcademic.setText(mCollege);
+        tvSchoolMajor.setText(mMajor);
+        tvSchoolClass.setText(mGrade);
     }
 
     @Override
@@ -144,12 +172,24 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 
     private void showChangeClassDialog() {
         initBuilder("班级", -1);
-        final View view = View.inflate(this, R.layout.layout_dialog_change_phone_number, null);
+        final View view = View.inflate(this, R.layout.layout_dialog_change_gdut_detail, null);
         mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String academic = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
-                tvSchoolClass.setText(academic);
+                String grade = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
+                tvSchoolClass.setText(grade);
+                Student student = new Student();
+                student.setGrade(grade);
+                student.update(BmobUser.getCurrentUser().getObjectId(), new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if (e == null) {
+                            Log.e("error", "success");
+                        } else {
+                            Log.e("error", e.getMessage());
+                        }
+                    }
+                });
                 dialog.dismiss();
             }
         });
@@ -160,12 +200,24 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 
     private void showChangeMajorDialog() {
         initBuilder("专业", -1);
-        final View view = View.inflate(this, R.layout.layout_dialog_change_phone_number, null);
+        final View view = View.inflate(this, R.layout.layout_dialog_change_gdut_detail, null);
         mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String academic = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
-                tvSchoolMajor.setText(academic);
+                String major = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
+                tvSchoolMajor.setText(major);
+                Student student = new Student();
+                student.setMajor(major);
+                student.update(BmobUser.getCurrentUser().getObjectId(), new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if (e == null) {
+                            Log.e("error", "success");
+                        } else {
+                            Log.e("error", e.getMessage());
+                        }
+                    }
+                });
                 dialog.dismiss();
             }
         });
@@ -176,12 +228,24 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 
     private void showChangeAcademicDialog() {
         initBuilder("学院", -1);
-        final View view = View.inflate(this, R.layout.layout_dialog_change_phone_number, null);
+        final View view = View.inflate(this, R.layout.layout_dialog_change_gdut_detail, null);
         mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String academic = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
                 tvSchoolAcademic.setText(academic);
+                Student student = new Student();
+                student.setCollege(academic);
+                student.update(BmobUser.getCurrentUser().getObjectId(), new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if (e == null) {
+                            Log.e("error", "success");
+                        } else {
+                            Log.e("error", e.getMessage());
+                        }
+                    }
+                });
                 dialog.dismiss();
             }
         });

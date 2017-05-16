@@ -11,8 +11,10 @@
         android:id="@+id/tb_user_gdut"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/color_primary"
+        android:background="@color/colorPrimary"
+        app:leftButtonSize="@dimen/title_button_size"
         app:title="我的广工"
+        app:titleTextSize="@dimen/pickerview_topbar_title_textsize"
         app:titleTextColor="@color/white"/>
 
     <LinearLayout

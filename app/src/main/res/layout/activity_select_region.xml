@@ -11,8 +11,9 @@
         android:id="@+id/tb_select_area"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/color_primary"
+        android:background="@color/colorPrimary"
         app:title="选择省份"
+        app:titleTextSize="@dimen/pickerview_topbar_title_textsize"
         app:titleTextColor="@color/white"/>
 
     <android.support.v7.widget.RecyclerView
