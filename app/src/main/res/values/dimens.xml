@@ -14,4 +14,9 @@
 
     <dimen name="title_button_size">20dp</dimen>
     <dimen name="dimen_top_title_size">16sp</dimen>
+    <dimen name="dimen_msg_name">16sp</dimen>
+    <dimen name="dimen_msg_time">12sp</dimen>
+    <dimen name="dimen_msg_msg">12sp</dimen>
+    <dimen name="dimen_msg_icon">48dp</dimen>
+    <dimen name="dimen_msg_msg_main">16sp</dimen>
 </resources>

@@ -2,7 +2,6 @@ package com.rdc.gdut_activity.base;
 
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.rdc.gdut_activity.adapter.adapterInterface.OnClickRecyclerViewListener;
 
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseRecyclerViewAdapter <T> extends RecyclerView.Adapter{
-    private static final String TAG = "BaseRecyclerViewAdapter";
     protected List<T> mDataList = new ArrayList<>();
     protected OnClickRecyclerViewListener mOnRecyclerViewListener;
 
@@ -24,7 +22,7 @@ public abstract class BaseRecyclerViewAdapter <T> extends RecyclerView.Adapter{
     public void appendData(List dataList){
         if (null != dataList && !dataList.isEmpty()){
             mDataList.addAll(dataList);
-            Log.e(TAG, "appendData: "+mDataList.size());
+            notifyDataSetChanged();
         }
     }
 

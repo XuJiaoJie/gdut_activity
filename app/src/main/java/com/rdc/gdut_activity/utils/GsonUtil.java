@@ -24,6 +24,19 @@ public class GsonUtil {
     }
 
     /**
+     * 转成json
+     * @param o
+     * @return
+     */
+    public static String gsonToJson(Object o) {
+        String json = null;
+        if (sGson != null) {
+            json = sGson.toJson(o);
+        }
+        return json;
+    }
+
+    /**
      * 转成bean类
      *
      * @param response
@@ -34,7 +47,7 @@ public class GsonUtil {
     public static <T> T gsonToBean(String response, Class<T> bean) {
         T t = null;
         if (sGson != null) {
-            t=sGson.fromJson(response, bean);
+            t = sGson.fromJson(response, bean);
         }
         return t;
     }

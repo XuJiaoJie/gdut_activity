@@ -1,5 +1,6 @@
 package com.rdc.gdut_activity.ui;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +57,9 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         mFormList.add("5");
         mFormList.add("6");
         mFormList.add("7");
+        mFormList.add("8");
+        mFormList.add("9");
+        mFormList.add("10");
         mSignUpAdapter = new SignUpAdapter(this, mFormList);
         mActivityInfoBean = new ActivityInfoBean();
         mActivityInfoBean.setObjectId("9a96ba3a7c");
@@ -87,14 +91,31 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.btn_sign_up:
                 if (checkInfoSuccess()) {
-                    mSignUpPresenter.signUp(mSignUpAdapter.getFormMap());
+                    mSignUpPresenter.signUp(mFormMap);
+                } else {
+                    showToast("请填写完全部信息!");
                 }
                 break;
         }
 
     }
 
+    /**
+     * 检测是否为空
+     *
+     * @return
+     */
     private boolean checkInfoSuccess() {
+        mFormMap = mSignUpAdapter.getFormMap();
+        if (mFormMap.size() < mFormList.size()) {
+            return false;
+        }
+        for (String value : mFormMap.values()) {
+            Log.d("value", "checkInfoSuccess: " + value);
+            if ("".equals(value)) {
+                return false;
+            }
+        }
         return true;
     }
 

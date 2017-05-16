@@ -1,5 +1,6 @@
 package com.rdc.gdut_activity;
 
+import android.content.IntentFilter;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,10 +9,12 @@ import android.widget.TextView;
 
 import com.rdc.gdut_activity.adapter.FragmentAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
+import com.rdc.gdut_activity.bean.MessageBean;
 import com.rdc.gdut_activity.fragment.MainFragment;
 import com.rdc.gdut_activity.fragment.MessageFragment;
 import com.rdc.gdut_activity.fragment.ToolFragment;
 import com.rdc.gdut_activity.fragment.UserFragment;
+import com.rdc.gdut_activity.receiver.PushMessageReceiver;
 import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ import java.util.List;
 
 import butterknife.InjectView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements PushMessageReceiver.IOnReceiverListener {
 
     @InjectView(R.id.vp_main_vp)
     ViewPager mVpMainVp;
@@ -36,6 +39,7 @@ public class MainActivity extends BaseActivity {
 
     private int[] mImgs = new int[]{R.drawable.home_main_seletor, R.drawable.tool_main_selector,
             R.drawable.message_main_selector, R.drawable.user_main_selector};
+    private PushMessageReceiver mMessageReceiver;
 
     @Override
     public int setLayoutResID() {
@@ -49,7 +53,6 @@ public class MainActivity extends BaseActivity {
         for (int i = 0; i < titles.length; i++) {
             mTitles.add(titles[i]);
         }
-
         mFragments = new ArrayList<>();
         mFragments.add(MainFragment.newInstance(0, "主界面"));
         mFragments.add(ToolFragment.newInstance(1, "小工具"));
@@ -75,6 +78,13 @@ public class MainActivity extends BaseActivity {
         }
         mTabLayoutMainTab.getTabAt(0).getCustomView().setSelected(true);
         mTabLayoutMainTab.setTabMode(TabLayout.MODE_FIXED);
+        initReceiver();
+    }
+
+    private void initReceiver() {
+        mMessageReceiver = new PushMessageReceiver(this);
+        IntentFilter intentFilter = new IntentFilter("cn.bmob.push.action.MESSAGE");
+        registerReceiver(mMessageReceiver, intentFilter);
     }
 
     @Override
@@ -98,7 +108,6 @@ public class MainActivity extends BaseActivity {
                     mTopBar.setButtonBackground(R.drawable.message_main_selected, R.drawable.home_main_selected);
                 } else if (position == 2) {
                     mTopBar.setTitle("消息");
-                    mTopBar.setButtonBackground(R.drawable.message_main_selected, 0);
                 } else {
                     mTopBar.setTitle("个人中心");
                 }
@@ -129,8 +138,6 @@ public class MainActivity extends BaseActivity {
                         toolFragment.topbarLeftButtonClick();
                         break;
                     case 2:
-                        MessageFragment messageFragment = (MessageFragment) mFragments.get(position);
-                        messageFragment.topbarLeftButtonClick();
                         break;
                     case 3:
                         break;
@@ -153,8 +160,6 @@ public class MainActivity extends BaseActivity {
                         toolFragment.topbarRightButtonClick();
                         break;
                     case 2:
-                        MessageFragment messageFragment = (MessageFragment) mFragments.get(position);
-                        messageFragment.topbarRightButtonClick();
                         break;
                     case 3:
                         break;
@@ -171,5 +176,22 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+    }
+
+    /**
+     * 更新消息列表
+     *
+     * @param messageBean
+     */
+    @Override
+    public void refresh(MessageBean messageBean) {
+        MessageFragment fragment = (MessageFragment) mFragments.get(2);
+        fragment.onUpdatePush(messageBean);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mMessageReceiver);
     }
 }
