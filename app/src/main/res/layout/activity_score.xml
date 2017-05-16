@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray">
+
+    <com.rdc.gdut_activity.view.TopBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_topbar_height"
+        android:id="@+id/topbar_activity_main"
+        android:background="@color/color_primary_dark"
+        app:title="成绩查询"
+        app:titleTextColor="@color/white">
+    </com.rdc.gdut_activity.view.TopBar>
+
+    <com.rdc.gdut_activity.view.NiceSpinner
+        android:id="@+id/ns_score_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_score_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</LinearLayout>

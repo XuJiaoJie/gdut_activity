@@ -1,6 +1,7 @@
 package com.rdc.gdut_activity.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class LoadMoreAdapterWrapper extends BaseRecyclerViewAdapter<ActivityInfo
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof LoadingItemVH){
+            Log.e(TAG, "onBindViewHolder: ");
             mMoreDataRecyclerView.loadMoreData();
         }else if (holder instanceof NoMoreItemVH){
 
@@ -84,5 +86,6 @@ public class LoadMoreAdapterWrapper extends BaseRecyclerViewAdapter<ActivityInfo
     public void setHasMoreData(boolean hasMoreData){
         mHasMoreData = hasMoreData;
     }
+
 
 }

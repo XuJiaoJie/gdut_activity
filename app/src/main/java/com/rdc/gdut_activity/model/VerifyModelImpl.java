@@ -33,7 +33,7 @@ public class VerifyModelImpl implements VerifyContract.model{
         mPage = 0;
         BmobQuery<ActivityInfoBean> query = new BmobQuery<>();
         if (type.equals("未审核")){
-//            query.addWhereEqualTo("mCheckStatus",type);
+            query.addWhereEqualTo("mCheckStatus",type);
         }else {
             String[] types = {"审核通过","审核不通过"};
             query.addWhereContainedIn("mCheckStatus", Arrays.asList(types));
@@ -44,9 +44,9 @@ public class VerifyModelImpl implements VerifyContract.model{
             @Override
             public void done(List<ActivityInfoBean> list, BmobException e) {
                 if (e == null){
-//                    mPresenter.refreshDataSuccess(list);
-//                    Log.e(TAG, "done: "+list.get(1).getObjectId());
-                    Log.e(TAG, "done: " + list.get(0).getPublisher().getUsername());
+                    mPresenter.refreshDataSuccess(list);
+                    Log.e(TAG, "done: "+list.get(1).getObjectId());
+//                    Log.e(TAG, "done: " + list.get(0).getPublisher().getUsername());
                 }else {
                     mPresenter.refreshDataError(e.getMessage());
                 }

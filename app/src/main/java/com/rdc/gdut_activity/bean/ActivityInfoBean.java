@@ -11,7 +11,6 @@ import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobRelation;
 
 public class ActivityInfoBean extends BmobObject implements Parcelable {
-
     private String mActivityName;
     private String mActivityType;
     private String mActivityHost;
@@ -36,6 +35,8 @@ public class ActivityInfoBean extends BmobObject implements Parcelable {
     }
 
     protected ActivityInfoBean(Parcel in) {
+        setObjectId(in.readString());
+        setCreatedAt(in.readString());
         mActivityName = in.readString();
         mActivityType = in.readString();
         mActivityHost = in.readString();
@@ -200,6 +201,8 @@ public class ActivityInfoBean extends BmobObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.getObjectId());
+        dest.writeString(this.getCreatedAt());
         dest.writeString(mActivityName);
         dest.writeString(mActivityType);
         dest.writeString(mActivityHost);
