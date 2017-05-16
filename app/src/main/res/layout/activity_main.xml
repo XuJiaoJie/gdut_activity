@@ -13,6 +13,8 @@
         app:title="主页"
         app:titleTextColor="@color/colorPrimary"
         app:titleTextSize="18sp"
+        app:leftButtonSize="@dimen/title_button_size"
+        app:rightButtonSize="@dimen/title_button_size"
         >
     </com.rdc.gdut_activity.view.TopBar>
 
