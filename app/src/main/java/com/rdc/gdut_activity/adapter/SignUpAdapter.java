@@ -62,6 +62,9 @@ public class SignUpAdapter extends BaseAdapter {
         //// TODO: 2017.5.16 传输可输入的参数
         // holder.mEtLayout.setInputType();
         holder.mEditText = holder.mEtLayout.getEditText();
+        if (mFormMap != null && "".equals(holder.mEditText.getText())) {
+            holder.mEditText.setText(mFormMap.get(mFormList.get(i)));
+        }
         holder.mEditText.addTextChangedListener(new SignUpTextWatcher(holder));
         return view;
     }
@@ -85,15 +88,17 @@ public class SignUpAdapter extends BaseAdapter {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            mHolder.mEtLayout.setError("有错误!");
-            mHolder.mEtLayout.setErrorEnabled(true);
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
-            int position = (Integer)mHolder.mEtLayout.getTag();
+            int position = (Integer) mHolder.mEtLayout.getTag();
             mFormMap.put(mFormList.get(position), editable.toString());
         }
+    }
+
+    public Map<String, String> getFormMap() {
+        return mFormMap;
     }
 
 }

@@ -56,7 +56,7 @@ public class SelectClassPresenter {
 
             @Override
             public void onResponse(byte[] bytes) {
-                returnClasses(bytes);
+                returnClasses(bytes, Constant.MODE_NORMAL);
             }
         }, mParamsMap, null);
     }
@@ -111,7 +111,7 @@ public class SelectClassPresenter {
 
             @Override
             public void onResponse(byte[] bytes) {
-                returnClasses(bytes);
+                returnClasses(bytes, Constant.MODE_NORMAL);
             }
         }, mParamsMap, null);
     }
@@ -131,7 +131,7 @@ public class SelectClassPresenter {
 
             @Override
             public void onResponse(byte[] bytes) {
-
+                returnClasses(bytes, Constant.MODE_OWN);
             }
         }, mParamsMap, null);
     }
@@ -141,7 +141,7 @@ public class SelectClassPresenter {
      */
     public void login() {
         mParamsMap.clear();
-        Student student= BmobUser.getCurrentUser(Student.class);
+        Student student = BmobUser.getCurrentUser(Student.class);
         mParamsMap.put("verifycode", "");
         mClassModel.login(Constant.URL_SELECTCLASS_LOGIN, new OkHttpResultCallback() {
             @Override
@@ -163,11 +163,15 @@ public class SelectClassPresenter {
      *
      * @param bytes
      */
-    private void returnClasses(byte[] bytes) {
+    private void returnClasses(byte[] bytes, int mode) {
         String respone = new String(bytes);
         Log.d("onResponse", "onResponse: " + respone);
-        ClassHome home = GsonUtil.gsonToBean(respone, ClassHome.class);
-        List<RowsBean> list = home.getRows();
+        List<RowsBean> list = null;
+        if (mode == Constant.MODE_NORMAL) {
+            list = getRowsBean(respone);
+        } else if (mode == Constant.MODE_OWN) {
+            list = getOwnBean(respone);
+        }
         List<ClassBean> classes = new ArrayList<ClassBean>();
         for (RowsBean bean : list) {
             ClassBean classBean = new ClassBean();
@@ -180,5 +184,14 @@ public class SelectClassPresenter {
             classes.add(classBean);
         }
         mSelectClassView.getSuccess(classes);
+    }
+
+    private List<RowsBean> getOwnBean(String respone) {
+        return GsonUtil.gsonToList(respone, RowsBean.class);
+    }
+
+    private List<RowsBean> getRowsBean(String respone) {
+        ClassHome home = GsonUtil.gsonToBean(respone, ClassHome.class);
+        return home.getRows();
     }
 }
