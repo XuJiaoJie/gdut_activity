@@ -22,6 +22,7 @@ import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.presenter.LoginPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.ILoginView;
+import com.rdc.gdut_activity.utils.CheckInfoUtil;
 import com.rdc.gdut_activity.view.LoadingDialog;
 
 import butterknife.InjectView;
@@ -130,8 +131,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
                 hideInputSoft(mEtPassword);
                 if (checkUserInfo()) {
                     mLoginPresenter.login();
-                } else {
-                    showToast("请输入正确的用户名和密码!");
                 }
                 break;
             case R.id.btn_login_forget:
@@ -145,20 +144,25 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     private boolean checkUserInfo() {
         boolean isRight = false;
-        if ("".equals(mEtUsername.getText().toString().trim()) || "".equals(mEtPassword.getText().toString().trim())) {
-            isRight = false;
+        String toast = CheckInfoUtil.checkLogin(mEtUsername.getText().toString().trim(), mEtPassword.getText().toString());
+        if (toast != null) {
+            Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
         } else {
             isRight = true;
         }
-        return isRight;
+        return true;
+        // TODO: 2017.5.17 这里需要改回来
     }
 
+    /**
+     * 申请权限
+     */
     private void initPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
-        }else if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-        }else{
+        } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constant.REQUEST_CODE);
         }
     }

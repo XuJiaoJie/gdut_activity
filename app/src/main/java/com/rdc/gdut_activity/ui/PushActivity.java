@@ -15,12 +15,15 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.bean.Publisher;
+import com.rdc.gdut_activity.utils.GsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobInstallation;
+import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -114,6 +117,17 @@ public class PushActivity extends BaseActivity {
         int position = mSpinner.getSelectedItemPosition();
         ActivityInfoBean activityInfoBean = mBeanList.get(position);
         // TODO: 2017/5/17 0017 推送
+        pushToStudent(activityInfoBean, msg);
+    }
+
+    private void pushToStudent(ActivityInfoBean activityInfoBean, String msg) {
+        BmobPushManager manager = new BmobPushManager();
+        BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
+        List<String> channels = new ArrayList<>();
+        channels.add(activityInfoBean.getObjectId());
+        query.addWhereEqualTo("channels", channels);
+        manager.setQuery(query);
+        manager.pushMessage(GsonUtil.gsonToJson(msg));
     }
 
 

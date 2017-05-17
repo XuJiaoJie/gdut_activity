@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity implements PushMessageReceiver.IO
     }
 
     private void initReceiver() {
-        mMessageReceiver = new PushMessageReceiver(this);
+        mMessageReceiver = new PushMessageReceiver(this, this);
         IntentFilter intentFilter = new IntentFilter("cn.bmob.push.action.MESSAGE");
         registerReceiver(mMessageReceiver, intentFilter);
     }
