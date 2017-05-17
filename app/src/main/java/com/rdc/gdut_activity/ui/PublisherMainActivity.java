@@ -3,6 +3,8 @@ package com.rdc.gdut_activity.ui;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +43,22 @@ public class PublisherMainActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_push, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_push:
+                startActivity(PushActivity.newIntent(this));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void initData() {
         mTitleList = new ArrayList<>();
         mTitleList.add("已发布");
@@ -68,8 +86,6 @@ public class PublisherMainActivity extends BaseActivity {
         }
         mTabLayout.getTabAt(0).getCustomView().setSelected(true);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-
-//        mFragments = PublisherFragmentModel.getFragment("");
     }
 
     @Override

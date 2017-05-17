@@ -331,6 +331,8 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
         bean.setActivityLocation(mEtActivityLocation.getText().toString());
         bean.setActivityDetail(mEtActivityDetail.getText().toString());
         bean.setActivityTime(mTvStartTime.getText().toString() + mTvEndTime.getText().toString());
+        saveCheckboxStatus();
+        bean.setFormDataMap(mFormData);
         if (imgUrl != null) {
             bean.setImgUrlList(imgUrl);
         } else {
@@ -338,8 +340,6 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
         }
         bean.setCheckStatus("未审核");
         bean.setCheckReason("");
-        saveCheckboxStatus();
-        bean.setFormDataMap(mFormData);
         return bean;
     }
 
@@ -385,28 +385,26 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
     }
 
 
-
     private void saveCheckboxStatus() {
+        mFormData.clear();
         if (mCbClass.isChecked()) {
-            mFormData.put("班级", null);
+            mFormData.put("班级", "");
         }
         if (mCbCollege.isChecked()) {
-            mFormData.put("学院", null);
+            mFormData.put("学院", "");
         }
         if (mCbEmail.isChecked()) {
-            mFormData.put("邮箱", null);
-
+            mFormData.put("邮箱", "");
         }
         if (mCbName.isChecked()) {
-            mFormData.put("姓名", null);
-
+            mFormData.put("姓名", "");
         }
         if (mCbPhone.isChecked()) {
-            mFormData.put("手机号码", null);
+            mFormData.put("手机号码", "");
         }
 
         if (mCbProfession.isChecked()) {
-            mFormData.put("专业", null);
+            mFormData.put("专业", "");
         }
     }
 

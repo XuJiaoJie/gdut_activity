@@ -50,6 +50,7 @@ public class ActivityInfoBean extends BmobObject implements Parcelable {
         mImgUrlList = in.createStringArrayList();
         Bundle bundle = in.readBundle(getClass().getClassLoader());
         mFormDataMap = (HashMap<String, String>) bundle.getSerializable(KEY_FORM_DATA_MAP);
+        mParticipant = (BmobRelation) in.readSerializable();
     }
 
 
@@ -217,6 +218,7 @@ public class ActivityInfoBean extends BmobObject implements Parcelable {
         Bundle bundle = new Bundle();
         bundle.putSerializable(KEY_FORM_DATA_MAP, mFormDataMap);
         dest.writeBundle(bundle);
+        dest.writeSerializable(mParticipant);
     }
 
     @Override
