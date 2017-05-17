@@ -10,6 +10,8 @@ public interface ToolContract {
 
         void loginSystemSuccess();
 
+        void loginSystemFailure(String msg);
+
         void getError(String s);
     }
 
@@ -21,6 +23,8 @@ public interface ToolContract {
         //model
 
         void loginSystemSuccess();
+
+        void loginSystemFailure(String msg);
 
         void getError(String s);
     }

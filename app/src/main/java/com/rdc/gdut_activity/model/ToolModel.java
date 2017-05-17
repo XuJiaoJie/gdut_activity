@@ -1,5 +1,6 @@
 package com.rdc.gdut_activity.model;
 
+import com.rdc.gdut_activity.bean.LoginBackBean;
 import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.contract.ToolContract;
 import com.rdc.gdut_activity.utils.OkHttpResultCallback;
@@ -15,6 +16,7 @@ import okhttp3.Call;
  */
 
 public class ToolModel {
+    private static final String TAG = "ToolModel";
     private Map<String,String> mBodyMap;
     private ToolContract.Presenter mPresenter;
 
@@ -23,19 +25,6 @@ public class ToolModel {
         mPresenter = presenter;
     }
 
-//    public void getStudent(String userId){
-//        BmobQuery<Student> query = new BmobQuery<>();
-//        query.getObject(userId, new QueryListener<Student>() {
-//            @Override
-//            public void done(Student student, BmobException e) {
-//                if (e == null){
-//                    mPresenter.getStudentSuccess(student);
-//                }else {
-//                    mPresenter.getError(e.getMessage());
-//                }
-//            }
-//        });
-//    }
 
     public void loginSystem(String studengtId,String pwd){
         mBodyMap.clear();
@@ -50,7 +39,13 @@ public class ToolModel {
 
             @Override
             public void onResponse(byte[] bytes) {
-                mPresenter.loginSystemSuccess();
+                String s = new String(bytes);
+                LoginBackBean bean = LoginBackBean.objectFromData(s);
+                if (bean.getStatus().equals("y")){
+                    mPresenter.loginSystemSuccess();
+                }else if (bean.getStatus().equals("n")){
+                    mPresenter.loginSystemFailure(bean.getMsg());
+                }
             }
         },mBodyMap,null);
     }

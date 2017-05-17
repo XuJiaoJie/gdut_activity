@@ -33,4 +33,9 @@ public class ToolPresenterImpl implements ToolContract.Presenter{
     public void getError(String s) {
         mView.getError(s);
     }
+
+    @Override
+    public void loginSystemFailure(String msg) {
+        mView.loginSystemFailure(msg);
+    }
 }

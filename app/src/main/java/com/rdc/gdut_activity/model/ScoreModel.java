@@ -1,7 +1,5 @@
 package com.rdc.gdut_activity.model;
 
-import android.util.Log;
-
 import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.contract.ScoreContract;
 import com.rdc.gdut_activity.utils.OkHttpResultCallback;
@@ -42,7 +40,6 @@ public class ScoreModel {
 
             @Override
             public void onResponse(byte[] bytes) {
-                Log.e(TAG, "onResponse:" + new String(bytes) );
                 mPresenter.querySuccess(bytes);
             }
         },mBodyMap,null);

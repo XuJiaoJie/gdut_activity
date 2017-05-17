@@ -132,6 +132,13 @@ public class ToolFragment extends BaseFragment implements ToolContract.View{
     }
 
     @Override
+    public void loginSystemFailure(String msg) {
+        showToast(msg);
+        Intent intent = new Intent(mBaseActivity, UserGDUTActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void getError(String s) {
         showToast(s);
     }
