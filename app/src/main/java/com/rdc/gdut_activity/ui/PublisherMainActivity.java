@@ -1,10 +1,10 @@
 package com.rdc.gdut_activity.ui;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +20,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class PublisherMainActivity extends BaseActivity {
 
@@ -29,6 +30,10 @@ public class PublisherMainActivity extends BaseActivity {
     ViewPager mVpMainVp;
 
     private static final String TAG = "PublisherMainActivity";
+    @InjectView(R.id.toolbar)
+    Toolbar mToolbar;
+    @InjectView(R.id.iv_push)
+    ImageView mIvPush;
     private FragmentAdapter mFragmentAdapter;
     private List<Fragment> mFragmentList;
     private List<String> mTitleList;
@@ -42,21 +47,23 @@ public class PublisherMainActivity extends BaseActivity {
         return R.layout.activity_publisher_main;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_push, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_push:
-                startActivity(PushActivity.newIntent(this));
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        getMenuInflater().inflate(R.menu.menu_push, menu);
+//        menu.add("caidan");
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.item_push:
+//                startActivity(PushActivity.newIntent(this));
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void initData() {
@@ -108,5 +115,17 @@ public class PublisherMainActivity extends BaseActivity {
             finish();
             System.exit(0);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.inject(this);
+    }
+
+    @OnClick(R.id.iv_push)
+    public void onViewClicked() {
+        startActivity(PushActivity.newIntent(this));
     }
 }

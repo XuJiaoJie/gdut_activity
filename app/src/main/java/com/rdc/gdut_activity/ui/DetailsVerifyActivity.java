@@ -149,8 +149,12 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         if (mTitle != null && mTitle.equals("预览")) {
             mImgUriAdapter = new DetailImgUriAdapter();
             mNgivActivityPic.setAdapter(mImgUriAdapter);
-            Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
-            mNgivActivityPic.setImagesData(bundle.getParcelableArrayList(KEY_URI_LIST));
+            if (getIntent() != null && getIntent().getBundleExtra(KEY_BUNDLE) != null) {
+                Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
+                if (bundle.getParcelableArrayList(KEY_URI_LIST) != null) {
+                    mNgivActivityPic.setImagesData(bundle.getParcelableArrayList(KEY_URI_LIST));
+                }
+            }
         } else {
             mNgivActivityPic.setAdapter(mImgAdapter);
             mNgivActivityPic.setImagesData(mBean.getImgUrlList());

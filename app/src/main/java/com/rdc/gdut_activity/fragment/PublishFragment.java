@@ -226,6 +226,9 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
             mDetailImgUriAdapter = new DetailImgUriAdapter();
             mNineGridImgView.setAdapter(mDetailImgUriAdapter);
         }
+        while (mSelected.size() > 9) {
+            mSelected.remove(0);
+        }
         mNineGridImgView.setImagesData(mSelected);
     }
 
@@ -243,8 +246,6 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
                 onImportPhotoClicked();
                 break;
             case R.id.btn_set_form_data:
-                // TODO: 2017/5/17 0017 待删除
-                uploadImg();
                 break;
             case R.id.btn_preview:
                 ActivityInfoBean previewBean = saveActivityData(null);
@@ -384,7 +385,6 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
         });
     }
 
-
     private void saveCheckboxStatus() {
         mFormData.clear();
         if (mCbClass.isChecked()) {
@@ -407,7 +407,6 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
             mFormData.put("专业", "");
         }
     }
-
 
     @Override
     public void onSuccess(String objId) {

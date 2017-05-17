@@ -123,6 +123,8 @@
         <activity android:name=".ui.UserGDUTActivity"/>
         <activity android:name=".ui.PushActivity">
         </activity>
+        <activity android:name=".ui.EnrollStatusActivity">
+        </activity>
     </application>
 
 </manifest>

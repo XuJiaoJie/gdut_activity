@@ -8,13 +8,31 @@
     android:orientation="vertical"
     tools:context="com.rdc.gdut_activity.ui.PublisherMainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_topbar_height"
-        android:background="@color/colorPrimary"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/white"/>
+        android:layout_height="48dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_topbar_height"
+            android:background="@color/colorPrimary"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white">
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/iv_push"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_push"/>
+    </RelativeLayout>
     <!--<FrameLayout-->
     <!--android:id="@+id/fragment_container"-->
     <!--android:layout_width="match_parent"-->

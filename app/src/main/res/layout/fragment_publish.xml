@@ -27,8 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"
-                tools:text="app 开发大赛"/>
+                android:maxLines="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +56,7 @@
                 android:layout_weight="1"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="校团委"/>
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -144,20 +143,6 @@
             android:hint="请输入详情"
             android:maxLines="10"/>
 
-        <CheckBox
-            android:id="@+id/cb_push_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:textColor="@color/darkgray"
-            android:text="推送消息(将推送给所有参与者)"
-            android:textSize="16sp"/>
-
-        <EditText
-            android:id="@+id/et_push"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
 
         <com.jaeger.ninegridimageview.NineGridImageView
             android:id="@+id/nine_grid_img_view"
@@ -167,15 +152,17 @@
             android:visibility="gone"
             app:imgGap="4dp"
             app:showStyle="grid"
-            app:singleImgSize="80dp"/>
+            app:singleImgSize="60dp"/>
 
         <Button
             android:id="@+id/btn_set_form_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:enabled="false"
             android:gravity="left|bottom"
-            android:text="@string/set_form_data"/>
+            android:text="@string/set_form_data"
+            android:textColor="@color/darkgray"/>
 
         <include layout="@layout/fragment_custom_form_data"/>
 

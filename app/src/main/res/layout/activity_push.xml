@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:background="@color/colorPrimary"
-        app:subtitle="推送"        />
+        app:title="推送"/>
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="30dp"
+        android:layout_below="@id/toolbar"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,24 +29,27 @@
         <Spinner
             android:id="@+id/sp_activity"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_weight="1"/>
     </LinearLayout>
 
     <EditText
         android:id="@+id/et_push_msg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll"
+        android:hint="请输入推送内容"
+        />
 
     <Button
         android:id="@+id/btn_push"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_margin="5dp"
         android:background="@color/mediumseagreen"
         android:text="√ 推送"
         android:textColor="@color/white"
         android:textSize="18sp"/>
 
-</LinearLayout>
+</RelativeLayout>
