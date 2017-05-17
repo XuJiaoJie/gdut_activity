@@ -1,5 +1,7 @@
 package com.rdc.gdut_activity.model;
 
+import android.util.Log;
+
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.contract.VerifyContract;
 
@@ -17,7 +19,9 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class VerifyModelImpl implements VerifyContract.model{
     private static final String TAG = "VerifyModelImpl";
-    private int mPage = 0;  //当前页数
+    private int mPageVerify = 0;  //当前页数
+    private int mPageVerifyNo = 0;  //当前页数
+    private int mPagePublish = 0;  //当前页数
     private int mOnePageSum = 10; //一页的数据条数
     private VerifyContract.Presenter mPresenter;
 
@@ -27,14 +31,20 @@ public class VerifyModelImpl implements VerifyContract.model{
 
     //刷新数据
     @Override
-    public void refreshData(String type) {
-        mPage = 0;
+    public void refreshData(String para,String type) {
         BmobQuery<ActivityInfoBean> query = new BmobQuery<>();
-        if (type.equals("未审核")){
-            query.addWhereEqualTo("mCheckStatus",type);
+        if (para.equals("mCheckStatus")){
+            if (type.equals("未审核")){
+                query.addWhereEqualTo(para,type);
+                mPageVerifyNo = 0;
+            }else {
+                String[] types = {"审核通过","审核不通过"};
+                query.addWhereContainedIn(para, Arrays.asList(types));
+                mPageVerify = 0;
+            }
         }else {
-            String[] types = {"审核通过","审核不通过"};
-            query.addWhereContainedIn("mCheckStatus", Arrays.asList(types));
+            query.addWhereEqualTo(para,type);
+            mPagePublish = 0;
         }
         query.order("-createdAt");
         query.setLimit(mOnePageSum);
@@ -52,18 +62,26 @@ public class VerifyModelImpl implements VerifyContract.model{
 
     //加载更多数据
     @Override
-    public void loadMoreData(String type) {
-        ++ mPage;
+    public void loadMoreData(String para,String type) {
         BmobQuery<ActivityInfoBean> query = new BmobQuery<>();
-        if (type.equals("未审核")){
-            query.addWhereEqualTo("mCheckStatus",type);
+        if (para.equals("mCheckStatus")){
+            if (type.equals("未审核")){
+                query.addWhereEqualTo(para,type);
+                mPageVerifyNo++;
+                query.setSkip(mOnePageSum * mPageVerifyNo);
+            }else {
+                String[] types = {"审核通过","审核不通过"};
+                query.addWhereContainedIn(para, Arrays.asList(types));
+                mPageVerify++;
+                query.setSkip(mOnePageSum * mPageVerify);
+            }
         }else {
-            String[] types = {"审核通过，审核不通过"};
-            query.addWhereContainedIn("mCheckStatus", Arrays.asList(types));
+            query.addWhereEqualTo(para,type);
+            mPagePublish++;
+            query.setSkip(mOnePageSum * mPagePublish);
         }
         query.order("-createdAt");
         query.setLimit(mOnePageSum);
-        query.setSkip(mOnePageSum * mPage);
         query.findObjects(new FindListener<ActivityInfoBean>() {
             @Override
             public void done(List<ActivityInfoBean> list, BmobException e) {

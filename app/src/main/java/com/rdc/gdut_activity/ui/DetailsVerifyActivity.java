@@ -30,7 +30,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import cc.trity.floatingactionbutton.FloatingActionButton;
@@ -137,7 +136,7 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         } else {
             mCivItemUserIcon.setImageResource(R.drawable.ueser_icon);
         }
-        if (mTitle.equals("预览")) {
+        if (mTitle != null && mTitle.equals("预览")) {
             mImgUriAdapter = new DetailImgUriAdapter();
             mNgivActivityPic.setAdapter(mImgUriAdapter);
             Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
@@ -232,10 +231,4 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         finish();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
-    }
 }

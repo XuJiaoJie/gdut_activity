@@ -27,13 +27,13 @@ public class VerifyPresenterImpl implements VerifyContract.Presenter {
      * view调用
      */
     @Override
-    public void onRefersh(String type) {
-        mModel.refreshData(type);
+    public void onRefersh(String para,String type) {
+        mModel.refreshData(para,type);
     }
 
     @Override
-    public void onLoadMore(String type) {
-        mModel.loadMoreData(type);
+    public void onLoadMore(String para,String type) {
+        mModel.loadMoreData(para,type);
     }
 
     @Override

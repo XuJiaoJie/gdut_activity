@@ -10,8 +10,8 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.FragmentAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.fragment.PublishFragment;
-import com.rdc.gdut_activity.fragment.ReleasedActListFragment;
 import com.rdc.gdut_activity.fragment.UserFragment;
+import com.rdc.gdut_activity.fragment.VerifyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class PublisherMainActivity extends BaseActivity {
         mTitleList.add("发布");
         mTitleList.add("我");
         mFragmentList = new ArrayList<>();
-        mFragmentList.add(ReleasedActListFragment.newInstance());
+        mFragmentList.add(VerifyFragment.newInstance("已发布"));
         mFragmentList.add(PublishFragment.newInstance());
         mFragmentList.add(UserFragment.newInstance());
 

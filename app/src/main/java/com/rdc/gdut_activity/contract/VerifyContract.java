@@ -28,9 +28,9 @@ public interface VerifyContract {
 
     interface Presenter{
         //view
-        void onRefersh(String type);
+        void onRefersh(String para,String type);
 
-        void onLoadMore(String type);
+        void onLoadMore(String para,String type);
 
         void verifyPass(String objectId);
 
@@ -51,9 +51,9 @@ public interface VerifyContract {
     }
 
     interface model{
-        void refreshData(String type);
+        void refreshData(String para,String type);
 
-        void loadMoreData(String type);
+        void loadMoreData(String para,String type);
 
         void verifyPass(String objectId);
 
