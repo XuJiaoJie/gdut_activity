@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity implements PushMessageReceiver.IO
     public void initView() {
         mTopBar.setButtonBackground(0, R.drawable.home_main_selected);
 
+        mVpMainVp.setOffscreenPageLimit(3);
         mVpMainVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
