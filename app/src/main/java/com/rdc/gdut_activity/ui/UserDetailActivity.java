@@ -120,6 +120,7 @@ public class UserDetailActivity extends BaseActivity implements DatePickerDialog
         tvUserAge.setText(intent.getStringExtra("age"));
         tvUserArea.setText(intent.getStringExtra("area"));
         tvUserPassword.setText(intent.getStringExtra("password"));
+        tvUserPhoneNumber.setText(intent.getStringExtra("phone_number"));
     }
 
     @Override
@@ -405,7 +406,6 @@ public class UserDetailActivity extends BaseActivity implements DatePickerDialog
                 break;
             case REQUEST_CHANGE_NAME:
                 if (resultCode == 1) {
-                    tvUserName.setText(data.getStringExtra("username"));
                     saveUsername2Bmob(data);
                 }
                 break;
@@ -424,7 +424,7 @@ public class UserDetailActivity extends BaseActivity implements DatePickerDialog
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void saveUsername2Bmob(Intent data) {
+    private void saveUsername2Bmob(final Intent data) {
         Student student = new Student();
         student.setUsername(data.getStringExtra("username"));
         student.update(BmobUser.getCurrentUser().getObjectId(), new UpdateListener() {
@@ -432,6 +432,7 @@ public class UserDetailActivity extends BaseActivity implements DatePickerDialog
             public void done(BmobException e) {
                 if (e == null) {
                     Log.e("error", "success");
+                    tvUserName.setText(data.getStringExtra("username"));
                 } else {
                     Log.e("error", e.getMessage());
                 }

@@ -55,6 +55,8 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
     private String mGrade;
     private String mMajor;
     private String mCollege;
+    private String mSchoolNumber;
+    private String mSchoolPassword;
 
     @Override
     protected int setLayoutResID() {
@@ -73,7 +75,16 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
                         mCollege = list.get(0).getCollege();
                         mMajor = list.get(0).getMajor();
                         mGrade = list.get(0).getGrade();
+                        mSchoolNumber = list.get(0).getmSchoolNumber();
+                        mSchoolPassword = list.get(0).getmSchoolPassword();
+                        tvSchoolAcademic.setText(mCollege);
+                        tvSchoolMajor.setText(mMajor);
+                        tvSchoolClass.setText(mGrade);
+                        tvSchoolNumber.setText(mSchoolNumber);
+                        tvSchoolPassword.setText(mSchoolPassword);
                     }
+                } else {
+                    Log.e("error", e.getMessage());
                 }
             }
         });
@@ -124,13 +135,40 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 
     private void showChangeSchoolNumberDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("切换学号");
-        builder.setMessage("您确定要切换另一个学号吗？");
+        builder.setTitle("学号");
+//        builder.setMessage("您确定要切换另一个学号吗？");
+//        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                // TODO: 2017/5/13 切换学号验证
+//                dialog.dismiss();
+//            }
+//        });
+        final View view = View.inflate(this, R.layout.layout_dialog_change_phone_number, null);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: 2017/5/13 切换学号验证
-                dialog.dismiss();
+                String schoolNumber = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
+                if (schoolNumber.length() != 10) {
+                    Toast.makeText(UserGDUTActivity.this, "学号要求10位", Toast.LENGTH_LONG).show();
+                } else {
+                    dialog.dismiss();
+                    tvSchoolNumber.setText(schoolNumber);
+                    //Bmob后端云上传更新
+                    BmobUser bmobUser = BmobUser.getCurrentUser();
+                    Student student = new Student();
+                    student.setmSchoolNumber(schoolNumber);
+                    student.update(bmobUser.getObjectId(), new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null) {
+                                Toast.makeText(UserGDUTActivity.this, "success", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(UserGDUTActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -139,7 +177,9 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
                 dialog.dismiss();
             }
         });
-        builder.create().show();
+        final AlertDialog dialog = builder.create();
+        dialog.setView(view);
+        dialog.show();
     }
 
     private void showChangePasswordDialog() {
@@ -163,6 +203,16 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
                     dialog.dismiss();
                 }
                 // TODO: 2017/5/12 云端存储
+                Student student = new Student();
+                student.setmSchoolPassword(newPassword);
+                student.update(BmobUser.getCurrentUser().getObjectId(),new UpdateListener() {
+                    @Override
+                    public void done(BmobException e) {
+                        if (e == null) {
+                            Log.e("error", "success");
+                        }
+                    }
+                });
             }
         });
         final AlertDialog dialog = mBuilder.create();
