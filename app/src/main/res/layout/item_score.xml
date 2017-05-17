@@ -70,7 +70,7 @@
             tools:text="95"
             android:layout_centerVertical="true"
             android:textSize="18sp"
-            android:textColor="@color/color_primary_dark"/>
+            android:textColor="@color/colorPrimaryDark"/>
     </RelativeLayout>
 
     <View

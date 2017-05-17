@@ -1,15 +1,20 @@
 package com.rdc.gdut_activity.ui;
 
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rdc.gdut_activity.MainActivity;
 import com.rdc.gdut_activity.R;
@@ -19,7 +24,6 @@ import com.rdc.gdut_activity.presenter.LoginPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.ILoginView;
 import com.rdc.gdut_activity.view.LoadingDialog;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
@@ -44,6 +48,12 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public static LoginActivity mInstance = null;
     private Dialog mDialog;
 
+    @Override
+    public void initData() {
+        initPermission();
+        mLoginPresenter = new LoginPresenter(this);
+        mInstance = this;
+    }
 
     @Override
     protected void initView() {
@@ -59,7 +69,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         });
     }
 
-
     @Override
     protected void initListener() {
 
@@ -68,12 +77,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public int setLayoutResID() {
         return R.layout.activity_login;
-    }
-
-    @Override
-    public void initData() {
-        mLoginPresenter = new LoginPresenter(this);
-        mInstance = this;
     }
 
     @Override
@@ -150,11 +153,27 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         return isRight;
     }
 
+    private void initPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+        }else if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+        }else{
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Constant.REQUEST_CODE);
+        }
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case Constant.REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+                    Toast.makeText(this, "权限申请失败,部分功能无法使用!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 }
 

@@ -13,7 +13,16 @@
         <item name="android:textCursorDrawable">@drawable/bg_et_cursor_login</item>
         <item name="android:textColorHint">@color/color_text_login</item>
     </style>
+    <!--启动界面-->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
+    <!--登录注册-->
     <style name="LoginAndRegisterTheme" parent="AppTheme">
         <item name="colorAccent">@color/color_text_login</item>
         <item name="colorControlNormal">@color/color_text_login</item>

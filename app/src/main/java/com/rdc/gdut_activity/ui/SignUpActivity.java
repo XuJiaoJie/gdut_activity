@@ -48,21 +48,13 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
+        mActivityInfoBean = getIntent().getParcelableExtra("signup_info");
         mFormMap = new HashMap<>();
         mFormList = new ArrayList<>();
-        mFormList.add("1");
-        mFormList.add("2");
-        mFormList.add("3");
-        mFormList.add("4");
-        mFormList.add("5");
-        mFormList.add("6");
-        mFormList.add("7");
-        mFormList.add("8");
-        mFormList.add("9");
-        mFormList.add("10");
+        for (String form : mFormMap.keySet()) {
+            mFormList.add(form);
+        }
         mSignUpAdapter = new SignUpAdapter(this, mFormList);
-        mActivityInfoBean = new ActivityInfoBean();
-        mActivityInfoBean.setObjectId("9a96ba3a7c");
         mSignUpPresenter = new SignUpPresenter(this);
     }
 
@@ -74,17 +66,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         mScSignUp.scrollTo(0, 0);
     }
 
-    private void setFootView() {
-        View footView = LayoutInflater.from(this).inflate(R.layout.item_list_foot_sign_up, null);
-        mBtnSignUp = (Button) footView.findViewById(R.id.btn_sign_up);
-        mLvSignUp.addFooterView(footView);
-    }
-
     @Override
     protected void initListener() {
         mBtnSignUp.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View view) {
@@ -98,6 +83,15 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 break;
         }
 
+    }
+
+    /**
+     * 设置底部button
+     */
+    private void setFootView() {
+        View footView = LayoutInflater.from(this).inflate(R.layout.item_list_foot_sign_up, null);
+        mBtnSignUp = (Button) footView.findViewById(R.id.btn_sign_up);
+        mLvSignUp.addFooterView(footView);
     }
 
     /**
@@ -122,6 +116,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void signUpSuccess() {
         showToast("报名成功!");
+        setResult(RESULT_OK);
+        finish();
     }
 
     @Override

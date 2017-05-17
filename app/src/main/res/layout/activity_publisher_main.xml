@@ -12,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
-        android:background="@color/color_primary"
+        android:background="@color/colorPrimary"
         app:title="@string/app_name"
         app:titleTextColor="@color/white"/>
     <!--<FrameLayout-->

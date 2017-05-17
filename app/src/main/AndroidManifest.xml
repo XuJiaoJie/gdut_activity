@@ -29,15 +29,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
         <activity
-            android:name=".ui.LoginActivity"
-            android:theme="@style/LoginAndRegisterTheme"
-            android:windowSoftInputMode="stateHidden">
+            android:name=".ui.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity"/>
+        <activity
+            android:name=".ui.LoginActivity"
+            android:theme="@style/LoginAndRegisterTheme"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".ui.VerifyActivity"
@@ -60,7 +64,6 @@
             android:name=".ui.SignUpActivity"
             android:configChanges="keyboardHidden|orientation"
             android:windowSoftInputMode="adjustResize|stateHidden">
-
         </activity>
 
         <!-- bmob推送 -->
