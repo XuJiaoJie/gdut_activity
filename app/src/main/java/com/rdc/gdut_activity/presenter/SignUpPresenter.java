@@ -30,10 +30,43 @@ public class SignUpPresenter implements SignUpContract.Presenter {
             }
 
             @Override
-            public void onSuccess() {
+            public void onResponse(String response) {
                 mView.showProgress(false);
                 mView.signUpSuccess();
             }
         });
     }
+
+    @Override
+    public void signUped(String activityId) {
+        mModel.checkSignUp(activityId, new IHttpCallBack() {
+            @Override
+            public void onError(String error) {
+                mView.setIsSign(false);
+            }
+
+            @Override
+            public void onResponse(String response) {
+                mView.setIsSign(true);
+                mView.isSignUp(response);
+            }
+        });
+    }
+
+    @Override
+    public void updateSignUp(Map<String, String> map) {
+        mModel.updateSignUp(mView.getSignupId(), map, new IHttpCallBack() {
+            @Override
+            public void onError(String error) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                mView.signUpSuccess();
+            }
+        });
+    }
+
+
 }

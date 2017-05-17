@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,7 +17,6 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.DetailsPhotoPageAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
-import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.listener.DetailsPhotoPagerListener;
 import com.rdc.gdut_activity.ui.viewinterface.IDetailsView;
 import com.rdc.gdut_activity.utils.CaptureWindowUtil;
@@ -56,6 +56,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
     TextView mTvDetailsPublishTime;
     @InjectView(R.id.tb_details_main)
     TopBar mTbDetailsMain;
+    @InjectView(R.id.fl_details)
+    FrameLayout mFlDetails;
 
     private List<String> mPhotoList;
     private DetailsPhotoPageAdapter mPageAdapter;
@@ -76,9 +78,16 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
     protected void initData() {
         setInfo();
         setSignUpButton();
-
-        mPagerListener = new DetailsPhotoPagerListener(this, mLlDetailsTopDot, mViewDetailsTopDotRed, mPhotoList.size());
-        mPageAdapter = new DetailsPhotoPageAdapter(this, mPhotoList, this);
+        if (mPhotoList != null) {
+            mFlDetails.setVisibility(View.VISIBLE);
+            mPagerListener = new DetailsPhotoPagerListener(this, mLlDetailsTopDot, mViewDetailsTopDotRed, mPhotoList.size());
+            mPageAdapter = new DetailsPhotoPageAdapter(this, mPhotoList, this);
+            int startPage = Integer.MAX_VALUE / 2;  //无限循环
+            mVpDetailsTop.setCurrentItem(startPage);
+            mVpDetailsTop.addOnPageChangeListener(mPagerListener);
+        } else {
+            mFlDetails.setVisibility(View.GONE);
+        }
     }
 
     private void setInfo() {
@@ -101,9 +110,6 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
     protected void initView() {
         mTbDetailsMain.setButtonBackground(R.drawable.iv_back, R.drawable.iv_share);
         mVpDetailsTop.setAdapter(mPageAdapter);
-        mVpDetailsTop.addOnPageChangeListener(mPagerListener);
-        int startPage = Integer.MAX_VALUE / 2;  //无限循环
-        mVpDetailsTop.setCurrentItem(startPage);
         mScDetails.setOnNestedScrollListener(this);
     }
 
@@ -144,28 +150,31 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
         } else {
             mBtnDetailsJoin.setVisibility(View.GONE);
         }
-
     }
 
+    /**
+     * 报名按钮
+     */
     @OnClick(R.id.btn_details_join)
     public void onViewClicked() {
         Intent intent = new Intent(this, SignUpActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("signup_info", mInfoBean);
         intent.putExtras(bundle);
-        startActivityForResult(intent, Constant.RETURN_SUCCESS);
+        startActivity(intent);
+        //startActivityForResult(intent, Constant.RETURN_SUCCESS);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && data != null) {
-            if (requestCode == Constant.RETURN_SUCCESS) {
-                isCanSignUp = false;
-                mBtnDetailsJoin.setVisibility(View.GONE);
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK) {
+//            if (requestCode == Constant.RETURN_SUCCESS) {
+//                isCanSignUp = false;
+//                mBtnDetailsJoin.setVisibility(View.GONE);
+//            }
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
@@ -195,6 +204,9 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
         finish();
     }
 
+    /**
+     * 分享分享
+     */
     @Override
     public void rightClick() {
         Bitmap bitmap = CaptureWindowUtil.getSrollViewBitmap(mScDetails);
@@ -205,4 +217,5 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
         shareIntent.setType("image/*");
         startActivity(Intent.createChooser(shareIntent, "分享活动"));
     }
+
 }

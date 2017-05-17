@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.LoadMoreAdapterWrapper;
@@ -21,16 +19,16 @@ import com.rdc.gdut_activity.ui.DetailsActivity;
 import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
  * Created by ThatNight on 2017.4.26.
  */
 
-public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnClickRecyclerViewListener ,MainFragmentContract.View{
+public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnClickRecyclerViewListener, MainFragmentContract.View {
 
 
     @InjectView(R.id.rv_main_fragment_list)
@@ -58,14 +56,6 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnCli
         return mainFragment;
     }
 
-    public void topbarLeftButtonClick() {
-        Toast.makeText(getActivity(), "主页面左按钮", Toast.LENGTH_SHORT).show();
-    }
-
-    public void topbarRightButtonClick() {
-        Toast.makeText(getActivity(), "主页面右按钮", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     protected int setLayoutResourceId() {
         return R.layout.fragment_main;
@@ -74,7 +64,6 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnCli
     @Override
     protected void initData(Bundle bundle) {
         setParams(bundle);
-
         mPresenter = new MainFragmentPresenterImpl(this);
         mBeanList = new ArrayList<>();
         mAdapter = new VerifyRecyclerAdapter();
@@ -107,13 +96,6 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnCli
     private void setParams(Bundle bundle) {
         mTitle = bundle.getInt("title");
         mMessage = bundle.getString("message");
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
     }
 
     //虚拟数据
@@ -149,6 +131,18 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnCli
 //            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037192_8379.jpg");
 //            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037178_9374.jpg");
             bean.setImgUrlList(picList);
+            HashMap<String, String> map = new HashMap<>();
+            map.put("学号1", "");
+            map.put("学号2", "");
+            map.put("学号3", "");
+            map.put("学号4", "");
+            map.put("学号5", "");
+            map.put("学号6", "");
+            map.put("学号7", "");
+            map.put("学号8", "");
+            map.put("学号9", "");
+            map.put("学号0", "");
+            bean.setFormDataMap(map);
             mBeanList.add(bean);
         }
         mAdapter.updataData(mBeanList);
@@ -162,7 +156,6 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnCli
 
     @Override
     public void onRefreshSuccess(List<ActivityInfoBean> list) {
-     //   Log.e(TAG, "onRefreshSuccess: "+ list.size());
         mBeanList = list;
         mAdapter.updataData(list);
         if (null == mLoadMoreAdapter) {
@@ -183,11 +176,11 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnCli
 
     @Override
     public void onLoadMoreSuccess(List<ActivityInfoBean> list) {
-     //   Log.e(TAG, "onLoadMoreSuccess: " + list.size());
-        if (list.size() != 0){
+        //   Log.e(TAG, "onLoadMoreSuccess: " + list.size());
+        if (list.size() != 0) {
             mBeanList.addAll(list);
             mAdapter.appendData(list);
-        }else {
+        } else {
             mLoadMoreAdapter.setHasMoreData(false);
         }
         mLoadMoreAdapter.notifyDataSetChanged();
@@ -205,7 +198,7 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv,OnCli
 
     @Override
     public void onItemClick(int position) {
-        Intent intent =DetailsActivity.newIntent(mBaseActivity,mBeanList.get(position));
+        Intent intent = DetailsActivity.newIntent(mBaseActivity, mBeanList.get(position));
         startActivity(intent);
     }
 
