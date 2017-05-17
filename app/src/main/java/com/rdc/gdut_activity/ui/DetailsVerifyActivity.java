@@ -1,8 +1,14 @@
 package com.rdc.gdut_activity.ui;
 
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,6 +23,7 @@ import com.rdc.gdut_activity.contract.VerifyContract;
 import com.rdc.gdut_activity.presenter.VerifyPresenterImpl;
 import com.squareup.picasso.Picasso;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import cc.trity.floatingactionbutton.FloatingActionButton;
@@ -130,29 +137,58 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
                 mPresenter.verifyPass(mBean.getObjectId());
                 break;
             case R.id.fab_verify_failure:
-                String reason = "";
-                mPresenter.verifyFailure(mBean.getObjectId(), reason);
+                verifyFailureReason();
                 break;
         }
     }
 
     //对传入类型进行判断，显示审核者布局
-    private void initVerifyUI(){
+    private void initVerifyUI() {
         if (!isVerifyType) {
             mFamVerifyMenu.setVisibility(View.GONE);
             mTvVerifyVerify.setVisibility(View.GONE);
             mCtlActivityTitle.setTitle(mTitle);
             if (mTitle.equals("已审核活动详情")) {
                 mTvVerifyVerify.setVisibility(View.VISIBLE);
-                if (mBean.getCheckStatus().equals("审核通过")){
+                if (mBean.getCheckStatus().equals("审核通过")) {
                     mIvVerifyPass.setVisibility(View.VISIBLE);
-                }else if (mBean.getCheckStatus().equals("审核不通过")){
+                } else if (mBean.getCheckStatus().equals("审核不通过")) {
                     mIvVerifyNopass.setVisibility(View.VISIBLE);
                     mRlVerifyNopassReason.setVisibility(View.VISIBLE);
                     mTvVerifyReason.setText(mBean.getCheckReason());
                 }
             }
         }
+    }
+
+    //审核失败原因Dialog
+    private void verifyFailureReason() {
+        LayoutInflater inflater = getLayoutInflater();
+        final View view = inflater.inflate(R.layout.dialog_verify_failure_reason, (ViewGroup) findViewById(R.id.ll_verify_failure_reason));
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.icon_verify_failure)
+                .setTitle("审核不通过")
+                .setView(view)
+                .setCancelable(false)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText editText = (EditText) view.findViewById(R.id.et_verify_failure_reason);
+                        String reason = editText.getText().toString();
+                        if (reason.equals("")) {
+                            showToast("请输入审核不通过原因");
+                            return;
+                        }
+                        mPresenter.verifyFailure(mBean.getObjectId(), reason);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     //审核成功上传回调
@@ -169,4 +205,10 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         finish();
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.inject(this);
+    }
 }

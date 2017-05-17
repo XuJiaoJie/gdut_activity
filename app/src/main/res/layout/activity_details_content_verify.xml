@@ -349,14 +349,12 @@
             android:id="@+id/tv_verify_reason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/tv_verify_default_reason"
-            android:layout_toEndOf="@id/tv_verify_default_reason"
+            android:layout_below="@id/tv_verify_default_reason"
             tools:text="审核不通过原因：fergergegegegegegegegegegegegeg"
-            android:textColor="@color/dimgray"
-            android:textSize="18sp"/>
+            android:textSize="16sp"/>
 
     </RelativeLayout>
 
@@ -388,6 +386,7 @@
             />
 
     </cc.trity.floatingactionbutton.FloatingActionsMenu>
+
 
 
 </LinearLayout>

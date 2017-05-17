@@ -6,4 +6,52 @@
         <item>已审核</item>
     </string-array>
 
+    <string-array name="scoreTimes">
+        <item>全部</item>
+        <item>2020春季</item>
+        <item>2019秋季</item>
+        <item>2019春季</item>
+        <item>2018秋季</item>
+        <item>2018春季</item>
+        <item>2017秋季</item>
+        <item>2017春季</item>
+        <item>2016秋季</item>
+        <item>2016春季</item>
+        <item>2015秋季</item>
+        <item>2015春季</item>
+        <item>2014秋季</item>
+        <item>2014春季</item>
+        <item>2013秋季</item>
+        <item>2013春季</item>
+        <item>2012秋季</item>
+        <item>2012春季</item>
+        <item>2011秋季</item>
+        <item>2011春季</item>
+        <item>2010秋季</item>
+    </string-array>
+
+    <string-array name="scoreTimesNum">
+        <item></item>
+        <item>201902</item>
+        <item>201901</item>
+        <item>201802</item>
+        <item>201801</item>
+        <item>201702</item>
+        <item>201701</item>
+        <item>201602</item>
+        <item>201601</item>
+        <item>201502</item>
+        <item>201501</item>
+        <item>201402</item>
+        <item>201401</item>
+        <item>201302</item>
+        <item>201301</item>
+        <item>201202</item>
+        <item>201201</item>
+        <item>201102</item>
+        <item>201101</item>
+        <item>201002</item>
+        <item>201001</item>
+    </string-array>
+
 </resources>

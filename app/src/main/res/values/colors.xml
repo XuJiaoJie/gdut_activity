@@ -169,8 +169,13 @@
 
     <!--verify-->
     <color name="dark_text_verify">#2d2c2c</color>
-    <color name="dark_gray_text_score">#404040</color>
+
     <color name="list_item_pressed">#8cd9d9d9</color>
     <color name="list_item_unpressed">#ffff</color>
     <color name="ib_back_pressed">#4ae4e3e3</color>
+
+    <!--score-->
+    <color name="lightgray_score">#efeeee</color>
+    <color name="dark_gray_text_score">#404040</color>
+
 </resources>

@@ -8,9 +8,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingRight="10dp"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:id="@+id/tv_score_course"
@@ -40,14 +41,14 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:text="学分"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:textColor="@color/dark_gray_text_score"
             android:layout_alignBaseline="@+id/tv_score_course_credit"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
@@ -56,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="专业基础课"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:textColor="@color/dark_gray_text_score"
             android:layout_centerVertical="true"/>
 

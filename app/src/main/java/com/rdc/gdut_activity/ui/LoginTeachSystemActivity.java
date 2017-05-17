@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
+import com.rdc.gdut_activity.bean.ScoreBean;
 import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.utils.OkHttpResultCallback;
 import com.rdc.gdut_activity.utils.OkHttpUtil;
@@ -74,6 +75,8 @@ public class LoginTeachSystemActivity extends BaseActivity {
                     public void onResponse(byte[] bytes) {
                         String s = new String(bytes);
                         Log.e(TAG, "onResponse: " + s);
+                        ScoreBean scoreBean = ScoreBean.objectFromData(s);
+                        Log.e(TAG, "onResponse: scoreBean"+ scoreBean.getRows().get(1).getKcmc());
                     }
                 },mBodyMap,mHeadersMap);
 
