@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -84,6 +85,12 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
     TextView mTvVerifyReason;
     @InjectView(R.id.rl_verify_nopass_reason)
     RelativeLayout mRlVerifyNopassReason;
+    @InjectView(R.id.btn_activity_sign_up)
+    Button mBtnActivitySignUp;
+    @InjectView(R.id.rl_activity_sign_up)
+    RelativeLayout mRlActivitySignUp;
+    @InjectView(R.id.tv_verify_num)
+    TextView mTvVerifyNum;
 
     private ActivityInfoBean mBean;
     private DetailImgAdapter mImgAdapter;
@@ -128,6 +135,9 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         mTvVerifyType.setText(mBean.getActivityType());
         mTvVerifyHost.setText(mBean.getActivityHost());
         mTvVerifyDetails.setText(mBean.getActivityDetail());
+
+        mTvVerifyNum.setText("炒鸡少");
+
         if (mBean.getPublisherIconUrl() != null) {
             Picasso.with(this)
                     .load(mBean.getPublisherIconUrl())
@@ -151,6 +161,11 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
     protected void initListener() {
     }
 
+
+    @OnClick(R.id.btn_activity_sign_up)
+    public void onViewClicked() {
+        showToast("查看你妹啊，无聊");
+    }
 
     @OnClick({R.id.ib_verify_back, R.id.fab_verify_pass, R.id.fab_verify_failure})
     public void onViewClicked(View view) {
@@ -179,6 +194,18 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
                 if (mBean.getCheckStatus().equals("审核通过")) {
                     mIvVerifyPass.setVisibility(View.VISIBLE);
                 } else if (mBean.getCheckStatus().equals("审核不通过")) {
+                    mIvVerifyNopass.setVisibility(View.VISIBLE);
+                    mRlVerifyNopassReason.setVisibility(View.VISIBLE);
+                    mTvVerifyReason.setText(mBean.getCheckReason());
+                }
+            }
+            if (mTitle.equals("已发布的活动")) {
+                mTvVerifyVerify.setVisibility(View.VISIBLE);
+                if (mBean.getCheckStatus().equals("审核通过")) {
+                    mRlActivitySignUp.setVisibility(View.VISIBLE);
+                    mIvVerifyPass.setVisibility(View.VISIBLE);
+                } else if (mBean.getCheckStatus().equals("审核不通过")) {
+                    mRlActivitySignUp.setVisibility(View.GONE);
                     mIvVerifyNopass.setVisibility(View.VISIBLE);
                     mRlVerifyNopassReason.setVisibility(View.VISIBLE);
                     mTvVerifyReason.setText(mBean.getCheckReason());
@@ -230,5 +257,6 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         showToast("审核操作失败：" + s);
         finish();
     }
+
 
 }

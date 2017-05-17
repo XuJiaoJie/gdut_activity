@@ -13,6 +13,7 @@
         android:id="@+id/topbar_activity_main"
         android:background="@color/colorPrimaryDark"
         app:title="成绩查询"
+        app:titleTextSize="18sp"
         app:titleTextColor="@color/white">
     </com.rdc.gdut_activity.view.TopBar>
 

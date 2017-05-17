@@ -20,6 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class VerifyRecyclerAdapter extends BaseRecyclerViewAdapter<ActivityInfoBean> {
+    private static final String TAG = "VerifyRecyclerAdapter";
     private Context mContext;
 
     @Override

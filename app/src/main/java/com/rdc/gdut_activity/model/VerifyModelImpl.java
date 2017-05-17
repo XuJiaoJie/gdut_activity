@@ -1,7 +1,5 @@
 package com.rdc.gdut_activity.model;
 
-import android.util.Log;
-
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.contract.VerifyContract;
 
