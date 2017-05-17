@@ -1,5 +1,7 @@
 package com.rdc.gdut_activity.model;
 
+import android.util.Log;
+
 import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.contract.ScoreContract;
 import com.rdc.gdut_activity.utils.OkHttpResultCallback;
@@ -15,6 +17,7 @@ import okhttp3.Call;
  */
 
 public class ScoreModel {
+    private static final String TAG = "ScoreModel";
     private Map<String,String> mBodyMap;
     private ScoreContract.Presenter mPresenter;
 
@@ -23,24 +26,6 @@ public class ScoreModel {
         mPresenter = presenter;
     }
 
-
-    public void login(String account,String pwd){
-        mBodyMap.clear();
-        mBodyMap.put(Constant.LOGIN_BODY_NAME_ACCOUNT,"3115005289");
-        mBodyMap.put(Constant.LOGIN_BODY_NAME_PWD,"15626227808aa");
-        mBodyMap.put(Constant.LOGIN_BODY_NAME_VERIFYCODE,Constant.LOGIN_BODY_VALUE_VERIFYCODE);
-        OkHttpUtil.getInstance().postAsync(Constant.EDUCATION_SYSTEM_LOGIN_URL, new OkHttpResultCallback() {
-            @Override
-            public void onError(Call call, Exception e) {
-                mPresenter.loginError(e.getMessage());
-            }
-
-            @Override
-            public void onResponse(byte[] bytes) {
-                mPresenter.loginSuccess();
-            }
-        },mBodyMap,null);
-    }
 
     public void queryScore(String time){
         mBodyMap.clear();
@@ -57,6 +42,7 @@ public class ScoreModel {
 
             @Override
             public void onResponse(byte[] bytes) {
+                Log.e(TAG, "onResponse:" + new String(bytes) );
                 mPresenter.querySuccess(bytes);
             }
         },mBodyMap,null);

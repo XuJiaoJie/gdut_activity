@@ -94,7 +94,7 @@ public class ScoreActivity extends BaseActivity implements ScoreContract.View {
 
     @Override
     public void queryError(String s) {
-
+        showToast(s);
     }
 
 }

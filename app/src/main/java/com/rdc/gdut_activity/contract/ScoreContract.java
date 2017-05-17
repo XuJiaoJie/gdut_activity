@@ -25,9 +25,6 @@ public interface ScoreContract {
 
         void queryError(String s);
 
-        void loginSuccess();
-
-        void loginError(String s);
     }
 
 }

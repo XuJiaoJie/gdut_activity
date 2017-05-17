@@ -16,7 +16,6 @@ public class ScorePresenterImpl implements ScoreContract.Presenter {
     private ScoreContract.View mView;
     private ScoreModel mModel;
     private List<ScoreBean.RowsBean> mList;
-    private String mTime;
 
     public ScorePresenterImpl(ScoreContract.View view){
         mList = new ArrayList<>();
@@ -27,21 +26,10 @@ public class ScorePresenterImpl implements ScoreContract.Presenter {
     //view
     @Override
     public void queryScore(String time) {
-        mTime = time;
-        mModel.login("3115005289","15626227808aa");
+        mModel.queryScore(time);
     }
 
     //model
-    @Override
-    public void loginSuccess() {
-        mModel.queryScore(mTime);
-    }
-
-    @Override
-    public void loginError(String s) {
-        mView.queryError(s);
-    }
-
     @Override
     public void querySuccess(byte[] bytes) {
         String s = new String(bytes);
