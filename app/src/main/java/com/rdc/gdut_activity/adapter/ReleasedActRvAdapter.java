@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rdc.gdut_activity.R;
-import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.fragment.ReleasedFragment;
 
@@ -60,7 +59,6 @@ public class ReleasedActRvAdapter extends RecyclerView.Adapter<ReleasedActRvAdap
         @InjectView(R.id.tv_verify_publish)
         TextView mTvVerifyPublish;
 
-
         private ActivityInfoBean mActivityInfoBean;
 
         private Context mContext;
@@ -84,10 +82,10 @@ public class ReleasedActRvAdapter extends RecyclerView.Adapter<ReleasedActRvAdap
         public void onClick(View v) {
             Fragment fragment = ReleasedFragment.newInstance();
 
-            ((BaseActivity) mContext).getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
+//            ((BaseActivity) mContext).getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, fragment)
+//                    .commit();
         }
     }
 

@@ -11,18 +11,14 @@
         <CheckBox
             android:id="@+id/cb_name"
             style="@style/CheckBoxFormDataStyle"
+            android:text="姓名"
             />
 
-        <TextView
-            style="@style/TextViewFormDataStyle"
-            android:text="姓名"/>
 
         <CheckBox
             android:id="@+id/cb_college"
-            style="@style/CheckBoxFormDataStyle"/>
+            style="@style/CheckBoxFormDataStyle"
 
-        <TextView
-            style="@style/TextViewFormDataStyle"
             android:text="学院"/>
     </LinearLayout>
 

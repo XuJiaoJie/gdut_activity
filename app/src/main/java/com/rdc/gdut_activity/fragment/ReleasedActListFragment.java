@@ -15,7 +15,6 @@ import java.util.List;
 public class ReleasedActListFragment extends BaseFragment {
 
     private RecyclerView mRvActList;
-
     private List<ActivityInfoBean> mActInfoList;
 
     private void initTmpData() {
@@ -27,11 +26,8 @@ public class ReleasedActListFragment extends BaseFragment {
         }
     }
 
-
     public static ReleasedActListFragment newInstance() {
-
         Bundle args = new Bundle();
-
         ReleasedActListFragment fragment = new ReleasedActListFragment();
         fragment.setArguments(args);
         return fragment;

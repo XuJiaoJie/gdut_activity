@@ -17,19 +17,18 @@ public class ActivityInfoBean extends BmobObject implements Parcelable {
     private String mActivityLocation;
     private String mActivityTime;
     private String mActivityDetail;
-    private String mPublishTime;
+    private String mPublishTime;//可以删除
     private String mPublisherName;
     private String mPublisherIconUrl;
     private String mCheckStatus;//审核成功，不通过，审核中
     private String mCheckReason;
-    private HashMap<String, String> mFormDataMap;
     private List<String> mImgUrlList;
+    private HashMap<String, String> mFormDataMap;
 
     private BmobRelation mParticipant;//参与者
     private BmobRelation mVerifier;// 审核者
     private Publisher mPublisher;//发布者
     private static final String KEY_FORM_DATA_MAP = "FORM_DATA_MAP";
-
 
     public ActivityInfoBean() {
     }

@@ -20,9 +20,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <!-- 推送 -->
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:name=".app.App"
@@ -32,14 +29,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".ui.LoginActivity"
             android:theme="@style/LoginAndRegisterTheme"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -57,12 +53,14 @@
         </activity>
         <activity android:name=".ui.DetailsVerifyActivity"/>
         <activity android:name=".ui.DetailsPhotoActivity"/>
+        <activity android:name=".ui.PublisherMainActivity"/>
         <activity android:name=".ui.SelectClassActivity"/>
         <activity android:name=".ui.ScoreActivity"/>
         <activity
             android:name=".ui.SignUpActivity"
             android:configChanges="keyboardHidden|orientation"
             android:windowSoftInputMode="adjustResize|stateHidden">
+
         </activity>
 
         <!-- bmob推送 -->
@@ -119,7 +117,7 @@
         <activity android:name=".ui.SelectRegionActivity"/>
         <activity android:name=".ui.UserActivitiesActivity"/>
         <activity android:name=".ui.UserGDUTActivity"/>
-        
+
     </application>
 
 </manifest>

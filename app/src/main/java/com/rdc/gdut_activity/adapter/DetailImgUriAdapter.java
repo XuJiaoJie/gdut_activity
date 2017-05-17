@@ -2,6 +2,7 @@ package com.rdc.gdut_activity.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.widget.ImageView;
 
@@ -22,9 +23,14 @@ public class DetailImgUriAdapter extends NineGridImageViewAdapter<Uri> {
 
     @Override
     protected void onDisplayImage(Context context, ImageView imageView, Uri s) {
+
         Picasso.with(context)
                 .load(s)
                 .placeholder(R.drawable.photo_empty_photo)
+                .error(R.drawable.ic_error)
+                .fit()
+                .centerCrop()
+                .config(Bitmap.Config.RGB_565)
                 .into(imageView);
     }
 
@@ -41,5 +47,7 @@ public class DetailImgUriAdapter extends NineGridImageViewAdapter<Uri> {
         Intent intent1 = DetailsPhotoActivity.newIntent(context, index, (ArrayList<Uri>) list);
         context.startActivity(intent1);
     }
+
+
 
 }

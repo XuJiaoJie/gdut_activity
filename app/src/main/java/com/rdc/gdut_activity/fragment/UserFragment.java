@@ -7,34 +7,27 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseFragment;
 import com.rdc.gdut_activity.bean.Student;
-import com.rdc.gdut_activity.bean.User;
 import com.rdc.gdut_activity.ui.AboutActivity;
 import com.rdc.gdut_activity.ui.UserActivitiesActivity;
 import com.rdc.gdut_activity.ui.UserDetailActivity;
 import com.rdc.gdut_activity.ui.UserGDUTActivity;
-import com.rdc.gdut_activity.utils.PictureDownloadUtil;
 import com.rdc.gdut_activity.view.CircleImageView;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import cn.bmob.v3.BmobQuery;
@@ -86,6 +79,16 @@ public class UserFragment extends BaseFragment {
             }
         }
     };
+
+
+    public static UserFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        UserFragment fragment = new UserFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     /**
      * 用来获取fragment实例的方法，这里可以让Activity给fragment设置参数,参数可以在下面的initData方法中的bundle中取出
@@ -172,7 +175,7 @@ public class UserFragment extends BaseFragment {
                         } else {
                             tvUserArea.setText(mStudent.getArea());
                         }
-                        if(mStudent.getAge() == null) {
+                        if (mStudent.getAge() == null) {
                             tvUserAge.setText("20岁");
                         } else {
                             tvUserAge.setText(mStudent.getAge());
@@ -199,19 +202,6 @@ public class UserFragment extends BaseFragment {
         mMessage = bundle.getString("message");
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.inject(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-    }
 
     @OnClick({R.id.ll_user_details, R.id.ll_user_activities, R.id.ll_user_gdut, R.id.ll_user_about, R.id.ll_user_logout})
     public void onViewClicked(View view) {

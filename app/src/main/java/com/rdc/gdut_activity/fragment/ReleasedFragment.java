@@ -31,16 +31,6 @@ public class ReleasedFragment extends BaseFragment {
     private ActivityInfoBean mActivityInfoBean;
     private static final String KEY_EXTRA_ACTIVITY_INFO_BEAN = "EXTRA_ACTIVITY_INFO_BEAN";
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
     // TODO: 2017/5/6 0006 临时
     public static ReleasedFragment newInstance() {

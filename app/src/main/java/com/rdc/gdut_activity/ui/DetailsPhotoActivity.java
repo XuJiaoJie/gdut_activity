@@ -26,16 +26,13 @@ public class DetailsPhotoActivity<T> extends BaseActivity {
     private int mIndex = 0;
     private int mSize = 0;
 
-
     private static final String PHOTO_LIST = "photo_list";
     private static final String PHOTO_INDEX = "photo_index";
-
 
     @Override
     protected int setLayoutResID() {
         return R.layout.activity_details_photo;
     }
-
 
     public static <T> Intent newIntent(Context context, int index, ArrayList<T> list) {
         Intent intent = new Intent(context, DetailsPhotoActivity.class);
@@ -54,6 +51,7 @@ public class DetailsPhotoActivity<T> extends BaseActivity {
         mSize = mPhotoList.size();
         mPagerAdapter = new PhotoPagerAdapter(this, mPhotoList);
         mVpDetailsPhoto.setAdapter(mPagerAdapter);
+
     }
 
     @Override

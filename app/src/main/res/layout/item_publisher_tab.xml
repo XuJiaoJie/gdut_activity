@@ -3,18 +3,25 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:paddingBottom="2dp"
+              android:paddingTop="3dp">
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="3"
+        android:padding="2.5dp"
         tools:src="@drawable/ic_pick_photo"/>
 
     <TextView
         android:id="@+id/tv_item_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:paddingBottom="3dp"
+        android:textSize="12sp"
         tools:text="发布"/>
 </LinearLayout>

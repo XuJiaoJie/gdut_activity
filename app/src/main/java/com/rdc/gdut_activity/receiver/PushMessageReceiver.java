@@ -26,16 +26,16 @@ public class PushMessageReceiver extends BroadcastReceiver {
         super();
     }
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        if (PushConstants.ACTION_MESSAGE.equals(intent.getAction())) {
-            // TODO: 2017.5.16 获取通知
-            Log.d("receiver", "onReceive: "+intent.getStringExtra("msg"));
-            MessageBean msg = GsonUtil.gsonToBean(intent.getStringExtra("msg"), MessageBean.class);
-            if (mListener != null) {
-                mListener.refresh(msg);
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (PushConstants.ACTION_MESSAGE.equals(intent.getAction())) {
+                // TODO: 2017.5.16 获取通知
+                Log.d("receiver", "onReceive: "+intent.getStringExtra("msg"));
+                MessageBean msg = GsonUtil.gsonToBean(intent.getStringExtra("msg"), MessageBean.class);
+                if (mListener != null) {
+                    mListener.refresh(msg);
+                }
             }
-        }
     }
 
     public interface IOnReceiverListener {

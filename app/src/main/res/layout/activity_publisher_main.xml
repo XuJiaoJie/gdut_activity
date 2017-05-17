@@ -8,8 +8,20 @@
     android:orientation="vertical"
     tools:context="com.rdc.gdut_activity.ui.PublisherMainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_topbar_height"
+        android:background="@color/color_primary"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white"/>
+    <!--<FrameLayout-->
+    <!--android:id="@+id/fragment_container"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"/>-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_main_vp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>

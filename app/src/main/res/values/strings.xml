@@ -7,7 +7,7 @@
     <string name="login_password">输入密码</string>
     <string name="btn_login_login">登录</string>
     <string name="activity_name">活动名称：</string>
-    <string name="set_form_data">设置报名表单（可选）</string>
+    <string name="set_form_data">报名表单（可选）</string>
     <string name="name">姓名</string>
     <string name="phone_number">手机号码</string>
     <string name="check_status">审核状态：未审核</string>

@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,33 +81,33 @@
         <LinearLayout
             android:id="@+id/ll_set_time"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="40dp">
 
             <ImageView
                 android:id="@+id/iv_time_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center"
-                android:padding="5dp"
+                android:padding="3dp"
                 android:src="@drawable/ic_set_time"/>
 
             <TextView
                 android:id="@+id/tv_start_time"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:gravity="start|center"
-                android:text="设置时间"/>
+                android:text="设置起始时间"/>
 
             <TextView
                 android:id="@+id/tv_end_time"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:gravity="start|center"
-                tools:text="至 2017-5-19"
+                android:text="结束时间"
                 />
         </LinearLayout>
 
@@ -120,46 +119,62 @@
             <TextView
                 android:id="@+id/textView4"
                 style="@style/CustomTvTitleStyle"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/detail"/>
+                android:text="@string/detail"
+                />
 
 
             <ImageView
                 android:id="@+id/iv_import_photo"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
+                android:scaleType="center"
                 android:src="@drawable/ic_take_photo"/>
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
 
-            <EditText
-                android:id="@+id/et_activity_detail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:maxLines="10"/>
-        </LinearLayout>
+        <EditText
+            android:id="@+id/et_activity_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入详情"
+            android:maxLines="10"/>
+
+        <CheckBox
+            android:id="@+id/cb_push_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:textColor="@color/darkgray"
+            android:text="推送消息(将推送给所有参与者)"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/et_push"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
 
         <com.jaeger.ninegridimageview.NineGridImageView
             android:id="@+id/nine_grid_img_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:visibility="gone"
             app:imgGap="4dp"
-            app:showStyle="fill"
-            app:singleImgSize="120dp"/>
+            app:showStyle="grid"
+            app:singleImgSize="80dp"/>
 
         <Button
             android:id="@+id/btn_set_form_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:gravity="left"
+            android:gravity="left|bottom"
             android:text="@string/set_form_data"/>
 
         <include layout="@layout/fragment_custom_form_data"/>

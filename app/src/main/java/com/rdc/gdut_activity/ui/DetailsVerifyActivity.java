@@ -1,7 +1,11 @@
 package com.rdc.gdut_activity.ui;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -17,11 +21,14 @@ import android.widget.TextView;
 import com.jaeger.ninegridimageview.NineGridImageView;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.DetailImgAdapter;
+import com.rdc.gdut_activity.adapter.DetailImgUriAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.contract.VerifyContract;
 import com.rdc.gdut_activity.presenter.VerifyPresenterImpl;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -36,6 +43,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DetailsVerifyActivity extends BaseActivity implements VerifyContract.DetailView {
     private static final String TAG = "DetailsVerifyActivity";
+    private static final String KEY_BUNDLE = "BUNDLE";
+    private static final String KEY_URI_LIST = "URI_LIST";
     @InjectView(R.id.tv_item_activity_title)
     TextView mTvItemActivityTitle;
     @InjectView(R.id.tv_item_user_name)
@@ -82,10 +91,21 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
     private boolean isVerifyType;
     private String mTitle;
     private VerifyContract.Presenter mPresenter;
+    private DetailImgUriAdapter mImgUriAdapter;
 
     @Override
     protected int setLayoutResID() {
         return R.layout.activity_details_verify;
+    }
+
+
+    public static Intent newIntent(Context context, ActivityInfoBean bean, ArrayList<Uri> uriList, String actTitle, boolean isVerifyType) {
+        Intent intent = new Intent(context, DetailsVerifyActivity.class);
+        intent.putExtra("DetailsVerifyActivity", (Parcelable) bean);
+        intent.putExtra("isVerifyType", isVerifyType);
+        intent.putExtra("ActivityTitle", actTitle);
+        intent.putExtra("UriList", (Parcelable) uriList);
+        return intent;
     }
 
     @Override
@@ -117,8 +137,15 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         } else {
             mCivItemUserIcon.setImageResource(R.drawable.ueser_icon);
         }
-        mNgivActivityPic.setAdapter(mImgAdapter);
-        mNgivActivityPic.setImagesData(mBean.getImgUrlList());
+        if (mTitle.equals("预览")) {
+            mImgUriAdapter = new DetailImgUriAdapter();
+            mNgivActivityPic.setAdapter(mImgUriAdapter);
+            Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
+            mNgivActivityPic.setImagesData(bundle.getParcelableArrayList(KEY_URI_LIST));
+        } else {
+            mNgivActivityPic.setAdapter(mImgAdapter);
+            mNgivActivityPic.setImagesData(mBean.getImgUrlList());
+        }
     }
 
     @Override

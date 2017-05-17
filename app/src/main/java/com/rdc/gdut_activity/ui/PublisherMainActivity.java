@@ -1,30 +1,38 @@
 package com.rdc.gdut_activity.ui;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.widget.FrameLayout;
+import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.rdc.gdut_activity.R;
+import com.rdc.gdut_activity.adapter.FragmentAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
-import com.rdc.gdut_activity.model.PublisherDataModel;
+import com.rdc.gdut_activity.fragment.PublishFragment;
+import com.rdc.gdut_activity.fragment.ReleasedActListFragment;
+import com.rdc.gdut_activity.fragment.UserFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class PublisherMainActivity extends BaseActivity {
 
-    @InjectView(R.id.fragment_container)
-    FrameLayout mFragmentContainer;
     @InjectView(R.id.bottom_tab_layout)
     TabLayout mTabLayout;
-    private Fragment[] mFragments;
+    @InjectView(R.id.vp_main_vp)
+    ViewPager mVpMainVp;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    private FragmentAdapter mFragmentAdapter;
+    private List<Fragment> mFragmentList;
+    private List<String> mTitleList;
+    private int[] mTabRes = new int[]{R.drawable.selector_released_activity,
+            R.drawable.selector_publish_activity,
+            R.drawable.selector_publisher};
+    private long mLastPressed;
 
     @Override
     protected int setLayoutResID() {
@@ -34,46 +42,38 @@ public class PublisherMainActivity extends BaseActivity {
     @Override
     protected void initData() {
 
+        mTitleList = new ArrayList<>();
+        mTitleList.add("已发布");
+        mTitleList.add("发布");
+        mTitleList.add("我");
+        mFragmentList = new ArrayList<>();
+        mFragmentList.add(ReleasedActListFragment.newInstance());
+        mFragmentList.add(PublishFragment.newInstance());
+        mFragmentList.add(UserFragment.newInstance());
+
+        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList, mTitleList);
+        mVpMainVp.setAdapter(mFragmentAdapter);
+        mTabLayout.setupWithViewPager(mVpMainVp);
+
+        for (int i = 0; i < mTitleList.size(); i++) {
+            TabLayout.Tab itemTab = mTabLayout.getTabAt(i);
+            if (itemTab != null) {
+                itemTab.setCustomView(R.layout.item_publisher_tab);
+                TextView title = (TextView) itemTab.getCustomView().findViewById(R.id.tv_item_name);
+                ImageView ivIcon = (ImageView) itemTab.getCustomView().findViewById(R.id.iv_icon);
+                title.setText(mTitleList.get(i));
+                ivIcon.setImageResource(mTabRes[i]);
+            }
+        }
+        mTabLayout.getTabAt(0).getCustomView().setSelected(true);
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+
+//        mFragments = PublisherFragmentModel.getFragment("");
     }
 
     @Override
     public void initView() {
         ButterKnife.inject(this);
-
-        mFragments = PublisherDataModel.getFragment("");
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                bindFragment(tab.getPosition());
-//
-//                for (int i = 0; i < mTabLayout.getTabCount(); i++) {
-//                    if (i == tab.getPosition()) {
-//                        // TODO: 2017/5/6 0006 此处应该设置为选中时图标 但是目前暂未确定资源
-//                        mTabLayout.getTabAt(i).setCustomView(PublisherDataModel.getTabItemView(PublisherMainActivity.this, i));
-////                        mTabLayout.getTabAt(i).setIcon(getResources().getDrawable())
-//                    } else {
-//                        mTabLayout.getTabAt(i).setCustomView(PublisherDataModel.getTabItemView(PublisherMainActivity.this, i));
-//
-//                    }
-//                }
-
-            }
-            // TODO: 2017/5/6 0006 Fragment 视图待绑定
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        for (int i = 0; i < 3; i++) {
-            mTabLayout.addTab(mTabLayout.newTab().setCustomView(PublisherDataModel.getTabItemView(this, i)));
-        }
-
     }
 
     @Override
@@ -81,26 +81,15 @@ public class PublisherMainActivity extends BaseActivity {
 
     }
 
-    private void bindFragment(int position) {
-        // TODO: 2017/5/8 0008 到这里再初始化也可以
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = mFragments[0];
-                break;
-            case 1:
-                fragment = mFragments[1];
-                break;
-            case 2:
-                fragment = mFragments[2];
-                break;
-        }
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - mLastPressed > 2000) {
+            showToast("再按一次退出");
+            mLastPressed = System.currentTimeMillis();
+        } else {
+            finish();
+            System.exit(0);
         }
     }
-
 }
