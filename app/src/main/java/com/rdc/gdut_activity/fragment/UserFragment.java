@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseFragment;
@@ -184,9 +183,9 @@ public class UserFragment extends BaseFragment {
                     } else {
                         Log.e("error", "mStudent is null");
                     }
-                    Toast.makeText(getContext(), "find success", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(), "find success", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getContext(), "find failed", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(), "find failed", Toast.LENGTH_LONG).show();
                 }
             }
         });

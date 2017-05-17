@@ -1,15 +1,16 @@
 package com.rdc.gdut_activity.ui;
 
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.LoadMoreAdapterWrapper;
@@ -26,7 +27,6 @@ import com.rdc.gdut_activity.view.TopBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class SelectClassActivity extends BaseActivity implements OnClickRecyclerViewListener, SwipeRefreshLayout.OnRefreshListener, ISelectClassView, OnLoadMoreDataRv, TopBar.topbarClickListner, View.OnClickListener {
@@ -61,8 +61,8 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
         mClassPresenter = new SelectClassPresenter(this);
         mClassAdapter = new SelectClassAdapter();
         mClassAdapter.setOnRecyclerViewListener(this);
-        mClassPresenter.login();
-        //mClassPresenter.getClasses("1");
+        //mClassPresenter.login();
+        mClassPresenter.getClasses("1");
     }
 
     @Override
@@ -208,13 +208,6 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
         mClassPresenter.login();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
-    }
-
     /**
      * topbar点击事件
      */
@@ -242,12 +235,17 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
             case R.id.ll_dialog_selectclass_search:
                 if (mSearchDiaglog == null) {
                     mSearchDiaglog = new AlertDialog.Builder(this);
-                    mSearchDiaglog.setView(R.layout.dialog_selectclass_search);
+                    View contentView = LayoutInflater.from(this).inflate(R.layout.dialog_selectclass_search, null);
+                    final EditText editText = (EditText) contentView.findViewById(R.id.et_dialog_selectclass_name);
+                    mSearchDiaglog.setView(contentView);
                     mSearchDiaglog.setTitle("搜索");
                     mSearchDiaglog.setNegativeButton("确认", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
+                            String searchText = editText.getText().toString();
+                            if (searchText.length() != 0) {
+                                mClassPresenter.queryClass(searchText);
+                            }
                         }
                     });
                 }

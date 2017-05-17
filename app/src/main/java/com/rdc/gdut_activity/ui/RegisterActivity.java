@@ -14,6 +14,7 @@ import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.presenter.RegisterPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.IRegisterView;
+import com.rdc.gdut_activity.utils.CheckInfoUtil;
 import com.rdc.gdut_activity.view.LoadingDialog;
 
 import butterknife.InjectView;
@@ -67,22 +68,19 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
         hideInputSoft(mEtPasswordAgain);
         if (checkUserInfo()) {
             mPresenter.register();
-        } else {
-            showToast("请检查用户名和密码!");
         }
     }
 
     private boolean checkUserInfo() {
         boolean isRight = false;
         String userName = mEtUsername.getText().toString().trim();
-        String userPassword = mEtPassword.getText().toString().trim();
-        String userPasswordAgain = mEtPasswordAgain.getText().toString().trim();
-        if ("".equals(userName) || "".equals(userPassword) || "".equals(userPasswordAgain)) {
-            isRight = false;
+        String userPassword = mEtPassword.getText().toString();
+        String userPasswordAgain = mEtPasswordAgain.getText().toString();
+        String toast = CheckInfoUtil.checkRegister(userName, userPassword, userPasswordAgain);
+        if (toast != null) {
+            showToast(toast);
         } else {
-            if (userPassword.equals(userPasswordAgain)) {
-                isRight = true;
-            }
+            isRight = true;
         }
         return isRight;
     }
