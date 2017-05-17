@@ -59,7 +59,9 @@ public class UserActivitiesListAdapter extends BaseAdapter {
         Glide.with(mContext).load(mActivityInfoList.get(position).getPublisher().getIcon()).into(viewHolder.civItemUserIcon);
         viewHolder.tvItemUserName.setText(mActivityInfoList.get(position).getPublisherName());
         viewHolder.tvItemActivityPublishTime.setText(mActivityInfoList.get(position).getPublishTime());
-        Glide.with(mContext).load(mActivityInfoList.get(position).getImgUrlList().get(0)).into(viewHolder.ivItemActivityPic);
+        if (mActivityInfoList.get(position).getImgUrlList() != null && mActivityInfoList.get(position).getImgUrlList().size() > 0) {
+            Glide.with(mContext).load(mActivityInfoList.get(position).getImgUrlList().get(0)).into(viewHolder.ivItemActivityPic);
+        }
         viewHolder.tvItemActivityTitle.setText(mActivityInfoList.get(position).getActivityName());
         viewHolder.tvVerifyTime.setText(mActivityInfoList.get(position).getActivityTime());
         viewHolder.tvVerifyPlace.setText(mActivityInfoList.get(position).getActivityLocation());

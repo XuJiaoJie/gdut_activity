@@ -162,7 +162,11 @@ public class UserActivitiesActivity extends BaseActivity implements TopBar.topba
                         new Thread() {
                             @Override
                             public void run() {
-                                String url = mActivityInfoList.get(position).getImgUrlList().get(0);
+                                String url = "";
+                                if (mActivityInfoList.get(position).getImgUrlList() != null && mActivityInfoList.get(position).getImgUrlList().size() > 0) {
+                                    url = mActivityInfoList.get(position).getImgUrlList().get(0);
+
+                                }
                                 prepareShare(url);
                             }
                         }.start();

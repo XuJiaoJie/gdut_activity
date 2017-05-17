@@ -10,6 +10,8 @@ public class Student extends User {
     private String grade;       //年级
     private String college;     //学院
     private String major;
+    private String mSchoolNumber;
+    private String mSchoolPassword;
 
     private String age;
     private String area;
@@ -53,6 +55,22 @@ public class Student extends User {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public String getmSchoolNumber() {
+        return mSchoolNumber;
+    }
+
+    public void setmSchoolNumber(String mSchoolNumber) {
+        this.mSchoolNumber = mSchoolNumber;
+    }
+
+    public String getmSchoolPassword() {
+        return mSchoolPassword;
+    }
+
+    public void setmSchoolPassword(String mSchoolPassword) {
+        this.mSchoolPassword = mSchoolPassword;
     }
 
     public String getAge() {

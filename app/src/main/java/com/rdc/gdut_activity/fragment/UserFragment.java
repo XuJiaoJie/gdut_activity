@@ -20,6 +20,7 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseFragment;
 import com.rdc.gdut_activity.bean.Student;
 import com.rdc.gdut_activity.ui.AboutActivity;
+import com.rdc.gdut_activity.ui.LoginActivity;
 import com.rdc.gdut_activity.ui.UserActivitiesActivity;
 import com.rdc.gdut_activity.ui.UserDetailActivity;
 import com.rdc.gdut_activity.ui.UserGDUTActivity;
@@ -61,6 +62,7 @@ public class UserFragment extends BaseFragment {
     private String mPath = "/sdcard/myHeadIcon/";
     private Boolean mIsMale;
     private String mPassword;
+    private String mPhoneNumber;
     private Student mStudent;
     private Handler mHandler = new Handler() {
         @Override
@@ -180,6 +182,7 @@ public class UserFragment extends BaseFragment {
                             tvUserAge.setText(mStudent.getAge());
                         }
                         mPassword = mStudent.getGdutPassword();
+                        mPhoneNumber = mStudent.getMobilePhoneNumber();
                     } else {
                         Log.e("error", "mStudent is null");
                     }
@@ -233,6 +236,10 @@ public class UserFragment extends BaseFragment {
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: 2017/5/13 退出登录
                 dialog.dismiss();
+                BmobUser.logOut();
+                Intent loginIntent = new Intent(getContext(), LoginActivity.class);
+                startActivity(loginIntent);
+                mBaseActivity.finish();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -267,6 +274,7 @@ public class UserFragment extends BaseFragment {
         userDetailIntent.putExtra("age", tvUserAge.getText().toString());
         userDetailIntent.putExtra("area", tvUserArea.getText().toString());
         userDetailIntent.putExtra("password", mPassword);
+        userDetailIntent.putExtra("phone_number", mPhoneNumber);
         startActivity(userDetailIntent);
     }
 }

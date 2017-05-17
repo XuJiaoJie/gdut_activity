@@ -6,8 +6,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/mediumseagreen"
+        android:layout_height="120dp"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal">
         <com.rdc.gdut_activity.view.CircleImageView
             android:id="@+id/civ_user_icon"
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="2.5"
-                android:text="研发一棵草"
+                android:text=""
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -53,7 +53,7 @@
                     android:id="@+id/tv_user_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20岁"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
@@ -62,7 +62,7 @@
                     android:id="@+id/tv_user_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="广东,广州,番禺"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:layout_gravity="center_vertical"
