@@ -14,6 +14,7 @@
         android:layout_height="@dimen/dimen_topbar_height"
         android:background="@color/colorPrimary"
         app:title="@string/string_activity_selectclass"
+        app:titleTextSize="18sp"
         app:titleTextColor="@color/white"
         >
     </com.rdc.gdut_activity.view.TopBar>
