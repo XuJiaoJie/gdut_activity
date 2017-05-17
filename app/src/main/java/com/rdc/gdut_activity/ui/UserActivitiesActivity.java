@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -184,12 +185,9 @@ public class UserActivitiesActivity extends BaseActivity implements TopBar.topba
         lvUserActivities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(UserActivitiesActivity.this, DetailsActivity.class);
-                //intent.putExtra("DetailsVerifyActivity", (Parcelable) mActivityInfoList.get(position));
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("details_info", mActivityInfoList.get(position));
-                intent.putExtras(bundle);
-                //intent.putExtra("ActivityTitle", "活动详情");
+                Intent intent = new Intent(UserActivitiesActivity.this, DetailsVerifyActivity.class);
+                intent.putExtra("DetailsVerifyActivity", (Parcelable) mActivityInfoList.get(position));
+                intent.putExtra("ActivityTitle", "活动详情");
                 startActivity(intent);
             }
         });

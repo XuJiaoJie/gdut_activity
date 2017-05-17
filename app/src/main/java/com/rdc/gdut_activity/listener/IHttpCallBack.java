@@ -7,5 +7,5 @@ package com.rdc.gdut_activity.listener;
 public interface IHttpCallBack {
     void onError(String error);
 
-    void onSuccess();
+    void onResponse(String response);
 }

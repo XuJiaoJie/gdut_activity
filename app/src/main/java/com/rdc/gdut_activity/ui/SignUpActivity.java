@@ -1,6 +1,5 @@
 package com.rdc.gdut_activity.ui;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +17,6 @@ import com.rdc.gdut_activity.view.LoadingDialog;
 import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +38,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     private LoadingDialog mDialog;
     private SignUpPresenter mSignUpPresenter;
     private ActivityInfoBean mActivityInfoBean;
+    private boolean isSign = false;
+    private String mSignUpId;
 
     @Override
     protected int setLayoutResID() {
@@ -48,14 +48,16 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void initData() {
+
         mActivityInfoBean = getIntent().getParcelableExtra("signup_info");
-        mFormMap = new HashMap<>();
+        mFormMap = mActivityInfoBean.getFormDataMap();
         mFormList = new ArrayList<>();
         for (String form : mFormMap.keySet()) {
             mFormList.add(form);
         }
         mSignUpAdapter = new SignUpAdapter(this, mFormList);
         mSignUpPresenter = new SignUpPresenter(this);
+        mSignUpPresenter.signUped(mActivityInfoBean.getObjectId());
     }
 
     @Override
@@ -75,8 +77,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_sign_up:
-                if (checkInfoSuccess()) {
+                if (checkInfoSuccess() && !isSign) {
                     mSignUpPresenter.signUp(mFormMap);
+                } else if (isSign) {
+                    mSignUpPresenter.updateSignUp(mFormMap);
                 } else {
                     showToast("请填写完全部信息!");
                 }
@@ -105,7 +109,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             return false;
         }
         for (String value : mFormMap.values()) {
-            Log.d("value", "checkInfoSuccess: " + value);
             if ("".equals(value)) {
                 return false;
             }
@@ -116,7 +119,6 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void signUpSuccess() {
         showToast("报名成功!");
-        setResult(RESULT_OK);
         finish();
     }
 
@@ -137,6 +139,30 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             mDialog.dismiss();
             mBtnSignUp.setEnabled(true);
         }
+    }
+
+    /**
+     * 若已经报名
+     */
+    @Override
+    public void isSignUp(String signupId) {
+        mSignUpId = signupId;
+        showToast("你已经报名了,再次报名将更新信息!");
+    }
+
+    @Override
+    public void setIsSign(boolean isSign) {
+        this.isSign = isSign;
+    }
+
+    @Override
+    public String getUserId() {
+        return mActivityInfoBean.getObjectId();
+    }
+
+    @Override
+    public String getSignupId() {
+        return mSignUpId;
     }
 
     @Override
