@@ -219,5 +219,8 @@ public class ActivityInfoBean extends BmobObject implements Parcelable {
         dest.writeBundle(bundle);
     }
 
-
+    @Override
+    public String toString() {
+        return getActivityName() + getActivityDetail();
+    }
 }

@@ -26,6 +26,7 @@ public class PublisherMainActivity extends BaseActivity {
     @InjectView(R.id.vp_main_vp)
     ViewPager mVpMainVp;
 
+    private static final String TAG = "PublisherMainActivity";
     private FragmentAdapter mFragmentAdapter;
     private List<Fragment> mFragmentList;
     private List<String> mTitleList;
@@ -41,7 +42,6 @@ public class PublisherMainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
         mTitleList = new ArrayList<>();
         mTitleList.add("已发布");
         mTitleList.add("发布");
@@ -53,6 +53,7 @@ public class PublisherMainActivity extends BaseActivity {
 
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList, mTitleList);
         mVpMainVp.setAdapter(mFragmentAdapter);
+        mVpMainVp.setOffscreenPageLimit(2);
         mTabLayout.setupWithViewPager(mVpMainVp);
 
         for (int i = 0; i < mTitleList.size(); i++) {

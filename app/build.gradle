@@ -40,7 +40,6 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.4'
     compile 'com.zhihu.android:matisse:0.4.3'
     compile 'cn.bmob.android:bmob-push:1.0.0'
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'top.zibin:Luban:1.0.9'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:cardview-v7:25.3.1'
 }

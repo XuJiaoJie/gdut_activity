@@ -200,14 +200,6 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
                 mSelected = list;
                 updateNineGridView();
                 break;
-            case CODE_SHOW_PHOTO:
-                if (data != null) {
-                    mSelected = data.getBundleExtra("BUNDLE").getParcelableArrayList("RESULT");
-                    updateNineGridView();
-                } else {
-                    showToast("抱歉，返回数据出错");
-                }
-                break;
         }
     }
 
@@ -215,8 +207,8 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
         Uri photoFileUri = mCapturePhotoHelper.getPhotoUri();
         if (photoFileUri != null) {
             File file = mCapturePhotoHelper.getPhotoFile();
-            PictureUtil.compressBitmap(file.getPath(), file.getPath(), 1080);
-
+//            PictureUtil.compressBitmap(file.getPath(), file.getPath(), 1080);
+            PictureUtil.compressImage(file.getPath(), 600, 800, 700);
             List<Uri> tmpList = new ArrayList<>();
             if (mSelected != null) {
                 tmpList.addAll(mSelected);
@@ -251,6 +243,8 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
                 onImportPhotoClicked();
                 break;
             case R.id.btn_set_form_data:
+                // TODO: 2017/5/17 0017 待删除
+                uploadImg();
                 break;
             case R.id.btn_preview:
                 ActivityInfoBean previewBean = saveActivityData(null);
@@ -354,7 +348,14 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
         final String[] paths = new String[mSelected.size()];
         for (int i = 0; i < mSelected.size(); i++) {
             paths[i] = PictureUtil.handleImageOnKitKat(mBaseActivity, mSelected.get(i));
+//            compressWithLuban(paths[i]);
+            PictureUtil.compressImage(paths[i], 600, 800, 800);
+
         }
+        doUpLoad(paths);
+    }
+
+    private void doUpLoad(final String[] paths) {
         ProgressDialogUtil.showProgressDialog(mBaseActivity, "上传图片");
         BmobFile.uploadBatch(paths, new UploadBatchListener() {
             @Override
@@ -382,6 +383,7 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
             }
         });
     }
+
 
 
     private void saveCheckboxStatus() {
