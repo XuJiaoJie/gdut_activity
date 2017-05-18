@@ -9,9 +9,11 @@
               tools:context="com.rdc.gdut_activity.ui.RegisterActivity">
 
     <com.rdc.gdut_activity.view.TopBar
+        android:id="@+id/tb_register"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
         app:title="@string/string_activity_register"
+        app:leftButtonSize="@dimen/topbar_button_size"
         app:titleTextColor="@color/white">
     </com.rdc.gdut_activity.view.TopBar>
 

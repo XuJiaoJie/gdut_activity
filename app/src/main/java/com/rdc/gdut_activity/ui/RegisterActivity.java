@@ -16,11 +16,12 @@ import com.rdc.gdut_activity.presenter.RegisterPresenter;
 import com.rdc.gdut_activity.ui.viewinterface.IRegisterView;
 import com.rdc.gdut_activity.utils.CheckInfoUtil;
 import com.rdc.gdut_activity.view.LoadingDialog;
+import com.rdc.gdut_activity.view.TopBar;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class RegisterActivity extends BaseActivity implements IRegisterView {
+public class RegisterActivity extends BaseActivity implements IRegisterView, TopBar.topbarClickListner {
 
 
     @InjectView(R.id.et_register_username)
@@ -31,6 +32,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
     EditText mEtPasswordAgain;
     @InjectView(R.id.btn_register_register)
     Button mBtnRegister;
+    @InjectView(R.id.tb_register)
+    TopBar mTbRegister;
     private RegisterPresenter mPresenter;
     private Dialog mDialog;
 
@@ -41,6 +44,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @Override
     protected void initView() {
+        mTbRegister.setButtonBackground(R.drawable.iv_back,0);
         mEtPasswordAgain.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
@@ -55,7 +59,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @Override
     protected void initListener() {
-
+        mTbRegister.setOnTopbarClickListener(this);
     }
 
     @Override
@@ -120,5 +124,15 @@ public class RegisterActivity extends BaseActivity implements IRegisterView {
             mBtnRegister.setEnabled(true);
             mDialog.dismiss();
         }
+    }
+
+    @Override
+    public void leftClick() {
+        finish();
+    }
+
+    @Override
+    public void rightClick() {
+
     }
 }
