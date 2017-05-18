@@ -149,8 +149,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         } else {
             isRight = true;
         }
-        return true;
-        // TODO: 2017.5.17 这里需要改回来
+        return isRight;
     }
 
     /**
