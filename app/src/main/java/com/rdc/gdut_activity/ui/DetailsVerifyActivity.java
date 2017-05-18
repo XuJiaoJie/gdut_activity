@@ -44,7 +44,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class DetailsVerifyActivity extends BaseActivity implements VerifyContract.DetailView {
     private static final String TAG = "DetailsVerifyActivity";
     private static final String KEY_BUNDLE = "BUNDLE";
-    private static final String KEY_URI_LIST = "URI_LIST";
+    private static final String KEY_URI_LIST = "UriList";
     @InjectView(R.id.tv_item_activity_title)
     TextView mTvItemActivityTitle;
     @InjectView(R.id.tv_item_user_name)
@@ -114,7 +114,10 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         intent.putExtra("DetailsVerifyActivity", (Parcelable) bean);
         intent.putExtra("isVerifyType", isVerifyType);
         intent.putExtra("ActivityTitle", actTitle);
-        intent.putExtra("UriList", (Parcelable) uriList);
+//        intent.putExtra("UriList", (Parcelable) uriList);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("UriList", uriList);
+        intent.putExtras(bundle);
         return intent;
     }
 
@@ -143,7 +146,7 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         if (mBean.getImgUrlList() == null || mBean.getImgUrlList().size() == 0) {
             mTvVerifyPic.setVisibility(View.GONE);
             mIvVerifyPicFrist.setImageResource(R.drawable.verify_item_pic);
-        }else if(mBean.getImgUrlList().size() != 0){
+        } else if (mBean.getImgUrlList().size() != 0) {
             mTvVerifyPic.setVisibility(View.VISIBLE);
             Picasso.with(this)
                     .load(mBean.getImgUrlList().get(0))
@@ -161,11 +164,16 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         if (mTitle != null && mTitle.equals("预览")) {
             mImgUriAdapter = new DetailImgUriAdapter();
             mNgivActivityPic.setAdapter(mImgUriAdapter);
-            if (getIntent() != null && getIntent().getBundleExtra(KEY_BUNDLE) != null) {
-                Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
-                if (bundle.getParcelableArrayList(KEY_URI_LIST) != null) {
-                    mNgivActivityPic.setImagesData(bundle.getParcelableArrayList(KEY_URI_LIST));
-                }
+//            if (getIntent() != null && getIntent().getBundleExtra(KEY_BUNDLE) != null) {
+//                Bundle bundle = getIntent().getBundleExtra(KEY_BUNDLE);
+//                if (bundle.getParcelableArrayList(KEY_URI_LIST) != null) {
+//                    mNgivActivityPic.setImagesData(bundle.getParcelableArrayList(KEY_URI_LIST));
+//                }
+//            }
+            // TODO: 2017.5.18 聪威修改代码
+            if (getIntent().getExtras().getSerializable("UriList") != null) {
+                ArrayList<Uri> arrayList = (ArrayList<Uri>) getIntent().getExtras().getSerializable("UriList");
+                mNgivActivityPic.setImagesData(arrayList);
             }
         } else {
             mNgivActivityPic.setAdapter(mImgAdapter);
