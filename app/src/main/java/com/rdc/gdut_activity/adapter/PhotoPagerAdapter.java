@@ -42,12 +42,12 @@ public class PhotoPagerAdapter<T> extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = mInflater.inflate(R.layout.viewpager_details_photo, null);
         PhotoView photoView = (PhotoView) view.findViewById(R.id.pv_details_photo);
-        Glide.with(mContext).load(mList.get(position))
+        Glide.with(mContext).load(mList.get(position)).placeholder(R.drawable.photo_empty_photo)
                 .into(photoView);
         photoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((BaseActivity)mContext).finish();
+                ((BaseActivity) mContext).finish();
             }
         });
         container.addView(view);

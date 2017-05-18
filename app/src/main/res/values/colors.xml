@@ -4,7 +4,7 @@
     <!--主题色-->
     <color name="colorPrimary">#3fc793</color>
     <color name="colorPrimaryDark">#38b184</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FFEB3B</color>
 
     <!--login-->
     <color name="color_white_login">#fdfdfe</color>

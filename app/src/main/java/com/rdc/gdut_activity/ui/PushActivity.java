@@ -15,7 +15,6 @@ import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.bean.Publisher;
-import com.rdc.gdut_activity.utils.GsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.PushListener;
 
 public class PushActivity extends BaseActivity {
 
@@ -127,7 +127,23 @@ public class PushActivity extends BaseActivity {
         channels.add(activityInfoBean.getObjectId());
         query.addWhereEqualTo("channels", channels);
         manager.setQuery(query);
-        manager.pushMessage(GsonUtil.gsonToJson(msg));
+//        MessageBean messageBean = new MessageBean();
+//        messageBean.setMessage(msg);
+//        messageBean.setTime(System.currentTimeMillis() + "");
+//        messageBean.setIcon(activityInfoBean.getPublisherIconUrl());
+//        messageBean.setObjectid(activityInfoBean.getObjectId());
+//        String message= GsonUtil.gsonToJson(messageBean);
+        manager.pushMessage(msg, new PushListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    showToast("推送成功!");
+                } else {
+                    showToast("推送失败!" + e.toString());
+                }
+            }
+        });
+
     }
 
 

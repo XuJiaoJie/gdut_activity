@@ -58,6 +58,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
     TopBar mTbDetailsMain;
     @InjectView(R.id.fl_details)
     FrameLayout mFlDetails;
+    @InjectView(R.id.tv_details_type)
+    TextView mTvDetailsType;
 
     private List<String> mPhotoList;
     private DetailsPhotoPageAdapter mPageAdapter;
@@ -71,7 +73,7 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
 
     @Override
     protected int setLayoutResID() {
-        return R.layout.activity_details_2;
+        return R.layout.activity_details;
     }
 
     @Override
@@ -80,11 +82,13 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
         setSignUpButton();
         if (mPhotoList != null) {
             mFlDetails.setVisibility(View.VISIBLE);
-            mPagerListener = new DetailsPhotoPagerListener(this, mLlDetailsTopDot, mViewDetailsTopDotRed, mPhotoList.size());
+            if (mPhotoList.size() > 1) {
+                mPagerListener = new DetailsPhotoPagerListener(this, mLlDetailsTopDot, mViewDetailsTopDotRed, mPhotoList.size());
+                mVpDetailsTop.addOnPageChangeListener(mPagerListener);
+            }
             mPageAdapter = new DetailsPhotoPageAdapter(this, mPhotoList, this);
             int startPage = Integer.MAX_VALUE / 2;  //无限循环
             mVpDetailsTop.setCurrentItem(startPage);
-            mVpDetailsTop.addOnPageChangeListener(mPagerListener);
         } else {
             mFlDetails.setVisibility(View.GONE);
         }
@@ -99,6 +103,7 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
         mTvDetailsPublishTime.setText(mInfoBean.getCreatedAt());
         mTvDetailsTo.setText(mInfoBean.getActivityHost());
         mTvDetailsPosition.setText(mInfoBean.getActivityLocation());
+        mTvDetailsType.setText(mInfoBean.getActivityType());
         if (mInfoBean.getFormDataMap() != null && mInfoBean.getFormDataMap().size() > 0) {
             isCanSignUp = true;
         } else {
@@ -217,5 +222,4 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
         shareIntent.setType("image/*");
         startActivity(Intent.createChooser(shareIntent, "分享活动"));
     }
-
 }

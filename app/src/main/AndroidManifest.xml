@@ -21,6 +21,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
+    <!--bmob推送服务权限-->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -86,7 +90,6 @@
 
         <receiver android:name="cn.bmob.push.PushReceiver">
             <intent-filter>
-
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <!-- 解锁完成后会调用 -->

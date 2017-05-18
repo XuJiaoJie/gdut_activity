@@ -142,6 +142,7 @@ public class SelectClassPresenter {
     public void login() {
         mParamsMap.clear();
         Student student = BmobUser.getCurrentUser(Student.class);
+
         mParamsMap.put("verifycode", "");
         mClassModel.login(Constant.EDUCATION_SYSTEM_LOGIN_URL, new OkHttpResultCallback() {
             @Override
