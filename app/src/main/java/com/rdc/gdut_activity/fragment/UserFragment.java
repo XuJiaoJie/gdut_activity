@@ -19,11 +19,13 @@ import android.widget.TextView;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseFragment;
 import com.rdc.gdut_activity.bean.Student;
+import com.rdc.gdut_activity.bean.User;
 import com.rdc.gdut_activity.ui.AboutActivity;
 import com.rdc.gdut_activity.ui.LoginActivity;
 import com.rdc.gdut_activity.ui.UserActivitiesActivity;
 import com.rdc.gdut_activity.ui.UserDetailActivity;
 import com.rdc.gdut_activity.ui.UserGDUTActivity;
+import com.rdc.gdut_activity.utils.PictureDownloadUtil;
 import com.rdc.gdut_activity.view.CircleImageView;
 
 import java.util.List;
@@ -128,31 +130,31 @@ public class UserFragment extends BaseFragment {
             Drawable drawable = new BitmapDrawable(bitmap);
             civUserIcon.setImageDrawable(drawable);
         } else {
-//            BmobQuery<User> userBmobQuery = new BmobQuery<>();
-//            userBmobQuery.addWhereEqualTo("objectId", BmobUser.getCurrentUser().getObjectId());
-//            userBmobQuery.findObjects(new FindListener<User>() {
-//                @Override
-//                public void done(final List<User> list, BmobException e) {
-//                    if (e == null) {
-//                        if (list != null) {
-//                            //Glide.with(getContext()).load(list.get(0).getIcon()).into(civUserIcon);
-//                            new Thread() {
-//                                @Override
-//                                public void run() {
-//                                    while (true) {
-//                                       if (PictureDownloadUtil.loadImageSaveToLocal(list.get(0).getIcon(), mPath + "head.jpg")) {
-//                                           break;
-//                                       }
-//                                    }
-//                                    mHandler.sendEmptyMessage(1);
-//                                }
-//                            };
-//                        }
-//                    } else {
-//                        Log.e("error", "download failed");
-//                    }
-//                }
-//            });
+            BmobQuery<User> userBmobQuery = new BmobQuery<>();
+            userBmobQuery.addWhereEqualTo("objectId", BmobUser.getCurrentUser().getObjectId());
+            userBmobQuery.findObjects(new FindListener<User>() {
+                @Override
+                public void done(final List<User> list, BmobException e) {
+                    if (e == null) {
+                        if (list != null) {
+                            //Glide.with(getContext()).load(list.get(0).getIcon()).into(civUserIcon);
+                            new Thread() {
+                                @Override
+                                public void run() {
+                                    while (true) {
+                                       if (PictureDownloadUtil.loadImageSaveToLocal(list.get(0).getIcon(), "head.jpg")) {
+                                           break;
+                                       }
+                                    }
+                                    mHandler.sendEmptyMessage(1);
+                                }
+                            };
+                        }
+                    } else {
+                        Log.e("error", "download failed");
+                    }
+                }
+            });
             // TODO: 2017/5/12 从云端下载
         }
         BmobQuery<Student> studentBmobQuery = new BmobQuery<>();
