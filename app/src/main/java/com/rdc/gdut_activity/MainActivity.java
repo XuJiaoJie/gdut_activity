@@ -89,6 +89,7 @@ public class MainActivity extends BaseActivity implements PushMessageReceiver.IO
 
     @Override
     public void initView() {
+        mTopBar.setButtonBackground(0,R.drawable.search_activity_main);
         mVpMainVp.setOffscreenPageLimit(3);
         mVpMainVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -101,12 +102,16 @@ public class MainActivity extends BaseActivity implements PushMessageReceiver.IO
                 //设置topbar标题及按钮的图片
                 if (position == 0) {
                     mTopBar.setTitle("主页");
+                    mTopBar.setButtonBackground(0,R.drawable.search_activity_main);
                 } else if (position == 1) {
                     mTopBar.setTitle("工具");
+                    mTopBar.setButtonBackground(0,0);
                 } else if (position == 2) {
                     mTopBar.setTitle("消息");
+                    mTopBar.setButtonBackground(0,0);
                 } else {
                     mTopBar.setTitle("个人中心");
+                    mTopBar.setButtonBackground(0,0);
                 }
 
             }
@@ -148,6 +153,7 @@ public class MainActivity extends BaseActivity implements PushMessageReceiver.IO
                 switch (position) {
                     case 0:
                         MainFragment mainFragment = (MainFragment) mFragments.get(position);
+                        mainFragment.topbarRightButtonClick();
                         break;
                     case 1:
                         ToolFragment toolFragment = (ToolFragment) mFragments.get(position);

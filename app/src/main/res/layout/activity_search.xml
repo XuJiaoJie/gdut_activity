@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.rdc.gdut_activity.ui.SearchActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_topbar_height"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/back_activity_search"
+            android:layout_width="@dimen/topbar_button_size"
+            android:layout_height="@dimen/topbar_button_size"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_back"
+            android:layout_marginLeft="8dp"/>
+        <com.rdc.gdut_activity.view.DeletableEditText
+            android:id="@+id/et_activity_search"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/search_activity_search"
+            android:layout_toRightOf="@+id/back_activity_search"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/activity_type_imgbtn_search"
+            android:background="@drawable/activity_main_edittext"
+            android:drawablePadding="6dp"
+            android:drawableRight="@drawable/activity_type_imgbtn_searchdelete"
+            android:hint="请输入要搜索的活动全名"
+            android:paddingBottom="7dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="9dp"
+            android:paddingTop="7dp"
+            android:singleLine="true"
+            android:textColor="@color/dark_text_verify"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp"
+            android:completionThreshold="1"
+            />
+        <ImageView
+            android:id="@+id/search_activity_search"
+            android:layout_width="@dimen/topbar_button_size"
+            android:layout_height="@dimen/topbar_button_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_activity_main"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#bebebe"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_activity_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_activity_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

@@ -21,6 +21,7 @@ import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.contract.MainFragmentContract;
 import com.rdc.gdut_activity.presenter.MainFragmentPresenterImpl;
 import com.rdc.gdut_activity.ui.DetailsActivity;
+import com.rdc.gdut_activity.ui.SearchActivity;
 import com.rdc.gdut_activity.ui.SelectTypeActivity;
 import com.rdc.gdut_activity.view.TopBar;
 
@@ -66,12 +67,9 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
         return mainFragment;
     }
 
-    public void topbarLeftButtonClick() {
-        Toast.makeText(getActivity(), "主页面左按钮", Toast.LENGTH_SHORT).show();
-    }
 
     public void topbarRightButtonClick() {
-        Toast.makeText(getActivity(), "主页面右按钮", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(mBaseActivity, SearchActivity.class));
     }
 
     @Override
@@ -129,7 +127,7 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
         } else {
             mLoadMoreAdapter.notifyDataSetChanged();
         }
-        // TODO: 2017/5/17 什么意思
+
         mSrlMainFragment.setRefreshing(false);
     }
 
@@ -178,19 +176,19 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.item_activity_main_fragment:
-                startSelectTypeActivity("活动");
+                startSelectTypeActivity("公益");
                 break;
             case R.id.item_speech_main_fragment:
                 startSelectTypeActivity("讲座");
                 break;
             case R.id.item_competition_main_fragment:
-                startSelectTypeActivity("竞赛");
+                startSelectTypeActivity("比赛");
                 break;
             case R.id.item_club_main_fragment:
-                startSelectTypeActivity("社团");
+                startSelectTypeActivity("演出");
                 break;
             case R.id.item_college_main_fragment:
-                startSelectTypeActivity("学院");
+                startSelectTypeActivity("更多");
                 break;
         }
     }

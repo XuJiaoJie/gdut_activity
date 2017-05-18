@@ -121,11 +121,18 @@
         <activity android:name=".ui.SelectRegionActivity"/>
         <activity android:name=".ui.UserActivitiesActivity"/>
         <activity android:name=".ui.UserGDUTActivity"/>
-        <activity android:name=".ui.SelectTypeActivity">
+        <activity
+            android:name=".ui.SelectTypeActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".ui.PushActivity">
         </activity>
         <activity android:name=".ui.EnrollStatusActivity">
+        </activity>
+        <activity android:name=".ui.SearchActivity"
+                  android:launchMode="singleTask"
+                  android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

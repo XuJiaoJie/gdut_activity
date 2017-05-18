@@ -37,16 +37,16 @@ public class MainFragmentPresenterImpl implements MainFragmentContract.Presenter
         mModel.loadMoreData(type);
     }
 
+
     @Override
-    public void mainFragmentPass(String objectId) {
-        mModel.mainFragmentPass(objectId);
+    public void onRefreshByName(String type, String name) {
+        mModel.refreshDataByName(type,name);
     }
 
     @Override
-    public void mainFragmentFailure(String objectId, String reason) {
-        mModel.mainFragmentFailure(objectId,reason);
+    public void onLoadMoreByName(String type,String name) {
+        mModel.loadaMoreDataByName(type,name);
     }
-
 
     /**
      * model调用
@@ -67,21 +67,8 @@ public class MainFragmentPresenterImpl implements MainFragmentContract.Presenter
     }
 
     @Override
-    public void loadMoreDataErroe(String s) {
+    public void loadMoreDataError(String s) {
         mView.onLoadMoreError(s);
     }
-
-    @Override
-    public void mainFragmentSuccess() {
-     //   mDetailView.MainFragmentSuccess();
-    }
-
-    @Override
-    public void mainFragmentError(String s) {
-    //    mDetailView.MainFragmentError(s);
-    }
-
-
-
 
 }

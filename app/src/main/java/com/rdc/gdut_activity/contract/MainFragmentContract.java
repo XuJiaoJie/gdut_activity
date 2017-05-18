@@ -22,11 +22,12 @@ public interface MainFragmentContract {
     interface Model{
         void refreshData(String type);
 
+        void refreshDataByName(String type,String name);
+
         void loadMoreData(String type);
 
-        void mainFragmentPass(String objectId);
+        void loadaMoreDataByName(String type,String name);
 
-        void mainFragmentFailure(String objectId,String reason);
     }
 
     interface Presenter{
@@ -35,9 +36,9 @@ public interface MainFragmentContract {
 
         void onLoadMore(String type);
 
-        void mainFragmentPass(String objectId);
+        void onRefreshByName(String type , String name);
 
-        void mainFragmentFailure(String objectId,String reason);
+        void onLoadMoreByName(String type,String name);
 
         //model
         void refreshDataSuccess(List<ActivityInfoBean> list);
@@ -46,10 +47,8 @@ public interface MainFragmentContract {
 
         void loadMoreDataSuccess(List<ActivityInfoBean> list);
 
-        void loadMoreDataErroe(String s);
+        void loadMoreDataError(String s);
 
-        void mainFragmentSuccess();
 
-        void mainFragmentError(String s);
     }
 }

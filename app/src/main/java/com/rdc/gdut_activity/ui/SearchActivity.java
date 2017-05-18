@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.rdc.gdut_activity.R;
@@ -16,7 +17,6 @@ import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.contract.MainFragmentContract;
 import com.rdc.gdut_activity.presenter.MainFragmentPresenterImpl;
 import com.rdc.gdut_activity.view.DeletableEditText;
-import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,20 +24,20 @@ import java.util.List;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class SelectTypeActivity extends BaseActivity implements OnLoadMoreDataRv, OnClickRecyclerViewListener, MainFragmentContract.View {
+public class SearchActivity extends BaseActivity implements OnLoadMoreDataRv, OnClickRecyclerViewListener, MainFragmentContract.View {
 
-    @InjectView(R.id.tb_activity_select_type)
-    TopBar mTbActivitySelectType;
-    @InjectView(R.id.rv_select_type_activity)
-    RecyclerView mRvSelectTypeActivity;
-    @InjectView(R.id.srl_select_type_activity)
-    SwipeRefreshLayout mSrlSelectTypeActivity;
-    @InjectView(R.id.et_activity_select)
-    DeletableEditText mEtActivitySelect;
-    @InjectView(R.id.search_activity_select)
-    ImageView mSearchActivitySelect;
 
-    private String mType;
+    @InjectView(R.id.back_activity_search)
+    ImageView mBackActivitySearch;
+    @InjectView(R.id.et_activity_search)
+    DeletableEditText mEtActivitySearch;
+    @InjectView(R.id.search_activity_search)
+    ImageView mSearchActivitySearch;
+    @InjectView(R.id.srl_activity_search)
+    SwipeRefreshLayout mSrlActivitySearch;
+    @InjectView(R.id.rv_activity_search)
+    RecyclerView mRvActivitySearch;
+
     private VerifyRecyclerAdapter mAdapter;
     private MainFragmentContract.Presenter mPresenter;
     private List<ActivityInfoBean> mBeanList;
@@ -45,12 +45,11 @@ public class SelectTypeActivity extends BaseActivity implements OnLoadMoreDataRv
 
     @Override
     protected int setLayoutResID() {
-        return R.layout.activity_select_type;
+        return R.layout.activity_search;
     }
 
     @Override
     protected void initData() {
-        mType = getIntent().getStringExtra("type");
         mPresenter = new MainFragmentPresenterImpl(this);
         mBeanList = new ArrayList<>();
         mAdapter = new VerifyRecyclerAdapter();
@@ -59,38 +58,22 @@ public class SelectTypeActivity extends BaseActivity implements OnLoadMoreDataRv
 
     @Override
     protected void initView() {
-        mTbActivitySelectType.setButtonBackground(R.drawable.icon_back, 0);
-        mTbActivitySelectType.setOnTopbarClickListener(new TopBar.topbarClickListner() {
-            @Override
-            public void leftClick() {
-                finish();
-            }
-
-            @Override
-            public void rightClick() {
-
-            }
-        });
-        mTbActivitySelectType.setTitle(mType);
-        mRvSelectTypeActivity.setHasFixedSize(true);
-        mRvSelectTypeActivity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));//设置Item的排列方式
-
+        mRvActivitySearch.setHasFixedSize(true);
+        mRvActivitySearch.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));//设置Item的排列方式
     }
 
     @Override
     protected void initListener() {
-        mPresenter.onRefresh(mType);
-
-        mSrlSelectTypeActivity.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mSrlActivitySearch.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 if(isNameEmpty()){
-                    mPresenter.onRefresh(mType);
+                    mPresenter.onRefresh("全部");
                 }
                 else{
-                    mPresenter.onRefreshByName(mType,mEtActivitySelect.getText().toString());
+                    mPresenter.onRefreshByName("全部",mEtActivitySearch.getText().toString());
                 }
-                mSrlSelectTypeActivity.setRefreshing(true);
+                mSrlActivitySearch.setRefreshing(true);
             }
         });
     }
@@ -104,10 +87,10 @@ public class SelectTypeActivity extends BaseActivity implements OnLoadMoreDataRv
     @Override
     public void loadMoreData() {
         if(isNameEmpty()){
-            mPresenter.onLoadMore(mType);
+            mPresenter.onLoadMore("全部");
         }
         else{
-            mPresenter.onLoadMoreByName(mType,mEtActivitySelect.getText().toString());
+            mPresenter.onLoadMoreByName("全部",mEtActivitySearch.getText().toString());
         }
     }
 
@@ -122,22 +105,21 @@ public class SelectTypeActivity extends BaseActivity implements OnLoadMoreDataRv
         mAdapter.updataData(list);
         if (null == mLoadMoreAdapter) {
             mLoadMoreAdapter = new LoadMoreAdapterWrapper(mAdapter, this);
-            mRvSelectTypeActivity.setAdapter(mLoadMoreAdapter);
+            mRvActivitySearch.setAdapter(mLoadMoreAdapter);
         } else {
             mLoadMoreAdapter.notifyDataSetChanged();
         }
-        mSrlSelectTypeActivity.setRefreshing(false);
+        mSrlActivitySearch.setRefreshing(false);
     }
 
     @Override
     public void onRefreshError(String s) {
-        mSrlSelectTypeActivity.setRefreshing(false);
+        mSrlActivitySearch.setRefreshing(false);
         showToast(s);
     }
 
     @Override
     public void onLoadMoreSuccess(List<ActivityInfoBean> list) {
-
         if (list.size() != 0) {
             mBeanList.addAll(list);
             mAdapter.appendData(list);
@@ -152,18 +134,26 @@ public class SelectTypeActivity extends BaseActivity implements OnLoadMoreDataRv
         showToast(s);
     }
 
-    @OnClick(R.id.search_activity_select)
-    public void onViewClicked() {
-        if(isNameEmpty()){
-            mPresenter.onRefresh(mType);
-        }
-        else{
-            mPresenter.onRefreshByName(mType,mEtActivitySelect.getText().toString());
+
+    @OnClick({R.id.back_activity_search, R.id.search_activity_search})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.back_activity_search:
+                finish();
+                break;
+            case R.id.search_activity_search:
+                if(isNameEmpty()){
+                    mPresenter.onRefresh("全部");
+                }
+                else{
+                    mPresenter.onRefreshByName("全部",mEtActivitySearch.getText().toString());
+                }
+                break;
         }
     }
 
     private boolean isNameEmpty(){
-        if (   mEtActivitySelect.getText().toString().equals("")) {
+        if(mEtActivitySearch.getText().toString().equals("")){
             return true;
         }
         return false;

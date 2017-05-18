@@ -67,7 +67,12 @@ public class TopBar extends RelativeLayout {
         mTitle = ta.getString(R.styleable.TopBar_title);
         mLeftButtonSize = ta.getDimension(R.styleable.TopBar_leftButtonSize, 0);
         mRightButtonSize = ta.getDimension(R.styleable.TopBar_rightButtonSize, 0);
-
+        if(mLeftButtonSize == 0){
+            mLeftButtonSize = 40;
+        }
+        if(mRightButtonSize == 0){
+            mRightButtonSize = 40;
+        }
         ta.recycle();
         //资源
         resources = context.getResources();

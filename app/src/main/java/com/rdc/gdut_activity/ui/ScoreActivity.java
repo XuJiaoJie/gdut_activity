@@ -77,7 +77,17 @@ public class ScoreActivity extends BaseActivity implements ScoreContract.View {
 
     @Override
     protected void initListener() {
+        mTopbarActivityMain.setOnTopbarClickListener(new TopBar.topbarClickListner() {
+            @Override
+            public void leftClick() {
+                finish();
+            }
 
+            @Override
+            public void rightClick() {
+
+            }
+        });
     }
 
     @Override

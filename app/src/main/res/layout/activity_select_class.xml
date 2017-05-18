@@ -15,6 +15,7 @@
         android:background="@color/colorPrimary"
         app:title="@string/string_activity_selectclass"
         app:titleTextSize="18sp"
+        app:leftButtonSize="@dimen/topbar_button_size"
         app:titleTextColor="@color/white"
         >
     </com.rdc.gdut_activity.view.TopBar>

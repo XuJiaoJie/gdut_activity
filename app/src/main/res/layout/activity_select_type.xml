@@ -18,13 +18,52 @@
         app:titleTextColor="@color/white"
         app:leftButtonSize="@dimen/topbar_button_size"
         />
-    <EditText
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#bebebe"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.rdc.gdut_activity.view.DeletableEditText
         android:id="@+id/et_activity_select"
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_height="30dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+     android:layout_toLeftOf="@+id/search_activity_select"
+        android:drawableLeft="@drawable/activity_type_imgbtn_search"
+        android:background="@drawable/activity_main_edittext"
+        android:drawablePadding="6dp"
+        android:drawableRight="@drawable/activity_type_imgbtn_searchdelete"
+        android:hint="请输入要搜索的活动全名"
+        android:paddingBottom="7dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="9dp"
+        android:paddingTop="7dp"
+        android:singleLine="true"
+        android:textColor="@color/dark_text_verify"
+        android:textCursorDrawable="@null"
+        android:textSize="14sp"
+        android:layout_centerVertical="true"
+        android:completionThreshold="1"/>
 
+        <ImageView
+            android:id="@+id/search_activity_select"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_activity_select"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="12dp"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#bebebe"/>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_select_type_activity"
         android:layout_width="match_parent"

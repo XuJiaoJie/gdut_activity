@@ -11,11 +11,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#f5f5f5">
+          >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="88dp"
+            android:layout_height="70dp"
+            android:background="#f9f9f9"
             android:orientation="horizontal">
             <LinearLayout
                 android:id="@+id/item_activity_main_fragment"
@@ -28,14 +29,14 @@
                     android:layout_width="@dimen/fragment_main_type_icon_size"
                     android:layout_height="@dimen/fragment_main_type_icon_size"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/activities_main_type"/>
+                    android:src="@drawable/help_fragment_main"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/fragment_main_type_magintop"
                     android:textSize="@dimen/fragment_main_item_type_text"
-                    android:text="活动"/>
+                    android:text="公益"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/item_speech_main_fragment"
@@ -75,7 +76,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/fragment_main_type_magintop"
                     android:textSize="@dimen/fragment_main_item_type_text"
-                    android:text="竞赛"/>
+                    android:text="比赛"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/item_club_main_fragment"
@@ -88,14 +89,14 @@
                     android:layout_width="@dimen/fragment_main_type_icon_size"
                     android:layout_height="@dimen/fragment_main_type_icon_size"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/club_main_type"/>
+                    android:src="@drawable/play_fragment_main"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/fragment_main_type_magintop"
                     android:textSize="@dimen/fragment_main_item_type_text"
-                    android:text="社团"/>
+                    android:text="演出"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/item_college_main_fragment"
@@ -108,14 +109,14 @@
                     android:layout_width="@dimen/fragment_main_type_icon_size"
                     android:layout_height="@dimen/fragment_main_type_icon_size"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/college_main_type"/>
+                    android:src="@drawable/activities_main_type"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/fragment_main_type_magintop"
                     android:textSize="@dimen/fragment_main_item_type_text"
-                    android:text="学院"/>
+                    android:text="更多"/>
             </LinearLayout>
         </LinearLayout>
             <View
