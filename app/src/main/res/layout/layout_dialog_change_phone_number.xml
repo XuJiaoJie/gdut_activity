@@ -12,7 +12,6 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:digits="1234567890"
-        android:numeric="integer"/>
+        />
 
 </LinearLayout>
