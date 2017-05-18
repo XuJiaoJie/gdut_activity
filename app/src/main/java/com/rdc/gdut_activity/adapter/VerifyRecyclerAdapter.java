@@ -39,7 +39,7 @@ public class VerifyRecyclerAdapter extends BaseRecyclerViewAdapter<ActivityInfoB
         viewHolder.mTvVerifyTime.setText(bean.getActivityTime());
         viewHolder.mTvVerifyPlace.setText(bean.getActivityLocation());
         viewHolder.mTvItemActivityPublishTime.setText(bean.getCreatedAt());
-        viewHolder.mTvItemUserName.setText(bean.getPublisherName());
+        viewHolder.mTvItemUserName.setText(bean.getActivityHost());
         if (bean.getPublisherIconUrl() != null){
             Picasso.with(mContext).load(bean.getPublisherIconUrl())
                     .placeholder(R.drawable.photo_empty_photo)

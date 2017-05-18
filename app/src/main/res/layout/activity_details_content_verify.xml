@@ -316,7 +316,7 @@
 
     <com.jaeger.ninegridimageview.NineGridImageView
         android:id="@+id/ngiv_activity_pic"
-        android:layout_width="300dp"
+        android:layout_width="10dp"
         android:layout_height="300dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
