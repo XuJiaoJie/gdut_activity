@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,14 +13,18 @@ import android.widget.Spinner;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
+import com.rdc.gdut_activity.bean.MessageBean;
 import com.rdc.gdut_activity.bean.Publisher;
+import com.rdc.gdut_activity.utils.GsonUtil;
+import com.rdc.gdut_activity.view.TopBar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
