@@ -349,9 +349,7 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
         final String[] paths = new String[mSelected.size()];
         for (int i = 0; i < mSelected.size(); i++) {
             paths[i] = PictureUtil.handleImageOnKitKat(mBaseActivity, mSelected.get(i));
-//            compressWithLuban(paths[i]);
             PictureUtil.compressImage(paths[i], 600, 800, 800);
-
         }
         doUpLoad(paths);
     }

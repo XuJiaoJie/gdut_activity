@@ -12,7 +12,7 @@
     <dimen name="three_grid_unit">24dp</dimen>
     <dimen name="one_and_a_half_grid_unit">12dp</dimen>
 
-    <dimen name="topbar_button_size">20dp</dimen>
+    <dimen name="topbar_button_size">22dp</dimen>
     <dimen name="dimen_topbar_title_size">18sp</dimen>
     <dimen name="dimen_msg_name">16sp</dimen>
     <dimen name="dimen_msg_time">12sp</dimen>

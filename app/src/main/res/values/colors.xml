@@ -22,6 +22,15 @@
     <color name="lightgray_score">#efeeee</color>
     <color name="dark_gray_text_score">#404040</color>
 
+
+    <integer-array name="customColorAry">
+        <item>@color/lightblue</item>
+        <item>@color/mediumpurple</item>
+        <item>@color/lightcyan</item>
+        <item>@color/lightpink</item>
+        <item>@color/lemonchiffon</item>
+    </integer-array>
+
     <!--颜色集-->
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->
@@ -170,7 +179,6 @@
     <color name="transparent">#00000000</color>
 
     <color name="black_overlay">#66000000</color><!--黑色 -->
-
 
 
 </resources>

@@ -97,4 +97,9 @@ public class Student extends User {
     public void setPassword(String password) {
         this.gdutPassword = password;
     }
+
+    @Override
+    public String toString() {
+        return "姓名：" + getUsername() + "年龄：" + getAge();
+    }
 }

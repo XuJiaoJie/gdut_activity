@@ -180,7 +180,8 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
 
     @OnClick(R.id.btn_activity_sign_up)
     public void onViewClicked() {
-        showToast("查看你妹啊，无聊");
+        Intent intent = EnrollStatusActivity.newIntent(this, mBean);
+        startActivity(intent);
     }
 
     @OnClick({R.id.ib_verify_back, R.id.fab_verify_pass, R.id.fab_verify_failure})

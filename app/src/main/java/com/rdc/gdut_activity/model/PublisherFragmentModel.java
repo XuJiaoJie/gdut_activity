@@ -31,7 +31,7 @@ public class PublisherFragmentModel {
             return null;
         }
         View view = LayoutInflater.from(context).inflate(R.layout.item_publisher_tab, null);
-        ImageView imageView = (ImageView) view.findViewById(R.id.iv_icon);
+        ImageView imageView = (ImageView) view.findViewById(R.id.iv_user_icon);
         TextView textView = (TextView) view.findViewById(R.id.tv_item_name);
 
         imageView.setImageResource(mTabRes[position]);

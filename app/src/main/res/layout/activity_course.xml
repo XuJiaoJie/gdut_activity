@@ -2,52 +2,52 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightgray_score">
+    android:orientation="vertical"
+    >
+
+
+    <!--<include layout="@layout/toolbar_course"/>-->
 
     <com.rdc.gdut_activity.view.TopBar
+        android:id="@+id/top_bar_query_course"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
-        android:id="@+id/topbar_activity_main"
         android:background="@color/colorPrimaryDark"
-        app:title="成绩查询"
-        app:titleTextSize="18sp"
-        app:leftButtonSize="@dimen/topbar_button_size"
-        app:titleTextColor="@color/white">
+        app:title="课表"
+        app:leftButtonSize="22dp"
+        app:titleTextColor="@color/white"
+        app:titleTextSize="18sp">
     </com.rdc.gdut_activity.view.TopBar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请选择学期"
-            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:text="周数："
             android:textColor="@android:color/black"
-            android:gravity="center_vertical"/>
+            android:textSize="15sp"/>
 
         <com.rdc.gdut_activity.view.NiceSpinner
-            android:id="@+id/ns_score_select"
+            android:id="@+id/ns_week_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"/>
-
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_score_list"
+        android:id="@+id/rv_course"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

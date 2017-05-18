@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingTop="5dp">
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ueser_icon"/>
+
+        <TextView
+            android:id="@+id/tv_user_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            tools:text="王明"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/ll"
+        android:maxEms="10"
+        android:maxLines="2"
+        tools:text="自动化学院\n15 级物联网工程4 班"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tv_info">
+
+        <ImageView
+            android:id="@+id/iv_contact_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_contact_way"/>
+
+        <TextView
+            android:id="@+id/tv_contact_way"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_contact_icon"
+            tools:text="15088802176"/>
+        <!--<ImageView-->
+        <!--android:id="@+id/iv_student_num_icon"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_below="@id/iv_contact_icon"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:src="@drawable/ic_student_num"/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_student_num"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/tv_contact_way"-->
+        <!--android:layout_toRightOf="@id/iv_student_num_icon"-->
+        <!--tools:text="3115001676"/>-->
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/ll"
+        android:layout_marginTop="5dp"
+        android:background="@color/gainsboro"/>
+
+</RelativeLayout>

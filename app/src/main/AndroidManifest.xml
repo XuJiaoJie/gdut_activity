@@ -70,6 +70,7 @@
             android:configChanges="keyboardHidden|orientation"
             android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
+        <activity android:name=".ui.CourseActivity"/>
 
         <!-- bmob推送 -->
         <service
@@ -90,6 +91,7 @@
 
         <receiver android:name="cn.bmob.push.PushReceiver">
             <intent-filter>
+
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <!-- 解锁完成后会调用 -->
@@ -136,6 +138,8 @@
         <activity android:name=".ui.SearchActivity"
                   android:launchMode="singleTask"
                   android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity android:name=".ui.PublisherDetailActivity">
         </activity>
     </application>
 

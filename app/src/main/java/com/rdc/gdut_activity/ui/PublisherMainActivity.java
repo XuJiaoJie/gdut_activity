@@ -1,6 +1,5 @@
 package com.rdc.gdut_activity.ui;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -28,16 +27,14 @@ public class PublisherMainActivity extends BaseActivity {
     TabLayout mTabLayout;
     @InjectView(R.id.vp_main_vp)
     ViewPager mVpMainVp;
-
-    private static final String TAG = "PublisherMainActivity";
     @InjectView(R.id.toolbar)
     Toolbar mToolbar;
     @InjectView(R.id.iv_push)
     ImageView mIvPush;
-    private FragmentAdapter mFragmentAdapter;
-    private List<Fragment> mFragmentList;
-    private List<String> mTitleList;
-    private int[] mTabRes = new int[]{R.drawable.selector_released_activity,
+
+    private static final String TAG = "PublisherMainActivity";
+    private int[] mTabRes = new int[]{
+            R.drawable.selector_released_activity,
             R.drawable.selector_publish_activity,
             R.drawable.selector_publisher};
     private long mLastPressed;
@@ -47,47 +44,29 @@ public class PublisherMainActivity extends BaseActivity {
         return R.layout.activity_publisher_main;
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        super.onCreateOptionsMenu(menu);
-//        getMenuInflater().inflate(R.menu.menu_push, menu);
-//        menu.add("caidan");
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.item_push:
-//                startActivity(PushActivity.newIntent(this));
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
     @Override
     protected void initData() {
-        mTitleList = new ArrayList<>();
-        mTitleList.add("已发布");
-        mTitleList.add("发布");
-        mTitleList.add("我");
-        mFragmentList = new ArrayList<>();
-        mFragmentList.add(VerifyFragment.newInstance("已发布"));
-        mFragmentList.add(PublishFragment.newInstance());
-        mFragmentList.add(UserFragment.newInstance());
+        List<String> titleList = new ArrayList<>();
+        titleList.add("已发布");
+        titleList.add("发布");
+        titleList.add("我");
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(VerifyFragment.newInstance("已发布"));
+        fragmentList.add(PublishFragment.newInstance());
+        fragmentList.add(UserFragment.newInstance());
 
-        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList, mTitleList);
-        mVpMainVp.setAdapter(mFragmentAdapter);
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList, titleList);
+        mVpMainVp.setAdapter(fragmentAdapter);
         mVpMainVp.setOffscreenPageLimit(2);
         mTabLayout.setupWithViewPager(mVpMainVp);
 
-        for (int i = 0; i < mTitleList.size(); i++) {
+        for (int i = 0; i < titleList.size(); i++) {
             TabLayout.Tab itemTab = mTabLayout.getTabAt(i);
             if (itemTab != null) {
                 itemTab.setCustomView(R.layout.item_publisher_tab);
                 TextView title = (TextView) itemTab.getCustomView().findViewById(R.id.tv_item_name);
-                ImageView ivIcon = (ImageView) itemTab.getCustomView().findViewById(R.id.iv_icon);
-                title.setText(mTitleList.get(i));
+                ImageView ivIcon = (ImageView) itemTab.getCustomView().findViewById(R.id.iv_user_icon);
+                title.setText(titleList.get(i));
                 ivIcon.setImageResource(mTabRes[i]);
             }
         }
@@ -115,13 +94,6 @@ public class PublisherMainActivity extends BaseActivity {
             finish();
             System.exit(0);
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.inject(this);
     }
 
     @OnClick(R.id.iv_push)
