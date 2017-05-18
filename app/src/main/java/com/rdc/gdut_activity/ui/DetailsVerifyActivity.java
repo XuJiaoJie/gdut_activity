@@ -91,6 +91,10 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
     RelativeLayout mRlActivitySignUp;
     @InjectView(R.id.tv_verify_num)
     TextView mTvVerifyNum;
+    @InjectView(R.id.tv_verify_pic)
+    TextView mTvVerifyPic;
+    @InjectView(R.id.iv_verify_pic_frist)
+    ImageView mIvVerifyPicFrist;
 
     private ActivityInfoBean mBean;
     private DetailImgAdapter mImgAdapter;
@@ -135,9 +139,17 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         mTvVerifyType.setText(mBean.getActivityType());
         mTvVerifyHost.setText(mBean.getActivityHost());
         mTvVerifyDetails.setText(mBean.getActivityDetail());
-
         mTvVerifyNum.setText("炒鸡少");
-
+        if (mBean.getImgUrlList() == null || mBean.getImgUrlList().size() == 0) {
+            mTvVerifyPic.setVisibility(View.GONE);
+            mIvVerifyPicFrist.setImageResource(R.drawable.verify_item_pic);
+        }else if(mBean.getImgUrlList().size() != 0){
+            mTvVerifyPic.setVisibility(View.VISIBLE);
+            Picasso.with(this)
+                    .load(mBean.getImgUrlList().get(0))
+                    .placeholder(R.drawable.photo_empty_photo)
+                    .into(mIvVerifyPicFrist);
+        }
         if (mBean.getPublisherIconUrl() != null) {
             Picasso.with(this)
                     .load(mBean.getPublisherIconUrl())
