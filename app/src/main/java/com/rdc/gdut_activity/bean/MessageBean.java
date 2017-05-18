@@ -62,4 +62,5 @@ public class MessageBean implements Serializable {
         }
         return super.equals(obj);
     }
+
 }

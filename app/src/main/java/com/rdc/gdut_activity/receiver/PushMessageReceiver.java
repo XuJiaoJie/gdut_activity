@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.rdc.gdut_activity.MainActivity;
 import com.rdc.gdut_activity.R;
+import com.rdc.gdut_activity.bean.MessageAlertBean;
 import com.rdc.gdut_activity.bean.MessageBean;
 import com.rdc.gdut_activity.utils.GsonUtil;
 
@@ -37,13 +38,13 @@ public class PushMessageReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (PushConstants.ACTION_MESSAGE.equals(intent.getAction())) {
             // TODO: 2017.5.16 获取通知
-
             Log.d("receiver", "onReceive: " + intent.getStringExtra("msg"));
-            MessageBean msg = GsonUtil.gsonToBean(intent.getStringExtra("msg"), MessageBean.class);
-            setNotification(msg);
+            MessageAlertBean alertBean = GsonUtil.gsonToBean(intent.getStringExtra("msg"), MessageAlertBean.class);
+            MessageBean msg = GsonUtil.gsonToBean(alertBean.getAlert(), MessageBean.class);
             if (mListener != null) {
                 mListener.refresh(msg);
             }
+            setNotification(msg);
         }
     }
 

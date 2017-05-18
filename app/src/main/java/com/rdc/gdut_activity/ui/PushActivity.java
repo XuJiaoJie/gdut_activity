@@ -14,14 +14,17 @@ import android.widget.Spinner;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
+import com.rdc.gdut_activity.bean.MessageBean;
 import com.rdc.gdut_activity.bean.Publisher;
+import com.rdc.gdut_activity.utils.GsonUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
@@ -122,18 +125,21 @@ public class PushActivity extends BaseActivity {
 
     private void pushToStudent(ActivityInfoBean activityInfoBean, String msg) {
         BmobPushManager manager = new BmobPushManager();
-        BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
-        List<String> channels = new ArrayList<>();
-        channels.add(activityInfoBean.getObjectId());
-        query.addWhereEqualTo("channels", channels);
-        manager.setQuery(query);
-//        MessageBean messageBean = new MessageBean();
-//        messageBean.setMessage(msg);
-//        messageBean.setTime(System.currentTimeMillis() + "");
-//        messageBean.setIcon(activityInfoBean.getPublisherIconUrl());
-//        messageBean.setObjectid(activityInfoBean.getObjectId());
-//        String message= GsonUtil.gsonToJson(messageBean);
-        manager.pushMessage(msg, new PushListener() {
+//        BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
+//        List<String> channels = new ArrayList<>();
+//        channels.add(activityInfoBean.getObjectId());
+//        query.addWhereEqualTo("channels", channels);
+//        manager.setQuery(query);
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
+        MessageBean messageBean = new MessageBean();
+        Publisher publisher = activityInfoBean.getPublisher();
+        messageBean.setName(activityInfoBean.getActivityHost());
+        messageBean.setMessage(msg);
+        messageBean.setTime(format.format(new Date()));
+        messageBean.setIcon(publisher.getIcon());
+        messageBean.setObjectid(activityInfoBean.getObjectId());
+        String message = GsonUtil.gsonToJson(messageBean);
+        manager.pushMessageAll(message, new PushListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {

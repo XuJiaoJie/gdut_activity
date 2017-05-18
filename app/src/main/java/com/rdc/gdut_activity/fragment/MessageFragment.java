@@ -12,12 +12,10 @@ import com.rdc.gdut_activity.adapter.MessageAdapter;
 import com.rdc.gdut_activity.adapter.adapterInterface.OnClickRecyclerViewListener;
 import com.rdc.gdut_activity.base.BaseFragment;
 import com.rdc.gdut_activity.bean.MessageBean;
-import com.rdc.gdut_activity.constant.Constant;
 import com.rdc.gdut_activity.ui.MessageActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,17 +62,7 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
         mMessageBean = new ArrayList<>();
         mMapList = new HashMap<>();
         SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
-        for (int i = 0; i < 10; i++) {
-            MessageBean messageBean = new MessageBean();
-            messageBean.setIcon(Constant.photo);
-            messageBean.setMessage("一对对对接口的萨芬黄金时代斐林试剂阿打发后来看撒娇的凤凰卡仕达返回键独守空房客户集散地附近撒的划分空间撒刘德华福建三地分类考核水电费");
-            messageBean.setName("广工大什么鬼的");
-            messageBean.setObjectid("123213");
-            Date date = new Date(System.currentTimeMillis());
-            messageBean.setTime(format.format(date));
-            setMessgeList(messageBean);
-            setMapList(messageBean);
-        }
+
         mMessageAdapter = new MessageAdapter();
     }
 
@@ -143,7 +131,7 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
         if (mMessageBean.contains(messageBean)) {
             mMessageBean.remove(messageBean);
         }
-        mMessageBean.add(0,messageBean);
+        mMessageBean.add(0, messageBean);
     }
 
 }
