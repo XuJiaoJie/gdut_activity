@@ -5,11 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.LoadMoreAdapterWrapper;
@@ -89,6 +85,7 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
 
     @Override
     protected void initView() {
+        mSrlMainFragment.setColorSchemeResources(R.color.colorPrimary);
         mRvMainFragmentList.setHasFixedSize(true);
         mRvMainFragmentList.setLayoutManager(new LinearLayoutManager(mBaseActivity, LinearLayoutManager.VERTICAL, false));//设置Item的排列方式
     }
@@ -171,7 +168,6 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
     }
 
 
-
     @OnClick({R.id.item_activity_main_fragment, R.id.item_speech_main_fragment, R.id.item_competition_main_fragment, R.id.item_club_main_fragment, R.id.item_college_main_fragment})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -193,9 +189,9 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
         }
     }
 
-    private void startSelectTypeActivity(String type){
+    private void startSelectTypeActivity(String type) {
         Intent intent = new Intent(mBaseActivity, SelectTypeActivity.class);
-        intent.putExtra("type",type);
+        intent.putExtra("type", type);
         startActivity(intent);
     }
 

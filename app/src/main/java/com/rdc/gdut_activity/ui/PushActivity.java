@@ -25,6 +25,7 @@ import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
@@ -127,17 +128,16 @@ public class PushActivity extends BaseActivity {
         }
         int position = mSpinner.getSelectedItemPosition();
         ActivityInfoBean activityInfoBean = mBeanList.get(position);
-        // TODO: 2017/5/17 0017 推送
         pushToStudent(activityInfoBean, msg);
     }
 
     private void pushToStudent(ActivityInfoBean activityInfoBean, String msg) {
         BmobPushManager manager = new BmobPushManager();
-//        BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
-//        List<String> channels = new ArrayList<>();
-//        channels.add(activityInfoBean.getObjectId());
-//        query.addWhereEqualTo("channels", channels);
-//        manager.setQuery(query);
+        BmobQuery<BmobInstallation> query = BmobInstallation.getQuery();
+        List<String> channels = new ArrayList<>();
+        channels.add(activityInfoBean.getObjectId());
+        query.addWhereEqualTo("channels", channels);
+        manager.setQuery(query);
         SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
         MessageBean messageBean = new MessageBean();
         Publisher publisher = activityInfoBean.getPublisher();
@@ -147,7 +147,7 @@ public class PushActivity extends BaseActivity {
         messageBean.setIcon(publisher.getIcon());
         messageBean.setObjectid(activityInfoBean.getObjectId());
         String message = GsonUtil.gsonToJson(messageBean);
-        manager.pushMessageAll(message, new PushListener() {
+        manager.pushMessage(message, new PushListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
