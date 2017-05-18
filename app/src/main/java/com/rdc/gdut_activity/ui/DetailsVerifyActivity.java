@@ -142,7 +142,7 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         mTvVerifyType.setText(mBean.getActivityType());
         mTvVerifyHost.setText(mBean.getActivityHost());
         mTvVerifyDetails.setText(mBean.getActivityDetail());
-        mTvVerifyNum.setText(mBean.getParticipant().getObjects().size());
+        mTvVerifyNum.setText("");
         if (mBean.getImgUrlList() == null || mBean.getImgUrlList().size() == 0) {
             mTvVerifyPic.setVisibility(View.GONE);
             mIvVerifyPicFrist.setImageResource(R.drawable.verify_item_pic);
