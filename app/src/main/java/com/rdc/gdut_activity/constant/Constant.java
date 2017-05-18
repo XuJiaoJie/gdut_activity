@@ -54,4 +54,6 @@ public class Constant {
     /*loadingDialog*/
     public static final int LOADING_STYLE = R.style.ActionProgressStyle;
 
+    //活动类型的参数 --JoejZhang
+    public static final String ACTIVITY_ALL= "全部";
 }

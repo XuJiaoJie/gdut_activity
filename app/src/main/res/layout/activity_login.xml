@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
         app:title="@string/title_activity_login"
-        app:titleTextSize="@dimen/dimen_top_title_size"
+        app:titleTextSize="@dimen/dimen_topbar_title_size"
         app:titleTextColor="@color/white">
     </com.rdc.gdut_activity.view.TopBar>
 

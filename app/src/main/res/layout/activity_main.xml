@@ -12,9 +12,9 @@
         android:background="@color/colorPrimary"
         app:title="主页"
         app:titleTextColor="@color/white"
-        app:titleTextSize="18sp"
-        app:leftButtonSize="@dimen/title_button_size"
-        app:rightButtonSize="@dimen/title_button_size"
+        app:titleTextSize="@dimen/dimen_topbar_title_size"
+        app:leftButtonSize="@dimen/topbar_button_size"
+        app:rightButtonSize="@dimen/topbar_button_size"
         >
     </com.rdc.gdut_activity.view.TopBar>
 

@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimary"
-        app:leftButtonSize="@dimen/title_button_size"
-        app:rightButtonSize="@dimen/title_button_size"
+        app:leftButtonSize="@dimen/topbar_button_size"
+        app:rightButtonSize="@dimen/topbar_button_size"
         app:title="修改昵称"
         app:titleTextSize="@dimen/pickerview_topbar_title_textsize"
         app:titleTextColor="@color/white"/>

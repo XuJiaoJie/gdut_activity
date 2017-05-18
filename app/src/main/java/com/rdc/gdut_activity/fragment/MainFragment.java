@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.LoadMoreAdapterWrapper;
@@ -16,13 +21,17 @@ import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.contract.MainFragmentContract;
 import com.rdc.gdut_activity.presenter.MainFragmentPresenterImpl;
 import com.rdc.gdut_activity.ui.DetailsActivity;
+import com.rdc.gdut_activity.ui.SelectTypeActivity;
 import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
+
+import static com.rdc.gdut_activity.constant.Constant.ACTIVITY_ALL;
 
 /**
  * Created by ThatNight on 2017.4.26.
@@ -35,6 +44,7 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
     RecyclerView mRvMainFragmentList;
     @InjectView(R.id.srl_main_fragment)
     SwipeRefreshLayout mSrlMainFragment;
+
     private int mTitle;
     private String mMessage;
     private TopBar mTopBar;
@@ -56,6 +66,14 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
         return mainFragment;
     }
 
+    public void topbarLeftButtonClick() {
+        Toast.makeText(getActivity(), "主页面左按钮", Toast.LENGTH_SHORT).show();
+    }
+
+    public void topbarRightButtonClick() {
+        Toast.makeText(getActivity(), "主页面右按钮", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected int setLayoutResourceId() {
         return R.layout.fragment_main;
@@ -75,19 +93,15 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
     protected void initView() {
         mRvMainFragmentList.setHasFixedSize(true);
         mRvMainFragmentList.setLayoutManager(new LinearLayoutManager(mBaseActivity, LinearLayoutManager.VERTICAL, false));//设置Item的排列方式
-//        Data();
-//        mRvMainFragmentList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
-//
-//        });
     }
 
     @Override
     protected void setListener() {
-        mPresenter.onRefresh("这里填筛选内容");
+        mPresenter.onRefresh(ACTIVITY_ALL);
         mSrlMainFragment.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.onRefresh("这里填筛选内容");
+                mPresenter.onRefresh(ACTIVITY_ALL);
                 mSrlMainFragment.setRefreshing(true);
             }
         });
@@ -98,60 +112,11 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
         mMessage = bundle.getString("message");
     }
 
-    //虚拟数据
-    private void Data() {
-        for (int i = 0; i < 10; i++) {
-            ActivityInfoBean bean = new ActivityInfoBean();
-            bean.setActivityName("研发中心招新宣讲会开始啦啦啦  " + i);
-            bean.setActivityTime("2017-5-8 19:00");
-            bean.setActivityLocation("广东工业大学工一学术报告厅   " + i);
-            bean.setPublishTime("2017-5-7 12:00");
-            bean.setPublisherName("广东工业大学团委");
-            bean.setActivityType("讲座");
-            bean.setActivityHost("研发中心工作室");
-            bean.setActivityDetail("多久啊看来大家啊克里夫剪啊开房间里的咖啡机的刻录机福克斯的减肥快圣诞分" +
-                    "公司感受感受的分公司人发过过生日果然果然果然够节咖啡馆的精神科更加深刻搭公交可视对讲");
-            List<String> picList = new ArrayList<>();
-            picList.add("http://ac-QYgvX1CC.clouddn.com/fa85037f97e8191f.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/de13315600ba1cff.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/10762c593798466a.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/eaf1c9d55c5f9afd.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/ad99de83e1e3f7d4.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/233a5f70512befcc.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/36f0523ee1888a57.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/07915a0154ac4a64.jpg");
-            picList.add("http://ac-QYgvX1CC.clouddn.com/9ec4bc44bfaf07ed.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037091_4950.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201308/31/1377949630_4593.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201308/31/1377949615_1986.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037234_6318.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037194_2965.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037193_1687.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037193_1286.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037192_8379.jpg");
-//            picList.add("http://img.my.csdn.net/uploads/201309/01/1378037178_9374.jpg");
-            bean.setImgUrlList(picList);
-            HashMap<String, String> map = new HashMap<>();
-            map.put("学号1", "");
-            map.put("学号2", "");
-            map.put("学号3", "");
-            map.put("学号4", "");
-            map.put("学号5", "");
-            map.put("学号6", "");
-            map.put("学号7", "");
-            map.put("学号8", "");
-            map.put("学号9", "");
-            map.put("学号0", "");
-            bean.setFormDataMap(map);
-            mBeanList.add(bean);
-        }
-        mAdapter.updataData(mBeanList);
-        if (null == mLoadMoreAdapter) {
-            mLoadMoreAdapter = new LoadMoreAdapterWrapper(mAdapter, this);
-            mRvMainFragmentList.setAdapter(mLoadMoreAdapter);
-        } else {
-            mLoadMoreAdapter.notifyDataSetChanged();
-        }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 
     @Override
@@ -193,7 +158,7 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
 
     @Override
     public void loadMoreData() {
-        mPresenter.onLoadMore("这里填筛选类型");
+        mPresenter.onLoadMore(ACTIVITY_ALL);
     }
 
     @Override
@@ -206,4 +171,34 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
     public boolean onItemLongClick(int position) {
         return false;
     }
+
+
+
+    @OnClick({R.id.item_activity_main_fragment, R.id.item_speech_main_fragment, R.id.item_competition_main_fragment, R.id.item_club_main_fragment, R.id.item_college_main_fragment})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.item_activity_main_fragment:
+                startSelectTypeActivity("活动");
+                break;
+            case R.id.item_speech_main_fragment:
+                startSelectTypeActivity("讲座");
+                break;
+            case R.id.item_competition_main_fragment:
+                startSelectTypeActivity("竞赛");
+                break;
+            case R.id.item_club_main_fragment:
+                startSelectTypeActivity("社团");
+                break;
+            case R.id.item_college_main_fragment:
+                startSelectTypeActivity("学院");
+                break;
+        }
+    }
+
+    private void startSelectTypeActivity(String type){
+        Intent intent = new Intent(mBaseActivity, SelectTypeActivity.class);
+        intent.putExtra("type",type);
+        startActivity(intent);
+    }
+
 }

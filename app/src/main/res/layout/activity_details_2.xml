@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
         android:background="@color/colorPrimary"
-        app:leftButtonSize="@dimen/title_button_size"
-        app:rightButtonSize="@dimen/title_button_size"
+        app:leftButtonSize="@dimen/topbar_button_size"
+        app:rightButtonSize="@dimen/topbar_button_size"
         app:title="活动详情"
         app:titleTextColor="@color/white"
-        app:titleTextSize="@dimen/title_button_size"
+        app:titleTextSize="@dimen/topbar_button_size"
         >
     </com.rdc.gdut_activity.view.TopBar>
 

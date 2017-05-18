@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.rdc.gdut_activity.ui.SelectTypeActivity">
+
+
+    <com.rdc.gdut_activity.view.TopBar
+        android:id="@+id/tb_activity_select_type"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_topbar_height"
+        android:background="@color/colorPrimary"
+        app:titleTextSize="@dimen/dimen_topbar_title_size"
+        app:titleTextColor="@color/white"
+        app:leftButtonSize="@dimen/topbar_button_size"
+        />
+    <EditText
+        android:id="@+id/et_activity_select"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_select_type_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_select_type_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

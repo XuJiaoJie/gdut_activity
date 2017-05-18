@@ -15,8 +15,8 @@
         android:background="@color/colorPrimary"
         app:title="消息"
         app:titleTextColor="@color/white"
-        app:leftButtonSize="@dimen/title_button_size"
-        app:titleTextSize="@dimen/dimen_top_title_size">
+        app:leftButtonSize="@dimen/topbar_button_size"
+        app:titleTextSize="@dimen/dimen_topbar_title_size">
     </com.rdc.gdut_activity.view.TopBar>
 
     <android.support.v7.widget.RecyclerView

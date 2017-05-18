@@ -15,7 +15,7 @@
         android:background="@color/colorPrimary"
         app:title="报名"
         app:titleTextColor="@color/white"
-        app:titleTextSize="@dimen/dimen_top_title_size"
+        app:titleTextSize="@dimen/dimen_topbar_title_size"
         >
     </com.rdc.gdut_activity.view.TopBar>
 

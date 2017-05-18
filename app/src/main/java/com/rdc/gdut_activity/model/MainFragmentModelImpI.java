@@ -5,6 +5,7 @@ import android.util.Log;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.contract.MainFragmentContract;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
+
+import static com.rdc.gdut_activity.constant.Constant.ACTIVITY_ALL;
 
 /**
  * Created by zjz on 2017/5/17.
@@ -32,7 +35,25 @@ public class MainFragmentModelImpI implements MainFragmentContract.Model {
     public void refreshData(String type) {
         mPage = 0;
         BmobQuery<ActivityInfoBean> query = new BmobQuery<>();
-        query.addWhereEqualTo("mCheckStatus","审核通过");
+        if(type.equals(ACTIVITY_ALL)){
+            query.addWhereEqualTo("mCheckStatus","审核通过");
+        }
+        else{
+            //与查询
+            //条件一，是否审核通过
+            BmobQuery<ActivityInfoBean> queryCheck = new BmobQuery<>();
+            queryCheck.addWhereEqualTo("mCheckStatus","审核通过");
+            //条件二，活动类型
+            BmobQuery<ActivityInfoBean> queryOtherType = new BmobQuery<>();
+            queryOtherType.addWhereEqualTo("mActivityType",type);
+
+            List<BmobQuery<ActivityInfoBean>> bmobQueries = new ArrayList<>();
+            bmobQueries.add(queryCheck);
+            bmobQueries.add(queryOtherType);
+
+            query.and(bmobQueries);
+        }
+
 
 //    if (type.equals("未审核")){
 //        }else {
@@ -47,8 +68,6 @@ public class MainFragmentModelImpI implements MainFragmentContract.Model {
             public void done(List<ActivityInfoBean> list, BmobException e) {
                 if (e == null){
                     mPresenter.refreshDataSuccess(list);
-                    Log.e(TAG, "done: "+list.get(1).getObjectId());
-//                    Log.e(TAG, "done: " + list.get(0).getPublisher().getUsername());
                 }else {
                     mPresenter.refreshDataError(e.getMessage());
                 }
@@ -61,8 +80,24 @@ public class MainFragmentModelImpI implements MainFragmentContract.Model {
     public void loadMoreData(String type) {
         ++ mPage;
         BmobQuery<ActivityInfoBean> query = new BmobQuery<>();
-
+        if(type.equals(ACTIVITY_ALL)){
             query.addWhereEqualTo("mCheckStatus","审核通过");
+        }
+        else{
+            //与查询
+            //条件一，是否审核通过
+            BmobQuery<ActivityInfoBean> queryCheck = new BmobQuery<>();
+            queryCheck.addWhereEqualTo("mCheckStatus","审核通过");
+            //条件二，活动类型
+            BmobQuery<ActivityInfoBean> queryOtherType = new BmobQuery<>();
+            queryOtherType.addWhereEqualTo("mActivityType",type);
+
+            List<BmobQuery<ActivityInfoBean>> bmobQueries = new ArrayList<>();
+            bmobQueries.add(queryCheck);
+            bmobQueries.add(queryOtherType);
+
+            query.and(bmobQueries);
+        }
 //        if (type.equals("未审核")){
 //        }else {
 //            String[] types = {"审核通过，审核不通过"};
@@ -83,38 +118,47 @@ public class MainFragmentModelImpI implements MainFragmentContract.Model {
         });
     }
 
-    //审核通过上传
     @Override
     public void mainFragmentPass(String objectId) {
-        ActivityInfoBean bean = new ActivityInfoBean();
-        bean.setCheckStatus("审核通过");
-        bean.update(objectId, new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e == null){
-                    mPresenter.mainFragmentSuccess();
-                }else {
-                    mPresenter.mainFragmentError(e.getMessage());
-                }
-            }
-        });
+
     }
 
-    //审核失败上传
     @Override
     public void mainFragmentFailure(String objectId, String reason) {
-        ActivityInfoBean bean = new ActivityInfoBean();
-        bean.setCheckStatus("审核不通过");
-        bean.setCheckReason(reason);
-        bean.update(objectId, new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e == null){
-                    mPresenter.mainFragmentSuccess();
-                }else {
-                    mPresenter.mainFragmentError(e.getMessage());
-                }
-            }
-        });
+
     }
+    //    //审核通过上传
+//    @Override
+//    public void mainFragmentPass(String objectId) {
+//        ActivityInfoBean bean = new ActivityInfoBean();
+//        bean.setCheckStatus("审核通过");
+//        bean.update(objectId, new UpdateListener() {
+//            @Override
+//            public void done(BmobException e) {
+//                if (e == null){
+//                    mPresenter.mainFragmentSuccess();
+//                }else {
+//                    mPresenter.mainFragmentError(e.getMessage());
+//                }
+//            }
+//        });
+//    }
+//
+//    //审核失败上传
+//    @Override
+//    public void mainFragmentFailure(String objectId, String reason) {
+//        ActivityInfoBean bean = new ActivityInfoBean();
+//        bean.setCheckStatus("审核不通过");
+//        bean.setCheckReason(reason);
+//        bean.update(objectId, new UpdateListener() {
+//            @Override
+//            public void done(BmobException e) {
+//                if (e == null){
+//                    mPresenter.mainFragmentSuccess();
+//                }else {
+//                    mPresenter.mainFragmentError(e.getMessage());
+//                }
+//            }
+//        });
+//    }
 }

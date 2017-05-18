@@ -3,18 +3,133 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
              >
-
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_main_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#f5f5f5">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/item_activity_main_fragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/fragment_main_type_icon_size"
+                    android:layout_height="@dimen/fragment_main_type_icon_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/activities_main_type"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/fragment_main_type_magintop"
+                    android:textSize="@dimen/fragment_main_item_type_text"
+                    android:text="活动"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/item_speech_main_fragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:layout_width="@dimen/fragment_main_type_icon_size"
+                    android:layout_height="@dimen/fragment_main_type_icon_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/speech_main_type"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/fragment_main_type_magintop"
+                    android:textSize="@dimen/fragment_main_item_type_text"
+                    android:text="讲座"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/item_competition_main_fragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:layout_width="@dimen/fragment_main_type_icon_size"
+                    android:layout_height="@dimen/fragment_main_type_icon_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/competition_main_type"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/fragment_main_type_magintop"
+                    android:textSize="@dimen/fragment_main_item_type_text"
+                    android:text="竞赛"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/item_club_main_fragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:layout_width="@dimen/fragment_main_type_icon_size"
+                    android:layout_height="@dimen/fragment_main_type_icon_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/club_main_type"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/fragment_main_type_magintop"
+                    android:textSize="@dimen/fragment_main_item_type_text"
+                    android:text="社团"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/item_college_main_fragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <ImageView
+                    android:layout_width="@dimen/fragment_main_type_icon_size"
+                    android:layout_height="@dimen/fragment_main_type_icon_size"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/college_main_type"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/fragment_main_type_magintop"
+                    android:textSize="@dimen/fragment_main_item_type_text"
+                    android:text="学院"/>
+            </LinearLayout>
+        </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#bebebe"
+                />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_main_fragment_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"/>
 
+    </LinearLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
+
