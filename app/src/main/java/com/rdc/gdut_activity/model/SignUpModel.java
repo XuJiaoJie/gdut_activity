@@ -44,6 +44,10 @@ public class SignUpModel implements SignUpContract.Model {
         });
     }
 
+    /**
+     * 订阅活动推送
+     * @param activityInfoBean
+     */
     private void setPushChannel(ActivityInfoBean activityInfoBean) {
         BmobInstallation installation = BmobInstallation.getCurrentInstallation();
         installation.subscribe(activityInfoBean.getObjectId());

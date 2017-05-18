@@ -96,8 +96,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void loginFailed(String error) {
-        //showToast("用户名或密码错误!");
-        showToast(error);
+        showToast("用户名或密码错误!");
     }
 
     @Override
@@ -146,7 +145,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         boolean isRight = false;
         String toast = CheckInfoUtil.checkLogin(mEtUsername.getText().toString().trim(), mEtPassword.getText().toString());
         if (toast != null) {
-            Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+            showToast(toast);
         } else {
             isRight = true;
         }

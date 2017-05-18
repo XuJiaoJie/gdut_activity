@@ -26,7 +26,7 @@ public class DetailsPhotoPageAdapter extends PagerAdapter {
         mPhoto = photo;
         mContext = context;
         mSize = mPhoto.size();
-        mOnClickListener=onClickListener;
+        mOnClickListener = onClickListener;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DetailsPhotoPageAdapter extends PagerAdapter {
         position = position % mSize;
         View view = LayoutInflater.from(mContext).inflate(R.layout.viewpager_details_top, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.iv_details_top);
-        Glide.with(mContext).load(mPhoto.get(position)).into(imageView);
+        Glide.with(mContext).load(mPhoto.get(position)).placeholder(R.drawable.photo_empty_photo).into(imageView);
         imageView.setOnClickListener(mOnClickListener);
         container.addView(view);
         return view;

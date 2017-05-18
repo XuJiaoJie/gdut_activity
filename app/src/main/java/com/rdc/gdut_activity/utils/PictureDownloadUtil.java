@@ -14,7 +14,7 @@ public class PictureDownloadUtil {
 
     public static Boolean loadImageSaveToLocal(String url, String filename) {
         try {
-            String path = Environment.getExternalStorageDirectory().getPath() + filename;
+            String path = "/mnt/sdcard/" + filename;
             Log.e("error", path);
             File file = new File(path);
             if (!file.exists()) {

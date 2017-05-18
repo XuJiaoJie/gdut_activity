@@ -184,35 +184,38 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 
     private void showChangePasswordDialog() {
         initBuilder("密码", -1);
-        final View view = View.inflate(this, R.layout.layout_dialog_change_password, null);
+        final View view = View.inflate(this, R.layout.layout_dialog_change_phone_number, null);
         mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String oldPassword = ((EditText) view.findViewById(R.id.et_old_password)).getText().toString();
-                String newPassword = ((EditText) view.findViewById(R.id.et_new_password)).getText().toString();
-                String confirmPassword = ((EditText) view.findViewById(R.id.et_confirm_password)).getText().toString();
-                if (!oldPassword.equals(tvSchoolPassword.getText().toString())) {
-                    Toast.makeText(UserGDUTActivity.this, "旧密码输入错误", Toast.LENGTH_LONG).show();
-                    return;
-                } else if (!newPassword.equals(confirmPassword)) {
-                    Toast.makeText(UserGDUTActivity.this, "新密码与确认密码不一致", Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    Toast.makeText(UserGDUTActivity.this, "密码修改成功", Toast.LENGTH_LONG).show();
-                    tvSchoolPassword.setText(newPassword);
-                    dialog.dismiss();
-                }
+//                String oldPassword = ((EditText) view.findViewById(R.id.et_old_password)).getText().toString();
+//                String newPassword = ((EditText) view.findViewById(R.id.et_new_password)).getText().toString();
+//                String confirmPassword = ((EditText) view.findViewById(R.id.et_confirm_password)).getText().toString();
+//                if (!oldPassword.equals(tvSchoolPassword.getText().toString())) {
+//                    Toast.makeText(UserGDUTActivity.this, "旧密码输入错误", Toast.LENGTH_LONG).show();
+//                    return;
+//                } else if (!newPassword.equals(confirmPassword)) {
+//                    Toast.makeText(UserGDUTActivity.this, "新密码与确认密码不一致", Toast.LENGTH_LONG).show();
+//                    return;
+//                } else {
+//                    Toast.makeText(UserGDUTActivity.this, "密码修改成功", Toast.LENGTH_LONG).show();
+//                    tvSchoolPassword.setText(newPassword);
+//                    dialog.dismiss();
+//                }
+                final String password = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
                 // TODO: 2017/5/12 云端存储
                 Student student = new Student();
-                student.setmSchoolPassword(newPassword);
+                student.setmSchoolPassword(password);
                 student.update(BmobUser.getCurrentUser().getObjectId(),new UpdateListener() {
                     @Override
                     public void done(BmobException e) {
                         if (e == null) {
                             Log.e("error", "success");
+                            tvSchoolPassword.setText(password);
                         }
                     }
                 });
+                dialog.dismiss();
             }
         });
         final AlertDialog dialog = mBuilder.create();
