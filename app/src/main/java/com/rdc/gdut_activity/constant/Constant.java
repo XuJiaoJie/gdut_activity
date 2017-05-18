@@ -33,6 +33,10 @@ public class Constant {
     public static final String EDUCATION_SYSTEM_LOGIN_URL = "http://222.200.98.147/login!doLogin.action";
     public static final String EDUCATION_SYSTEM_SCORE_URL = "http://222.200.98.147/xskccjxx!getDataList.action";
 
+    //查询课表
+    public static final String GET_COURSE_URL = "http://222.200.98.147/xsgrkbcx!getKbRq.action?xnxqdm=201602&zc=";
+
+
     //登录时请求参数
     public static final String LOGIN_BODY_NAME_ACCOUNT = "account";
     public static final String LOGIN_BODY_NAME_PWD = "pwd";

@@ -100,7 +100,6 @@ public class UserDetailActivity extends BaseActivity implements DatePickerDialog
 
     @Override
     protected void initData() {
-
     }
 
     @Override

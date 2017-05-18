@@ -13,6 +13,10 @@
         <item name="android:textCursorDrawable">@drawable/bg_et_cursor_login</item>
         <item name="android:textColorHint">@color/color_text_login</item>
     </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
     <!--启动界面-->
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splash</item>

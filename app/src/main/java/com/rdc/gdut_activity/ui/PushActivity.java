@@ -14,17 +14,14 @@ import android.widget.Spinner;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
-import com.rdc.gdut_activity.bean.MessageBean;
 import com.rdc.gdut_activity.bean.Publisher;
-import com.rdc.gdut_activity.utils.GsonUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
@@ -42,7 +39,9 @@ public class PushActivity extends BaseActivity {
     @InjectView(R.id.btn_push)
     Button mBtnPush;
 
-    private static final String TAG = "PushActivity";
+
+    @InjectView(R.id.top_bar)
+    TopBar mTopBar;    private static final String TAG = "PushActivity";
     private List<ActivityInfoBean> mBeanList;
     private List<String> mTitleList;
     private Toolbar mToolbar;
@@ -61,8 +60,17 @@ public class PushActivity extends BaseActivity {
         mTitleList = new ArrayList<>();
 
         Publisher publisher = BmobUser.getCurrentUser(Publisher.class);
+        BmobQuery<ActivityInfoBean> eq1 = new BmobQuery<>();
+        eq1.addWhereEqualTo("mPublisher", publisher.getObjectId());
+        BmobQuery<ActivityInfoBean> eq2 = new BmobQuery<>();
+        eq2.addWhereEqualTo("mCheckStatus", "审核通过");
+
+        List<BmobQuery<ActivityInfoBean>> andQuery = new ArrayList<>();
+        andQuery.add(eq1);
+        andQuery.add(eq2);
+
         BmobQuery<ActivityInfoBean> query = new BmobQuery<>();
-        query.addWhereEqualTo("mPublisher", publisher.getObjectId());
+        query.and(andQuery);
         query.findObjects(new FindListener<ActivityInfoBean>() {
             @Override
             public void done(List<ActivityInfoBean> list, BmobException e) {
@@ -82,31 +90,28 @@ public class PushActivity extends BaseActivity {
             mTitleList.add(bean.getActivityName());
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, mTitleList);
+                R.layout.spinner_list_item, mTitleList);
         mSpinner.setAdapter(arrayAdapter);
     }
 
     @Override
     protected void initView() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mTopBar.setButtonBackground(R.drawable.icon_back, 0);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
-    }
 
-    @Override
     protected void initListener() {
+        mTopBar.setOnTopbarClickListener(new TopBar.topbarClickListner() {
+            @Override
+            public void leftClick() {
+                finish();
+            }
 
+            @Override
+            public void rightClick() {
+
+            }
+        });
     }
 
 

@@ -21,6 +21,7 @@
         android:ellipsize="end"/>
 
     <RelativeLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="30dp">
 
@@ -81,6 +82,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
@@ -118,10 +120,16 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"
+        android:layout_marginTop="7dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="7dp">
         <ImageView
             android:id="@+id/iv_item_activity_default_place"
             android:layout_width="16dp"
@@ -156,10 +164,16 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"
+        android:layout_marginTop="7dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="7dp">
         <ImageView
             android:id="@+id/iv_item_activity_default_type"
             android:layout_width="16dp"
@@ -194,10 +208,16 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"
+        android:layout_marginTop="7dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="7dp">
         <ImageView
             android:id="@+id/iv_item_activity_default_host"
             android:layout_width="16dp"
@@ -232,10 +252,16 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"
+        android:layout_marginTop="7dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="7dp">
         <ImageView
             android:id="@+id/iv_item_activity_default_details"
             android:layout_width="16dp"
@@ -271,7 +297,14 @@
         android:textSize="16sp"
         android:layout_centerVertical="true"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"
+        android:layout_marginTop="7dp"/>
+
     <TextView
+        android:id="@+id/tv_verify_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -289,7 +322,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        app:singleImgSize="80dp"
+        app:singleImgSize="150dp"
         app:imgGap="5dp"
         app:maxSize="9"
         app:showStyle="grid"/>

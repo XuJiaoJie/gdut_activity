@@ -33,9 +33,36 @@
     <string name="menu_push">推送</string>
 
     <string-array name="activity_type_array">
+        <item>公益</item>
         <item>讲座</item>
         <item>比赛</item>
-        <item>社团</item>
+        <item>演出</item>
         <item>其他</item>
+    </string-array>
+
+    <string-array name="week_ary">
+        <item>当前周</item>
+        <item>第 1 周</item>
+        <item>第 2 周</item>
+        <item>第 3 周</item>
+        <item>第 4 周</item>
+        <item>第 5 周</item>
+        <item>第 6 周</item>
+        <item>第 7 周</item>
+        <item>第 8 周</item>
+        <item>第 9 周</item>
+        <item>第 10 周</item>
+        <item>第 11 周</item>
+        <item>第 12 周</item>
+        <item>第 13 周</item>
+        <item>第 14 周</item>
+        <item>第 15 周</item>
+        <item>第 16 周</item>
+        <item>第 17 周</item>
+        <item>第 18 周</item>
+        <item>第 19 周</item>
+        <item>第 20 周</item>
+        <item>第 21 周</item>
+        <item>第 22 周</item>
     </string-array>
 </resources>

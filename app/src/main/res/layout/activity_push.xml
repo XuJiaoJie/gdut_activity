@@ -4,19 +4,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="48dp"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--app:title=""/>-->
+    <com.rdc.gdut_activity.view.TopBar
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/dimen_topbar_height"
         android:background="@color/colorPrimary"
-        app:title="推送"/>
+        app:leftButtonSize="@dimen/topbar_button_size"
+        app:rightButtonSize="@dimen/topbar_button_size"
+        app:title="推送"
+        app:titleTextColor="@color/white"
+        app:titleTextSize="18sp"
+        />
 
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_below="@id/toolbar"
-        >
+        android:layout_below="@id/top_bar">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,13 +34,16 @@
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="活动："/>
+            android:gravity="center"
+            android:text="活动列表："/>
 
         <Spinner
             android:id="@+id/sp_activity"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_weight="1"/>
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"/>
     </LinearLayout>
 
     <EditText
@@ -46,7 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="13dp"
+        android:layout_marginBottom="24dp"
         android:background="@color/mediumseagreen"
         android:text="√ 推送"
         android:textColor="@color/white"

@@ -1,8 +1,15 @@
 package com.rdc.gdut_activity.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.rdc.gdut_activity.bean.CourseBean;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +30,43 @@ public class GsonUtil {
         }
     }
 
+
+    public static ArrayList<CourseBean> parseCourse(String jsonStr) {
+        JsonParser jsonParser = new JsonParser();
+        JsonArray jsonArray = jsonParser.parse(jsonStr).getAsJsonArray();
+        JsonArray subJsonArray = jsonArray.get(0).getAsJsonArray();
+        Gson gson = new Gson();
+        ArrayList<CourseBean> courseInfoList = new ArrayList<>();
+        for (JsonElement jsonElement : subJsonArray) {
+            CourseBean courseInfoBean = gson.fromJson(jsonElement, CourseBean.class);
+            courseInfoList.add(courseInfoBean);
+        }
+        //按照星期和节数排序
+        Collections.sort(courseInfoList, new Comparator<CourseBean>() {
+            @Override
+            public int compare(CourseBean o1, CourseBean o2) {
+                if (Integer.valueOf(o1.getXq()) < (Integer.valueOf(o2.getXq()))) {
+                    return -1;
+                } else if (Integer.valueOf(o1.getXq()).intValue() == (Integer.valueOf(o2.getXq()))) {
+                    if ((int) o1.getJcdm().charAt(1) < (int) o2.getJcdm().charAt(1)) {
+                        return -1;
+                    } else if ((int) o1.getJcdm().charAt(1) > (int) o2.getJcdm().charAt(1)) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                } else {
+                    return 1;
+                }
+            }
+        });
+
+        return courseInfoList;
+    }
+
     /**
      * 转成json
+     *
      * @param o
      * @return
      */

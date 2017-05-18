@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:fitsSystemWindows="true">
     
     <android.support.design.widget.AppBarLayout
@@ -27,10 +28,11 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:id="@+id/iv_verify_pic_frist"
+                android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:src="@drawable/verify_item_pic"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:fitsSystemWindows="true"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5"/>

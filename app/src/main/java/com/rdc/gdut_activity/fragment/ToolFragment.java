@@ -2,6 +2,7 @@ package com.rdc.gdut_activity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,6 +13,7 @@ import com.rdc.gdut_activity.base.BaseFragment;
 import com.rdc.gdut_activity.bean.Student;
 import com.rdc.gdut_activity.contract.ToolContract;
 import com.rdc.gdut_activity.presenter.ToolPresenterImpl;
+import com.rdc.gdut_activity.ui.CourseActivity;
 import com.rdc.gdut_activity.ui.ScoreActivity;
 import com.rdc.gdut_activity.ui.SelectClassActivity;
 import com.rdc.gdut_activity.ui.UserGDUTActivity;
@@ -24,7 +26,7 @@ import cn.bmob.v3.BmobUser;
  * Created by zjz on 2017/5/5.
  */
 
-public class ToolFragment extends BaseFragment implements ToolContract.View{
+public class ToolFragment extends BaseFragment implements ToolContract.View {
     private static final String TAG = "ToolFragment";
     @InjectView(R.id.ll_tool_score)
     LinearLayout mLlToolScore;
@@ -99,21 +101,22 @@ public class ToolFragment extends BaseFragment implements ToolContract.View{
                 showToast("该功能尚未开发");
                 break;
             case R.id.ll_tool_course:
-                showToast("该功能尚未开发");
+                checkStudentID(4);
                 break;
         }
     }
 
-    private void checkStudentID(int selected){
+    private void checkStudentID(int selected) {
         Student student = BmobUser.getCurrentUser(Student.class);
         String studentId = student.getmSchoolNumber();
         String studentPwd = student.getmSchoolPassword();
-        Log.e(TAG, "checkStudentID: " + studentId + "   "+studentPwd);
-        if (!studentId.equals("") && !studentPwd.equals("")){
+        Log.e(TAG, "checkStudentID: " + studentId + "   " + studentPwd);
+
+        if (!TextUtils.isEmpty(studentId) && !TextUtils.isEmpty(studentPwd)) {
             Log.e(TAG, "checkStudentID: " + " presenter");
             mSelected = selected;
-            mPresenter.loginSystem(studentId,studentPwd);
-        }else {
+            mPresenter.loginSystem(studentId, studentPwd);
+        } else {
             Log.e(TAG, "checkStudentID:          " + " intent");
             Intent intent = new Intent(mBaseActivity, UserGDUTActivity.class);
             startActivity(intent);
@@ -122,13 +125,17 @@ public class ToolFragment extends BaseFragment implements ToolContract.View{
 
     @Override
     public void loginSystemSuccess() {
-        if (mSelected == 1){
+        if (mSelected == 1) {
             Intent intent = new Intent(mBaseActivity, ScoreActivity.class);
             startActivity(intent);
-        }else if(mSelected == 2){
+        } else if (mSelected == 2) {
             Intent intent = new Intent(mBaseActivity, SelectClassActivity.class);
             startActivity(intent);
+        } else if (mSelected == 4) {
+            Intent intent = CourseActivity.newIntent(mBaseActivity);
+            startActivity(intent);
         }
+
     }
 
     @Override
