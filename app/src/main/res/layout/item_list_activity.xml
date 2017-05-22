@@ -2,10 +2,28 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_item_list_activity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_item_list_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/item_activity_click"
+   android:background="@color/transparent"
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="5dp"
+        app:cardMaxElevation="2dp"
+
+        >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_item_list_activity"
+    android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -68,13 +86,10 @@
             android:textSize="12sp"
             tools:text="2017-5-6"/>
     </RelativeLayout>
-
     <ImageView
         android:id="@+id/iv_item_activity_pic"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/verify_item_pic"/>
 
@@ -88,8 +103,10 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/dark_text_verify"
-        android:textSize="16sp"
+        android:textSize="18sp"
         tools:text="研发中心招新宣讲会开始啦啦啦"/>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -122,6 +139,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp">
 
         <ImageView
@@ -147,9 +165,11 @@
             tools:text="广东工业大学工一学术报告厅"/>
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/gainsboro"/>
+</LinearLayout>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="10dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:background="@color/gainsboro"/>-->
+    </android.support.v7.widget.CardView>
 </LinearLayout>

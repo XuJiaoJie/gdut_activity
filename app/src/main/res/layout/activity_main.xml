@@ -17,12 +17,7 @@
         app:rightButtonSize="@dimen/topbar_button_size"
         >
     </com.rdc.gdut_activity.view.TopBar>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#bebebe"/>
-
+    
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_main_vp"
         android:layout_width="match_parent"

@@ -184,7 +184,7 @@ public class MainFragment extends BaseFragment implements OnLoadMoreDataRv, OnCl
                 startSelectTypeActivity("演出");
                 break;
             case R.id.item_college_main_fragment:
-                startSelectTypeActivity("更多");
+                startSelectTypeActivity("其他");
                 break;
         }
     }
