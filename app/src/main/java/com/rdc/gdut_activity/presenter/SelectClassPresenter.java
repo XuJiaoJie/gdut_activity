@@ -184,7 +184,11 @@ public class SelectClassPresenter {
             classBean.setClassSelectPeople(bean.getJxbrs());
             classes.add(classBean);
         }
-        mSelectClassView.getSuccess(classes);
+        if(list.size()<=0){
+            mSelectClassView.getFailed();
+        }else{
+            mSelectClassView.getSuccess(classes);
+        }
     }
 
     private List<RowsBean> getOwnBean(String respone) {

@@ -205,7 +205,8 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
 
     @Override
     public void getFailed() {
-        mClassPresenter.login();
+        //mClassPresenter.login();
+        showToast("当前可选课程数目为0!");
     }
 
     /**
@@ -257,5 +258,6 @@ public class SelectClassActivity extends BaseActivity implements OnClickRecycler
             default:
                 break;
         }
+        mClassPopWindow.dismiss();
     }
 }
