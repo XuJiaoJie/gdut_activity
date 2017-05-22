@@ -1,7 +1,9 @@
 package com.rdc.gdut_activity.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.rdc.gdut_activity.ui.CourseActivity;
 import com.rdc.gdut_activity.ui.ScoreActivity;
 import com.rdc.gdut_activity.ui.SelectClassActivity;
 import com.rdc.gdut_activity.ui.UserGDUTActivity;
+import com.rdc.gdut_activity.utils.EncryptUtil;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -110,16 +113,16 @@ public class ToolFragment extends BaseFragment implements ToolContract.View {
         Student student = BmobUser.getCurrentUser(Student.class);
         String studentId = student.getmSchoolNumber();
         String studentPwd = student.getmSchoolPassword();
+        String pwdEncrypt = EncryptUtil.getInstance().decrypt(studentPwd);
         Log.e(TAG, "checkStudentID: " + studentId + "   " + studentPwd);
+        Log.e(TAG, "checkStudentID: " + studentId + "   " + pwdEncrypt);
 
-        if (!TextUtils.isEmpty(studentId) && !TextUtils.isEmpty(studentPwd)) {
+        if (!TextUtils.isEmpty(studentId) && !TextUtils.isEmpty(pwdEncrypt)) {
             Log.e(TAG, "checkStudentID: " + " presenter");
             mSelected = selected;
-            mPresenter.loginSystem(studentId, studentPwd);
+            mPresenter.loginSystem(studentId, pwdEncrypt);
         } else {
-            Log.e(TAG, "checkStudentID:          " + " intent");
-            Intent intent = new Intent(mBaseActivity, UserGDUTActivity.class);
-            startActivity(intent);
+            intentDailog(null);
         }
     }
 
@@ -140,14 +143,44 @@ public class ToolFragment extends BaseFragment implements ToolContract.View {
 
     @Override
     public void loginSystemFailure(String msg) {
-        showToast(msg);
-        Intent intent = new Intent(mBaseActivity, UserGDUTActivity.class);
-        startActivity(intent);
+//        showToast(msg);
+        intentDailog(msg);
     }
 
     @Override
     public void getError(String s) {
         showToast(s);
+    }
+
+    /**
+     * 弹窗提示是否跳转我的广工进行账号密码注册
+     */
+    private void intentDailog(String msg){
+        String message;
+        if (msg == null){
+            message = "账号或密码为空";
+        }else {
+            message = msg;
+        }
+        message = message + "，是否跳转到我的广工页面进行账号密码的绑定";
+        new AlertDialog.Builder(mBaseActivity)
+                .setTitle("登录教务系统出错")
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(mBaseActivity, UserGDUTActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 }
 

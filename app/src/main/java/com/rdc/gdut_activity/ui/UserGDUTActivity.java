@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.Student;
+import com.rdc.gdut_activity.utils.EncryptUtil;
 import com.rdc.gdut_activity.view.TopBar;
 
 import java.util.List;
@@ -203,15 +204,16 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 //                    dialog.dismiss();
 //                }
                 final String password = ((EditText) view.findViewById(R.id.et_phone_number)).getText().toString();
+                final String pwdEncrypt = EncryptUtil.getInstance().encrypt(password);
                 // TODO: 2017/5/12 云端存储
                 Student student = new Student();
-                student.setmSchoolPassword(password);
+                student.setmSchoolPassword(pwdEncrypt);
                 student.update(BmobUser.getCurrentUser().getObjectId(),new UpdateListener() {
                     @Override
                     public void done(BmobException e) {
                         if (e == null) {
                             Log.e("error", "success");
-                            tvSchoolPassword.setText(password);
+                            tvSchoolPassword.setText(pwdEncrypt);
                         }
                     }
                 });
