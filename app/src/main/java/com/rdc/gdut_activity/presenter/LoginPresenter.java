@@ -1,5 +1,7 @@
 package com.rdc.gdut_activity.presenter;
 
+import android.util.Log;
+
 import com.rdc.gdut_activity.bean.User;
 import com.rdc.gdut_activity.model.LoginUserModel;
 import com.rdc.gdut_activity.ui.viewinterface.ILoginView;
@@ -32,6 +34,7 @@ public class LoginPresenter {
 
             @Override
             public void loginFailed(String error) {
+                Log.d("login", "loginFailed: " + error);
                 if (error.contains("101")) {
                     error = "登录失败,账号或者密码输入错误!";
                 } else if (error.contains("9016")) {

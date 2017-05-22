@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sc_publish_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="活动名称"
+            android:textColorHint="@color/black">
+
+            <EditText
+                android:id="@+id/et_activity_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/CustomTvTitleStyle"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:text="@string/type"/>
+
+            <Spinner
+                android:id="@+id/sp_type"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:hint="主办单位">
+
+                <EditText
+                    android:id="@+id/et_activity_host"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="地点">
+
+            <EditText
+                android:id="@+id/et_activity_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_set_time"
+            android:layout_width="match_parent"
+            android:background="@color/whitesmoke"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:id="@+id/iv_time_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:padding="3dp"
+                android:src="@drawable/ic_set_time"/>
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="start|center"
+                android:text="设置起始时间"/>
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="start|center"
+                android:text="结束时间"
+                />
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_activity_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入详情"
+                android:maxLines="10"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <com.jaeger.ninegridimageview.NineGridImageView
+            android:id="@+id/nine_grid_img_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:visibility="gone"
+            app:imgGap="4dp"
+            app:showStyle="grid"
+            app:singleImgSize="60dp"/>
+
+        <ImageView
+            android:id="@+id/iv_import_photo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_take_photo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_set_form_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@color/ivory"
+                android:drawableRight="@drawable/selector_custom_form_data"
+                android:gravity="center"
+                android:text="@string/set_form_data"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"/>
+
+            <include
+                layout="@layout/fragment_custom_form_data"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/preview"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_publish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/publish"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorAccent"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</ScrollView>

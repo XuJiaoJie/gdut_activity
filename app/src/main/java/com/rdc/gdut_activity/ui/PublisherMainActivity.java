@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.adapter.FragmentAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
-import com.rdc.gdut_activity.fragment.PublishFragment;
+import com.rdc.gdut_activity.fragment.PublishFragmentTwo;
 import com.rdc.gdut_activity.fragment.UserFragment;
 import com.rdc.gdut_activity.fragment.VerifyFragment;
 
@@ -52,7 +52,8 @@ public class PublisherMainActivity extends BaseActivity {
         titleList.add("我");
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(VerifyFragment.newInstance("已发布"));
-        fragmentList.add(PublishFragment.newInstance());
+        fragmentList.add(PublishFragmentTwo.newInstance());
+        // TODO: 2017.5.22 修改代码
         fragmentList.add(UserFragment.newInstance());
 
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList, titleList);

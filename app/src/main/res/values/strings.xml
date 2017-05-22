@@ -12,7 +12,7 @@
     <string name="phone_number">手机号码</string>
     <string name="check_status">审核状态：未审核</string>
     <string name="preview">预览</string>
-    <string name="publish">√ 发布</string>
+    <string name="publish">发布</string>
     <string name="type">类型：</string>
     <string name="host">主办单位：</string>
     <string name="detail">详情：</string>
@@ -31,6 +31,7 @@
     <string name="string_activity_selectclass">选课</string>
     <string name="string_activity_sign_up">马上报名</string>
     <string name="menu_push">推送</string>
+    <string name="cancel">取消</string>
 
     <string-array name="activity_type_array">
         <item>公益</item>

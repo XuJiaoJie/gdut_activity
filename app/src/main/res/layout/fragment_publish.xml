@@ -174,7 +174,7 @@
             android:layout_margin="5dp"
             android:background="@color/ivory"
             android:text="@string/preview"
-            android:textColor="@color/green"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"/>
 
         <Button
@@ -182,9 +182,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:background="@color/mediumseagreen"
+            android:background="@color/colorPrimary"
             android:text="@string/publish"
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_marginBottom="5dp"/>
     </LinearLayout>
 </ScrollView>

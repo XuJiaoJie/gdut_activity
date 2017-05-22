@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -54,8 +55,14 @@ import cn.bmob.v3.listener.UploadBatchListener;
 
 import static android.app.Activity.RESULT_OK;
 
-public class PublishFragment extends BaseFragment implements PublishContract.View {
+public class PublishFragmentTwo extends BaseFragment implements PublishContract.View {
 
+
+    private static final String TAG = "PublishFragment";
+    private static final int CODE_CHOOSE_PHOTO = 1;
+    private static final int CODE_SHOW_PHOTO = 2;
+    @InjectView(R.id.sc_publish_main)
+    ScrollView mScrollView;
     @InjectView(R.id.et_activity_name)
     EditText mEtActivityName;
     @InjectView(R.id.sp_type)
@@ -64,24 +71,22 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
     EditText mEtActivityHost;
     @InjectView(R.id.et_activity_location)
     EditText mEtActivityLocation;
-    @InjectView(R.id.tv_start_time)
-    TextView mTvStartTime;
-    @InjectView(R.id.iv_import_photo)
-    ImageView mIvImportPhoto;
-    @InjectView(R.id.et_activity_detail)
-    EditText mEtActivityDetail;
-    @InjectView(R.id.btn_set_form_data)
-    Button mBtnSetFormData;
-    @InjectView(R.id.btn_preview)
-    Button mBtnPreview;
-    @InjectView(R.id.btn_publish)
-    Button mBtnPublish;
     @InjectView(R.id.iv_time_icon)
     ImageView mIvTimeIcon;
+    @InjectView(R.id.tv_start_time)
+    TextView mTvStartTime;
+    @InjectView(R.id.tv_end_time)
+    TextView mTvEndTime;
     @InjectView(R.id.ll_set_time)
     LinearLayout mLlSetTime;
+    @InjectView(R.id.et_activity_detail)
+    EditText mEtActivityDetail;
     @InjectView(R.id.nine_grid_img_view)
     NineGridImageView mNineGridImgView;
+    @InjectView(R.id.iv_import_photo)
+    ImageView mIvImportPhoto;
+    @InjectView(R.id.btn_set_form_data)
+    Button mBtnSetFormData;
     @InjectView(R.id.cb_name)
     CheckBox mCbName;
     @InjectView(R.id.cb_college)
@@ -94,12 +99,15 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
     CheckBox mCbEmail;
     @InjectView(R.id.cb_class)
     CheckBox mCbClass;
-    @InjectView(R.id.tv_end_time)
-    TextView mTvEndTime;
+    @InjectView(R.id.btn_preview)
+    Button mBtnPreview;
+    @InjectView(R.id.btn_publish)
+    Button mBtnPublish;
+    @InjectView(R.id.ll_custom_form_data)
+    LinearLayout mLlCustomFormData;
+    @InjectView(R.id.btn_cancel)
+    Button mBtnCancel;
 
-    private static final String TAG = "PublishFragment";
-    private static final int CODE_CHOOSE_PHOTO = 1;
-    private static final int CODE_SHOW_PHOTO = 2;
     private PublishContract.Presenter mPresenter;
     private DetailImgUriAdapter mDetailImgUriAdapter;
     private HashMap<String, String> mFormData;
@@ -108,9 +116,9 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
     private Date mStartDate;
     private Date mEndDate;
 
-    public static PublishFragment newInstance() {
+    public static PublishFragmentTwo newInstance() {
         Bundle args = new Bundle();
-        PublishFragment fragment = new PublishFragment();
+        PublishFragmentTwo fragment = new PublishFragmentTwo();
         fragment.setArguments(args);
         return fragment;
     }
@@ -233,7 +241,7 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @OnClick({R.id.tv_start_time, R.id.tv_end_time, R.id.iv_import_photo, R.id.btn_set_form_data, R.id.btn_preview, R.id.btn_publish})
+    @OnClick({R.id.tv_start_time, R.id.tv_end_time, R.id.iv_import_photo, R.id.btn_set_form_data, R.id.btn_preview, R.id.btn_publish, R.id.btn_cancel})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_start_time:
@@ -246,6 +254,7 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
                 onImportPhotoClicked();
                 break;
             case R.id.btn_set_form_data:
+                setFormDataView();
                 break;
             case R.id.btn_preview:
                 ActivityInfoBean previewBean = saveActivityData(null);
@@ -264,9 +273,13 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
                 //如果有图片，在图片完成上传之后，会调用 saveActivityData
                 uploadImg();
                 break;
+            case R.id.btn_cancel:
+                cancelPublish();
+                break;
+            default:
+                break;
         }
     }
-
 
     private void showTimePickerView(final TextView textView) {
         TimePickerView pickerView = new TimePickerView.Builder(mBaseActivity, new TimePickerView.OnTimeSelectListener() {
@@ -403,6 +416,50 @@ public class PublishFragment extends BaseFragment implements PublishContract.Vie
 
         if (mCbProfession.isChecked()) {
             mFormData.put("专业", "");
+        }
+    }
+
+    // TODO: 2017.5.22 增加取消按钮
+    private void cancelPublish() {
+        mEtActivityName.setText("");
+        mEtActivityHost.setText("");
+        mEtActivityDetail.setText("");
+        mEtActivityLocation.setText("");
+        mTvStartTime.setText("设置起始时间");
+        mTvEndTime.setText("结束时间");
+        mSpType.setSelection(0);
+        if (mSelected != null) {
+            mSelected.clear();
+            updateNineGridView();
+        }
+        if (!mFormData.isEmpty()) {
+            removeCheckbox();
+        }
+        mBtnSetFormData.setSelected(false);
+        mLlCustomFormData.setVisibility(View.GONE);
+        mScrollView.scrollTo(0, 0);
+    }
+
+    private void removeCheckbox() {
+        mFormData.clear();
+        mCbClass.setChecked(false);
+        mCbCollege.setChecked(false);
+        mCbEmail.setChecked(false);
+        mCbName.setChecked(false);
+        mCbProfession.setChecked(false);
+        mCbPhone.setChecked(false);
+    }
+
+    private void setFormDataView() {
+        if (!mBtnSetFormData.isSelected()) {
+            mBtnSetFormData.setSelected(true);
+            mLlCustomFormData.setVisibility(View.VISIBLE);
+        } else {
+            if (!mFormData.isEmpty()) {
+                removeCheckbox();
+            }
+            mBtnSetFormData.setSelected(false);
+            mLlCustomFormData.setVisibility(View.GONE);
         }
     }
 
