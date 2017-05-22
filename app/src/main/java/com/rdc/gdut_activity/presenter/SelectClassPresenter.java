@@ -100,7 +100,7 @@ public class SelectClassPresenter {
         mParamsMap.put("searchKey", "kcmc");
         mParamsMap.put("searchValue", searchValue);
         mParamsMap.put("page", "1");
-        mParamsMap.put("rows", "50");
+        mParamsMap.put("rows", "150");
         mParamsMap.put("sort", "kcrwdm");
         mParamsMap.put("order", "asc");
         mClassModel.queryClass(Constant.URL_SELECTCLASS_GETCLASS_LIST, new OkHttpResultCallback() {

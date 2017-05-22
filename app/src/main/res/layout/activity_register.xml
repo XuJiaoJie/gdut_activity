@@ -12,9 +12,10 @@
         android:id="@+id/tb_register"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
-        app:title="@string/string_activity_register"
         app:leftButtonSize="@dimen/topbar_button_size"
-        app:titleTextColor="@color/white">
+        app:title="@string/string_activity_register"
+        app:titleTextColor="@color/white"
+        app:titleTextSize="@dimen/dimen_topbar_title_size">
     </com.rdc.gdut_activity.view.TopBar>
 
     <ScrollView
@@ -39,6 +40,7 @@
                 android:hint="@string/login_phonenum"
                 android:imeOptions="actionNext"
                 android:inputType="phone|number"
+                android:maxLength="11"
                 android:maxLines="1"
                 android:textColor="@color/color_white_login"
                 android:textSize="@dimen/dimen_et_login"

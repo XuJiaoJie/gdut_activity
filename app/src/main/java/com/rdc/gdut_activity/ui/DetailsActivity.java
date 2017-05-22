@@ -87,8 +87,8 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
                 mVpDetailsTop.addOnPageChangeListener(mPagerListener);
             }
             mPageAdapter = new DetailsPhotoPageAdapter(this, mPhotoList, this);
-            int startPage = Integer.MAX_VALUE / 2;  //无限循环
-            mVpDetailsTop.setCurrentItem(startPage);
+//            int startPage = Integer.MAX_VALUE / 2;  //无限循环
+//            mVpDetailsTop.setCurrentItem(startPage);
         } else {
             mFlDetails.setVisibility(View.GONE);
         }
@@ -183,7 +183,7 @@ public class DetailsActivity extends BaseActivity implements IDetailsView, View.
 
     @Override
     public void onClick(View v) {
-        Intent intent1 = DetailsPhotoActivity.newIntent(DetailsActivity.this, mVpDetailsTop.getCurrentItem() % mPhotoList.size(), (ArrayList<String>) mPhotoList);
+        Intent intent1 = DetailsPhotoActivity.newIntent(DetailsActivity.this, mVpDetailsTop.getCurrentItem(), (ArrayList<String>) mPhotoList);
         startActivity(intent1);
     }
 

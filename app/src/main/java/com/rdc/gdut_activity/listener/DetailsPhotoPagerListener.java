@@ -60,14 +60,14 @@ public class DetailsPhotoPagerListener implements ViewPager.OnPageChangeListener
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        position = position % mSize;
+//        position = position % mSize;
         float leftMargin = 0;
         if (position != mSize - 1) {                                    //如果是在最后一页, 往右滑就不增加滑动距离
             leftMargin = mDistance * (position + positionOffset);
         } else {
             leftMargin = mDistance * position;
         }
-        if(mViewParams!=null){
+        if (mViewParams != null) {
             mViewParams.leftMargin = Math.round(leftMargin);
             mView.setLayoutParams(mViewParams);
         }

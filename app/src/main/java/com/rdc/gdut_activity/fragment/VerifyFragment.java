@@ -27,7 +27,7 @@ import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
 
 
-public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, OnClickRecyclerViewListener,VerifyContract.View {
+public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, OnClickRecyclerViewListener, VerifyContract.View {
     private static final String TAG = "VerifyFragment";
     @InjectView(R.id.rv_verify_fragment_list)
     RecyclerView mRvVerifyFragmentList;
@@ -59,6 +59,7 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, On
 
     @Override
     protected void initData(Bundle bundle) {
+        mSrlVerifyFragment.setColorSchemeResources(R.color.colorPrimary);
         mType = bundle.getString("fragmentType");
         mTypeCopy = mType;
         isPublisher();
@@ -80,23 +81,23 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, On
 
     @Override
     protected void setListener() {
-        mPresenter.onRefersh(mPara,mType);
+        mPresenter.onRefersh(mPara, mType);
         mSrlVerifyFragment.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.onRefersh(mPara,mType);
+                mPresenter.onRefersh(mPara, mType);
                 mSrlVerifyFragment.setRefreshing(true);
             }
         });
     }
 
-    private void isPublisher(){
-        if (mType.equals("已发布")){
+    private void isPublisher() {
+        if (mType.equals("已发布")) {
             Publisher publisher = BmobUser.getCurrentUser(Publisher.class);
             mType = publisher.getObjectId();
             mPara = "mPublisher";
-            Log.e(TAG, "isPublisher: " + mType + "   "+ mPara +"  " + publisher.getUsername());
-        }else {
+            Log.e(TAG, "isPublisher: " + mType + "   " + mPara + "  " + publisher.getUsername());
+        } else {
             mPara = "mCheckStatus";
         }
     }
@@ -108,14 +109,14 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, On
     public void onItemClick(int position) {
         Intent intent = new Intent(mBaseActivity, DetailsVerifyActivity.class);
         intent.putExtra("DetailsVerifyActivity", (Parcelable) mBeanList.get(position));
-        if (mTypeCopy.equals("已审核")){
-            intent.putExtra("isVerifyType",false);
-            intent.putExtra("ActivityTitle","已审核活动详情");
-        }else if (mTypeCopy.equals("已发布")){
-            intent.putExtra("isVerifyType",false);
-            intent.putExtra("ActivityTitle","已发布的活动");
-        }else {
-            intent.putExtra("isVerifyType",true);
+        if (mTypeCopy.equals("已审核")) {
+            intent.putExtra("isVerifyType", false);
+            intent.putExtra("ActivityTitle", "已审核活动详情");
+        } else if (mTypeCopy.equals("已发布")) {
+            intent.putExtra("isVerifyType", false);
+            intent.putExtra("ActivityTitle", "已发布的活动");
+        } else {
+            intent.putExtra("isVerifyType", true);
         }
         startActivity(intent);
     }
@@ -130,7 +131,7 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, On
      */
     @Override
     public void loadMoreData() {
-        mPresenter.onLoadMore(mPara,mType);
+        mPresenter.onLoadMore(mPara, mType);
     }
 
 
@@ -158,10 +159,10 @@ public class VerifyFragment extends BaseFragment implements OnLoadMoreDataRv, On
 
     @Override
     public void onLoadMoreSuccess(List<ActivityInfoBean> list) {
-        if (list.size() != 0){
+        if (list.size() != 0) {
             mBeanList.addAll(list);
             mAdapter.appendData(list);
-        }else {
+        } else {
             mLoadMoreAdapter.setHasMoreData(false);
         }
         mLoadMoreAdapter.notifyDataSetChanged();

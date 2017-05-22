@@ -31,7 +31,8 @@ public class DetailsPhotoPageAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;   //实现无限滑动
+//        return Integer.MAX_VALUE;   //实现无限滑动
+        return mPhoto.size();
     }
 
     @Override
@@ -41,10 +42,11 @@ public class DetailsPhotoPageAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        position = position % mSize;
+//        position = position % mSize;
         View view = LayoutInflater.from(mContext).inflate(R.layout.viewpager_details_top, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.iv_details_top);
-        Glide.with(mContext).load(mPhoto.get(position)).placeholder(R.drawable.photo_empty_photo).into(imageView);
+        Glide.with(mContext).load(mPhoto.get(position)).placeholder(R.drawable.photo_empty_photo)
+                .dontAnimate().into(imageView);
         imageView.setOnClickListener(mOnClickListener);
         container.addView(view);
         return view;

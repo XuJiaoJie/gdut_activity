@@ -49,9 +49,9 @@
                     android:layout_margin="10dp"
                     android:ellipsize="end"
                     android:gravity="center"
-                    android:maxLength="8"
+                    android:maxLength="11"
                     android:maxLines="1"
-                    android:text="2017/5/9 19:292222"
+                    android:text="5-9 19:29"
                     android:textSize="@dimen/dimen_msg_time"
                     />
             </LinearLayout>

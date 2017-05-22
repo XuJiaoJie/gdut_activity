@@ -185,7 +185,7 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
 
     private void showChangePasswordDialog() {
         initBuilder("密码", -1);
-        final View view = View.inflate(this, R.layout.layout_dialog_change_phone_number, null);
+        final View view = View.inflate(this, R.layout.layout_dialog_change_phone_password, null);
         mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -208,7 +208,7 @@ public class UserGDUTActivity extends BaseActivity implements TopBar.topbarClick
                 // TODO: 2017/5/12 云端存储
                 Student student = new Student();
                 student.setmSchoolPassword(pwdEncrypt);
-                student.update(BmobUser.getCurrentUser().getObjectId(),new UpdateListener() {
+                student.update(BmobUser.getCurrentUser().getObjectId(), new UpdateListener() {
                     @Override
                     public void done(BmobException e) {
                         if (e == null) {

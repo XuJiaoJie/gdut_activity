@@ -17,7 +17,7 @@ public class RegisterPresenter {
 
     public void register() {
         mRegisterView.showProgress(true);
-        mUserModel.registerUser(mRegisterView.getUserPhone(), mRegisterView.getUserPassword(), new RegisterUserModel.OnRegisterListener() {
+        mUserModel.registerUser(mRegisterView.getUserPhone(),mRegisterView.getUserPassword(), new RegisterUserModel.OnRegisterListener() {
             @Override
             public void registerSuccess() {
                 mRegisterView.showProgress(false);

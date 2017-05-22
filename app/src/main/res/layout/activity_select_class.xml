@@ -13,10 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_topbar_height"
         android:background="@color/colorPrimary"
-        app:title="@string/string_activity_selectclass"
-        app:titleTextSize="18sp"
         app:leftButtonSize="@dimen/topbar_button_size"
+        app:rightButtonSize="@dimen/topbar_button_size"
+        app:title="@string/string_activity_selectclass"
         app:titleTextColor="@color/white"
+        app:titleTextSize="18sp"
         >
     </com.rdc.gdut_activity.view.TopBar>
 

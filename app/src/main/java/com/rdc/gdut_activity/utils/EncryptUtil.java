@@ -43,6 +43,11 @@ public class EncryptUtil {
         return sEncryptUtil;
     }
 
+    /**
+     * 加密
+     * @param s
+     * @return
+     */
     public String encrypt(String s){
         String text = null;
         try {
@@ -56,6 +61,11 @@ public class EncryptUtil {
         return text;
     }
 
+    /**
+     * 解密
+     * @param s
+     * @return
+     */
     public String decrypt(String s){
         String text = null;
         try {

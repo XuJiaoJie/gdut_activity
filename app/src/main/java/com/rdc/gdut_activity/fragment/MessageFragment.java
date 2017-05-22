@@ -16,6 +16,7 @@ import com.rdc.gdut_activity.ui.MessageActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,8 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
     private MessageAdapter mMessageAdapter;
     private List<MessageBean> mMessageBean;
     private Map<String, List<MessageBean>> mMapList;
+    public static final String mSystemIcon = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495466296507&di=332e23e59ea9a6a9e5aa21f49aebc70a&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F8ad4b31c8701a18bd51ee7919c2f07082938fe73.jpg";
+
 
     /**
      * 用来获取fragment实例的方法，这里可以让Activity给fragment设置参数,参数可以在下面的initData方法中的bundle中取出
@@ -61,9 +64,25 @@ public class MessageFragment extends BaseFragment implements OnClickRecyclerView
         setParams(bundle);
         mMessageBean = new ArrayList<>();
         mMapList = new HashMap<>();
-        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
-
+        initDefaultData();
         mMessageAdapter = new MessageAdapter();
+    }
+
+    /**
+     * 初始化系统消息
+     */
+    private void initDefaultData() {
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
+        MessageBean messageBean = new MessageBean();
+        messageBean.setName("系统消息");
+        messageBean.setObjectid("1");
+        messageBean.setIcon(mSystemIcon);
+        messageBean.setTime(format.format(new Date()));
+        messageBean.setMessage("感谢你使用活在广工!");
+        mMessageBean.add(messageBean);
+        ArrayList<MessageBean> mapList = new ArrayList<>();
+        mapList.add(messageBean);
+        mMapList.put(messageBean.getObjectid(), mapList);
     }
 
     @Override

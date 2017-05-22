@@ -14,215 +14,246 @@
         android:background="@color/colorPrimary"
         app:leftButtonSize="@dimen/topbar_button_size"
         app:title="我的广工"
-        app:titleTextSize="@dimen/pickerview_topbar_title_textsize"
-        app:titleTextColor="@color/white"/>
+        app:titleTextColor="@color/white"
+        app:titleTextSize="@dimen/pickerview_topbar_title_textsize"/>
 
     <LinearLayout
         android:id="@+id/ll_academic"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_linearlayout_bg"
         android:clickable="true"
-        android:background="@drawable/selector_linearlayout_bg">
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tv_school_academic"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="计算机学院"
-            android:textSize="18sp"
-            android:textColor="@color/green"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"/>
+
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="学院"
-            android:textSize="15sp"
             android:textColor="@color/gray"
-            android:gravity="center_vertical"/>
+            android:textSize="15sp"/>
+
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_right_arrow"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
             android:padding="8dp"
-            android:layout_marginRight="2dp"/>
+            android:src="@drawable/ic_right_arrow"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.0001dp"
-        android:background="@color/grey"
+        android:layout_height="0.5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:background="@color/gainsboro"
+        />
+
     <LinearLayout
         android:id="@+id/ll_major"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_linearlayout_bg"
         android:clickable="true"
-        android:background="@drawable/selector_linearlayout_bg">
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tv_school_major"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="计算机科学与技术"
-            android:textSize="18sp"
-            android:textColor="@color/green"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"/>
+
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="专业"
-            android:textSize="15sp"
             android:textColor="@color/gray"
-            android:gravity="center_vertical"/>
+            android:textSize="15sp"/>
+
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_right_arrow"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
             android:padding="8dp"
-            android:layout_marginRight="2dp"/>
+            android:src="@drawable/ic_right_arrow"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.0001dp"
-        android:background="@color/grey"
+        android:layout_height="0.5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:background="@color/gainsboro"
+        />
+
     <LinearLayout
         android:id="@+id/ll_class"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_linearlayout_bg"
         android:clickable="true"
-        android:background="@drawable/selector_linearlayout_bg">
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tv_school_class"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="15级计科（7）班"
-            android:textSize="18sp"
-            android:textColor="@color/green"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="班级"
-            android:textSize="15sp"
             android:textColor="@color/gray"
-            android:gravity="center_vertical"/>
+            android:textSize="15sp"/>
+
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_right_arrow"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
             android:padding="8dp"
-            android:layout_marginRight="2dp"/>
+            android:src="@drawable/ic_right_arrow"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.0001dp"
-        android:background="@color/grey"
+        android:layout_height="0.5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:background="@color/gainsboro"
+        />
+
     <LinearLayout
         android:id="@+id/ll_school_number"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_linearlayout_bg"
         android:clickable="true"
-        android:background="@drawable/selector_linearlayout_bg">
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tv_school_number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:text="3115005160"
-            android:textSize="18sp"
-            android:textColor="@color/green"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="学号"
-            android:textSize="15sp"
             android:textColor="@color/gray"
-            android:gravity="center_vertical"/>
+            android:textSize="15sp"/>
+
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_right_arrow"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
             android:padding="8dp"
-            android:layout_marginRight="2dp"/>
+            android:src="@drawable/ic_right_arrow"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.0001dp"
-        android:background="@color/grey"
+        android:layout_height="0.5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:background="@color/gainsboro"
+        />
+
     <LinearLayout
         android:id="@+id/ll_school_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:background="@drawable/selector_linearlayout_bg"
         android:clickable="true"
-        android:background="@drawable/selector_linearlayout_bg">
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tv_school_password"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:singleLine="true"
-            android:inputType="numberPassword"
-            android:clickable="true"
-            android:text="123456789"
-            android:textSize="18sp"
-            android:textColor="@color/green"
-            android:gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:maxLength="10"/>
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:password="true"
+            android:text="123456"
+            android:maxLength="10"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="密码"
-            android:textSize="15sp"
             android:textColor="@color/gray"
-            android:gravity="center_vertical"/>
+            android:textSize="15sp"/>
+
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_right_arrow"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="2dp"
             android:padding="8dp"
-            android:layout_marginRight="2dp"/>
+            android:src="@drawable/ic_right_arrow"/>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.0001dp"
-        android:background="@color/grey"
+        android:layout_height="0.5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:background="@color/gainsboro"
+        />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
-        android:text="小编提醒你，完善学籍表更加方便以后参加活动哟~"
-        android:textSize="15sp"
-        android:textColor="@color/gray"
         android:gravity="center_horizontal|bottom"
-        android:layout_marginBottom="10dp"/>
+        android:text="小编提醒你，完善学籍表更加方便以后参加活动哟~"
+        android:textColor="@color/gray"
+        android:textSize="15sp"/>
 
 </LinearLayout>
