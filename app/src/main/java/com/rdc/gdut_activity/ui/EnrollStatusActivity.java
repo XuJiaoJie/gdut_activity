@@ -12,12 +12,12 @@ import com.rdc.gdut_activity.adapter.EnrollStatusAdapter;
 import com.rdc.gdut_activity.base.BaseActivity;
 import com.rdc.gdut_activity.bean.ActivityInfoBean;
 import com.rdc.gdut_activity.bean.SignUpBean;
-import com.rdc.gdut_activity.bean.Student;
 import com.rdc.gdut_activity.view.TopBar;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.InjectView;
 import cn.bmob.v3.BmobQuery;
@@ -35,7 +35,7 @@ public class EnrollStatusActivity extends BaseActivity {
 
     private static final String KEY_EXTRA = "EXTRA";
     private static final String TAG = "EnrollStatusActivity";
-    private List<Student> mStuList;
+    private List<Map<String,String>> mStuList;
     private EnrollStatusAdapter mAdapter;
 
     public static Intent newIntent(Context context, ActivityInfoBean bean) {
@@ -67,7 +67,7 @@ public class EnrollStatusActivity extends BaseActivity {
             public void done(List<SignUpBean> list, BmobException e) {
                 if (e == null) {
                     for (int i = 0; i < list.size(); i++) {
-                        mStuList.add(list.get(i).getStudent());
+                        mStuList.add(list.get(i).getFormMap());
                         Log.e(TAG, "done: " + mStuList.get(i));
                         updateData();
                     }

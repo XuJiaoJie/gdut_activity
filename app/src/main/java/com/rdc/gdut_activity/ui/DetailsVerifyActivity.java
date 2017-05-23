@@ -89,8 +89,6 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
     Button mBtnActivitySignUp;
     @InjectView(R.id.rl_activity_sign_up)
     RelativeLayout mRlActivitySignUp;
-    @InjectView(R.id.tv_verify_num)
-    TextView mTvVerifyNum;
     @InjectView(R.id.tv_verify_pic)
     TextView mTvVerifyPic;
     @InjectView(R.id.iv_verify_pic_frist)
@@ -142,7 +140,6 @@ public class DetailsVerifyActivity extends BaseActivity implements VerifyContrac
         mTvVerifyType.setText(mBean.getActivityType());
         mTvVerifyHost.setText(mBean.getActivityHost());
         mTvVerifyDetails.setText(mBean.getActivityDetail());
-        mTvVerifyNum.setText("");
         if (mBean.getImgUrlList() == null || mBean.getImgUrlList().size() == 0) {
             mTvVerifyPic.setVisibility(View.GONE);
             mIvVerifyPicFrist.setImageResource(R.drawable.verify_item_pic);

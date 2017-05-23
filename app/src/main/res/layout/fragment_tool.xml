@@ -64,37 +64,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_tool_book"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:clickable="true"
-            android:background="@drawable/item_activity_click"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_tool_book"
-                android:scaleType="fitCenter"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="图书借阅"
-                android:layout_marginTop="3dp"
-                android:textColor="@color/black"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="3"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
             android:id="@+id/ll_tool_course"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -115,6 +84,37 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="课程表"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_tool_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:background="@drawable/item_activity_click"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_tool_book"
+                android:scaleType="fitCenter"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="图书借阅"
+                android:layout_marginTop="3dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
 

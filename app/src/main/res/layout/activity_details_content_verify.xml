@@ -316,7 +316,7 @@
 
     <com.jaeger.ninegridimageview.NineGridImageView
         android:id="@+id/ngiv_activity_pic"
-        android:layout_width="300dp"
+        android:layout_width="10dp"
         android:layout_height="300dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
@@ -434,31 +434,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="活动参与人数："
+            android:text="活动报名情况："
             android:textSize="16sp"
             android:textColor="@color/dimgray"
-            android:layout_centerVertical="true"/>
-        <TextView
-            android:id="@+id/tv_verify_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_verify_default_num"
-            android:layout_toEndOf="@+id/tv_verify_default_num"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            tools:text="30"
-            android:textSize="16sp"
             android:layout_centerVertical="true"/>
 
         <Button
             android:id="@+id/btn_activity_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/tv_verify_default_num"
+            android:layout_toEndOf="@+id/tv_verify_default_num"
+            android:layout_marginLeft="10dp"
             android:text="查看报名"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:background="@color/colorPrimary"/>
 

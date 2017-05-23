@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:paddingTop="5dp">
+                android:paddingTop="7dp">
 
 
     <LinearLayout
@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginLeft="10dp"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -30,30 +31,69 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/tv_info"
-        android:layout_width="135dp"
+    <!--<TextView-->
+        <!--android:id="@+id/tv_info"-->
+        <!--android:layout_width="135dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_toRightOf="@id/ll"-->
+        <!--android:maxEms="10"-->
+        <!--android:maxLines="2"-->
+        <!--tools:text="自动化学院\n15 级物联网工程4 班"/>-->
+
+    <LinearLayout
+        android:id="@+id/ll_academy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@id/ll"
-        android:maxEms="10"
-        android:maxLines="2"
-        tools:text="自动化学院\n15 级物联网工程4 班"/>
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/ll">
+
+        <TextView
+            android:id="@+id/tv_academy_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/dark_gray_text_score"
+            tools:text="自动化学院"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_profession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="物联网"/>
+            <TextView
+                android:id="@+id/tv_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2班"
+                android:layout_marginLeft="7dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/tv_info">
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp">
 
         <ImageView
             android:id="@+id/iv_contact_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
             android:src="@drawable/ic_contact_way"/>
 
         <TextView

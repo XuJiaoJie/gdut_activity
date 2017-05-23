@@ -9,14 +9,15 @@ import android.widget.TextView;
 
 import com.rdc.gdut_activity.R;
 import com.rdc.gdut_activity.base.BaseRecyclerViewAdapter;
-import com.rdc.gdut_activity.bean.Student;
-import com.squareup.picasso.Picasso;
+
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EnrollStatusAdapter extends BaseRecyclerViewAdapter<Student> {
+public class EnrollStatusAdapter extends BaseRecyclerViewAdapter<Map<String, String>> {
 
     private Context mContext;
 
@@ -40,10 +41,14 @@ public class EnrollStatusAdapter extends BaseRecyclerViewAdapter<Student> {
         CircleImageView mIvUserIcon;
         @InjectView(R.id.tv_user_nick_name)
         TextView mTvUserNickName;
-        @InjectView(R.id.tv_info)
-        TextView mTvInfo;
         @InjectView(R.id.tv_contact_way)
         TextView mTvContactWay;
+        @InjectView(R.id.tv_academy_name)
+        TextView mTvAcademyName;
+        @InjectView(R.id.tv_profession)
+        TextView mTvProfession;
+        @InjectView(R.id.tv_grade)
+        TextView mTvGrade;
 
 
         public ParticipantViewHolder(View itemView) {
@@ -52,19 +57,46 @@ public class EnrollStatusAdapter extends BaseRecyclerViewAdapter<Student> {
 //            (R.layout.item_list_enroll_msg)
         }
 
-        public void bindView(Student student) {
-            mTvUserNickName.setText(student.getUsername());
-            if (student.getMobilePhoneNumberVerified() != null && student.getMobilePhoneNumberVerified()) {
-                mTvContactWay.setText(student.getMobilePhoneNumber());
-            } else {
+        public void bindView(Map<String, String> map) {
+            Set<String> stringSet = map.keySet();
+            for (String s : stringSet) {
+                switch (s) {
+                    case "姓名":
+                        mTvUserNickName.setText(map.get(s));
+                        break;
+                    case "手机号码":
+                        mTvContactWay.setText(map.get(s));
+                        break;
+                    case "学院":
+                        mTvAcademyName.setText(map.get(s));
+                        break;
+                    case "专业":
+                        mTvProfession.setText(map.get(s));
+                        break;
+                    case "班级":
+                        mTvGrade.setText(map.get(s));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (!stringSet.contains("手机号码")) {
                 mTvContactWay.setText("该用户尚未填写联系方式");
             }
+            mIvUserIcon.setImageResource(R.drawable.ueser_icon);
+
+//            Picasso.with(mContext)
+//                    .load(student.getIcon())
+//                    .placeholder(R.drawable.ueser_icon)
+//                    .into(mIvUserIcon);
+//            if (student.getMobilePhoneNumberVerified() != null && student.getMobilePhoneNumberVerified()) {
+//
+//            } else {
+//
+//            }
 //            tools:text="自动化学院\n15 级物联网工程 4 班"
-            mTvInfo.setText(student.getCollege() + "\n" + student.getGrade() + " " + student.getMajor());
-            Picasso.with(mContext)
-                    .load(student.getIcon())
-                    .placeholder(R.drawable.ueser_icon)
-                    .into(mIvUserIcon);
+//            mTvInfo.setText(student.getCollege() + "\n" + student.getGrade() + " " + student.getMajor());
+
         }
     }
 }
