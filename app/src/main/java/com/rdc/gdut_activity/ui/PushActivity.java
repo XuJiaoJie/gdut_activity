@@ -139,11 +139,12 @@ public class PushActivity extends BaseActivity {
 //        manager.setQuery(query);
         SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
         MessageBean messageBean = new MessageBean();
-        Publisher publisher = activityInfoBean.getPublisher();
+        Publisher publisher = BmobUser.getCurrentUser(Publisher.class);
         messageBean.setName(activityInfoBean.getActivityHost());
         messageBean.setMessage(msg);
         messageBean.setTime(format.format(new Date()));
         messageBean.setIcon(publisher.getIcon());
+//        messageBean.setIcon("http://bmob-cdn-11311.b0.upaiyun.com/2017/05/23/ec3dde6261c9457c9d8508a3fecad95d.jpg");
         messageBean.setObjectid(activityInfoBean.getObjectId());
         String message = GsonUtil.gsonToJson(messageBean);
         manager.pushMessageAll(message, new PushListener() {

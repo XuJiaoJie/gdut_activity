@@ -33,8 +33,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="计算机学院"
-
+            android:text="(选填)"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"/>
 
@@ -79,8 +78,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="计算机科学与技术"
-
+            android:text="(选填)"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"/>
 
@@ -125,7 +123,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="15级计科（7）班"
+            android:text="(选填)"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"/>
 
@@ -170,7 +168,6 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="3115005160"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"/>
 
@@ -216,7 +213,6 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:password="true"
-            android:text="123456"
             android:maxLength="10"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"/>
