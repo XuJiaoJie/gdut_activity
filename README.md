@@ -32,6 +32,3 @@
 ![](http://otpesi023.bkt.clouddn.com/%E6%B4%BB%E5%9C%A8%E5%B9%BF%E5%B7%A511.png)
 ![](http://otpesi023.bkt.clouddn.com/%E6%B4%BB%E5%9C%A8%E5%B9%BF%E5%B7%A512.png)
 ![](http://otpesi023.bkt.clouddn.com/%E6%B4%BB%E5%9C%A8%E5%B9%BF%E5%B7%A513.png)
-
-
-
